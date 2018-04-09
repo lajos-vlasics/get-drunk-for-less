@@ -23,6 +23,7 @@ out/
 .gradle
 .gradle/
 build/
+gradlew.bat
 
 # Signing files
 .signing/
