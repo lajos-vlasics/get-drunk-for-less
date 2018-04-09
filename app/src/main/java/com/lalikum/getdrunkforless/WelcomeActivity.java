@@ -1,7 +1,9 @@
 package com.lalikum.getdrunkforless;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -28,4 +30,10 @@ public class WelcomeActivity extends AppCompatActivity {
         welcomeTitleTextView.setAnimation(fromTopAnimation);
         getStartedButton.setAnimation(fromBottomAnimation);
     }
+
+    public void toTutorial(View view) {
+        Intent intent = new Intent(this, TutorialActivity.class);
+        startActivity(intent);
+    }
+
 }
