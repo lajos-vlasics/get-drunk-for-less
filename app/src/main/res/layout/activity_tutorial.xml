@@ -26,4 +26,25 @@
         android:orientation="horizontal"
         android:padding="20dp"></LinearLayout>
 
+    <Button
+        android:id="@+id/previousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:enabled="false"
+        android:onClick="previousButtonEventListener"
+        android:text="Previous" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:onClick="nextButtonEventListener"
+        android:text="Next" />
+
 </RelativeLayout>
