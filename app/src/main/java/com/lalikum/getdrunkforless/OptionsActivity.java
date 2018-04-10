@@ -1,5 +1,6 @@
 package com.lalikum.getdrunkforless;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,5 +39,11 @@ public class OptionsActivity extends AppCompatActivity {
                     unitType = "fl oz";
                 break;
         }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
     }
 }
