@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
         getStartedButton.setAnimation(fromBottomAnimation);
     }
 
-    public void toTutorial(View view) {
+    public void toTutorialActivity(View view) {
         Intent intent = new Intent(this, TutorialActivity.class);
         startActivity(intent);
     }

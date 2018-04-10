@@ -123,7 +123,7 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     public void continueButtonEventListener(View view) {
-        Intent intent = new Intent(TutorialActivity.this, CalculateActivity.class);
+        Intent intent = new Intent(TutorialActivity.this, OptionsActivity.class);
         startActivity(intent);
     }
 

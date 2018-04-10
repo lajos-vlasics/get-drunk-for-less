@@ -62,7 +62,7 @@ public class CalculateActivity extends AppCompatActivity {
                 DecimalFormat df = new DecimalFormat();
                 df.setMaximumFractionDigits(2);
                 df.setRoundingMode(RoundingMode.HALF_UP);
-
+                // TODO show currency and unit after values
                 pureAlcoholTextView.setText("There is " + df.format(alcoholQuantityCl) + " cl pure alcohol in the beverage.");
                 pricePerAlcoholTextView.setText("That's " + df.format(pricePerAlcoholCl) + " Ft/cl alcohol value!");
 
