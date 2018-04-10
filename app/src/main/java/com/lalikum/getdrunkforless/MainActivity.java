@@ -1,8 +1,9 @@
 package com.lalikum.getdrunkforless;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 df.setMaximumFractionDigits(2);
                 df.setRoundingMode(RoundingMode.HALF_UP);
 
-                pureAlcoholTextView.setText("There is "+ df.format(alcoholQuantityCl) + " cl pure alcohol in the beverage.");
+                pureAlcoholTextView.setText("There is " + df.format(alcoholQuantityCl) + " cl pure alcohol in the beverage.");
                 pricePerAlcoholTextView.setText("That's " + df.format(pricePerAlcoholCl) + " Ft/cl alcohol value!");
 
                 hideKeyboard();
@@ -94,5 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
     }
 }
