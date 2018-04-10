@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 
+import com.lalikum.getdrunkforless.model.Options;
+
 public class OptionsActivity extends AppCompatActivity {
 
     String userName = "Name";
@@ -17,6 +19,12 @@ public class OptionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
+    }
+
+    public void saveOptions(View view) {
+        Options options = new Options(userName, unitType, currency);
+        options.save();
+        toHomeActivity(view);
     }
 
     public void toHomeActivity(View view) {

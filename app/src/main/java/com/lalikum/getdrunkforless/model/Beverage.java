@@ -2,7 +2,6 @@ package com.lalikum.getdrunkforless.model;
 
 public class Beverage {
 
-    private int id;
     private String name;
     private float size;
     private float alcohol;
