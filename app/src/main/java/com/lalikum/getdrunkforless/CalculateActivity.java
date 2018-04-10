@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-public class MainActivity extends AppCompatActivity {
+public class CalculateActivity extends AppCompatActivity {
 
     private float beverageSize;
     private float alcoholPercent;
