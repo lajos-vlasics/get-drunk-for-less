@@ -63,6 +63,6 @@ public class TutorialSliderAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((RelativeLayout) object);
+        container.removeView((View) object);
     }
 }
