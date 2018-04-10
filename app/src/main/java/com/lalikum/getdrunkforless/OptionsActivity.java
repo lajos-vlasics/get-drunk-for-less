@@ -20,7 +20,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     public void toHomeActivity(View view) {
-        Intent intent = new Intent(this, CalculateActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
@@ -41,9 +41,4 @@ public class OptionsActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
-    }
 }
