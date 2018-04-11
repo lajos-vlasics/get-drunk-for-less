@@ -23,7 +23,8 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // check if its first launch, if not, go straight to home menu
-        //TODO what if no database exists?
+        // TODO what if no database exists?
+        // TODO simple welcome screen if nth launch
         optionsController = new OptionsController();
         if (optionsController.isOptionsExists()) {
             Intent intent = new Intent(this, HomeActivity.class);

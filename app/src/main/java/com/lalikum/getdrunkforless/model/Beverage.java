@@ -1,5 +1,6 @@
 package com.lalikum.getdrunkforless.model;
 
+import com.lalikum.getdrunkforless.controller.OptionsController;
 import com.orm.SugarRecord;
 
 public class Beverage extends SugarRecord {
@@ -78,4 +79,6 @@ public class Beverage extends SugarRecord {
     public void setAlcoholValue(float alcoholValue) {
         this.alcoholValue = alcoholValue;
     }
+
+
 }

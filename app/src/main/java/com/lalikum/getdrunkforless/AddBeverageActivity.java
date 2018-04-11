@@ -57,16 +57,19 @@ public class AddBeverageActivity extends AppCompatActivity {
         priceEditText = findViewById(R.id.priceEditText);
         bottlesEditText = findViewById(R.id.bottlesEditText);
 
-        // set unit and currency field from options
+        // Set unit and currency field from options
         unit = optionsController.getUnit();
         currency = optionsController.getCurrency();
 
-        beverageSizeTextView.setText(String.format("Beverage size (%s)", unit));
+        beverageSizeTextView.setText(String.format("Size (%s)", unit));
         priceTextView.setText(String.format("Price (%s)", currency));
+
+        // Set focus on first input
+        beverageNameEditText.requestFocus();
     }
 
     private boolean checkIfInputsAreEmpty(EditText... editTextList) {
-        // Show error message in input field if somethings wrong
+        // Show error message in input field if its empty
         boolean isEmptyInput = false;
 
         for (EditText editText : editTextList) {
@@ -74,13 +77,22 @@ public class AddBeverageActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(inputText)) {
                 editText.setError("Please fill this out!");
                 isEmptyInput = true;
-                //TODO error for string input
-            } else if (Float.parseFloat(inputText) == 0) {
+            }
+        }
+        return isEmptyInput;
+    }
+
+    private boolean checkIfInputsAreZero(EditText... editTextList) {
+        // Show error message in input field if its zero
+        boolean isEmptyInput = false;
+
+        for (EditText editText : editTextList) {
+            String inputText = editText.getText().toString();
+            if (Float.parseFloat(inputText) == 0) {
                 editText.setError("This cannot be null! Do you want to get drunk or what?");
                 isEmptyInput = true;
             }
         }
-
         return isEmptyInput;
     }
 
@@ -98,11 +110,12 @@ public class AddBeverageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void calculateButtonEvent(View view) {
+    public Beverage calculateButtonEvent(View view) {
         try {
-            if (checkIfInputsAreEmpty(beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText)) {
+            if (checkIfInputsAreEmpty(beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText) ||
+                    checkIfInputsAreZero(beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText)) {
                 // TODO hide keyboard only if its over an error input field not visible
-                return;
+                return null;
             }
             beverageName = beverageNameEditText.getText().toString();
             beverageSize = Float.parseFloat(beverageSizeEditText.getText().toString());
@@ -111,14 +124,10 @@ public class AddBeverageActivity extends AppCompatActivity {
             bottles = Integer.parseInt(bottlesEditText.getText().toString());
         } catch (NumberFormatException e) {
             System.out.println("Can't parse input to float or int!");
-            return;
+            return null;
         }
 
         Beverage beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
-
-//        float alcoholQuantityCl = beverageSize * bottles * alcoholByVolume;
-//
-//        pricePerAlcoholCl = price / alcoholQuantityCl;
 
         TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
         TextView pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
@@ -127,15 +136,21 @@ public class AddBeverageActivity extends AppCompatActivity {
         df.setMaximumFractionDigits(2);
         df.setRoundingMode(RoundingMode.HALF_UP);
         // TODO show currency and unit after values
-        pureAlcoholTextView.setText("There is " + df.format(beverage.getAlcoholQuantity()) + " ml pure alcohol in the beverage.");
-        pricePerAlcoholTextView.setText("That's " + df.format(beverage.getAlcoholValue()) + " Ft/ml alcohol value!");
+        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
+        pricePerAlcoholTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(beverage)));
 
         hideKeyboard();
+
+        return beverage;
     }
 
     public void saveButtonEvent(View view) {
-        calculateButtonEvent(view);
-        // TODO save to DB and return home screen
+        Beverage beverage = calculateButtonEvent(view);
+        if (beverage == null) {
+            return;
+        } else {
+            beverageController.save(beverage);
+        }
         toHomeActivity(view);
     }
 

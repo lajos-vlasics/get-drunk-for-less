@@ -13,11 +13,10 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Enter size"
-        android:imeOptions="actionNext"
         android:inputType="numberDecimal"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beverageSizeTextView" />
 
@@ -28,13 +27,12 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Enter alcohol"
-        android:imeOptions="actionNext"
         android:inputType="numberDecimal"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alcoholConcentrationTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/alcoholByVolumeTextView" />
 
     <EditText
         android:id="@+id/priceEditText"
@@ -59,7 +57,7 @@
         android:onClick="calculateButtonEvent"
         android:text="Calculate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottlesEditText" />
 
@@ -95,18 +93,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Beverage size (liter)"
+        android:text="Size (unit)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beverageNameEditText" />
 
     <TextView
-        android:id="@+id/alcoholConcentrationTextView"
+        android:id="@+id/alcoholByVolumeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Alcohol concentration (%)"
+        android:text="Alcohol by volume (%)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,18 +115,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Price (Ft)"
+        android:text="Price (currency)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/alcoholByVolumeEditText" />
 
     <TextView
-        android:id="@+id/quantityTextView"
+        android:id="@+id/bottlesTextView"
         android:layout_width="wrap_content"
         android:layout_height="14dp"
         android:layout_marginTop="8dp"
-        android:text="Quantity"
+        android:text="Bottles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,23 +140,23 @@
         android:ems="10"
         android:hint="Enter quantity"
         android:inputType="number"
+        android:selectAllOnFocus="true"
         android:singleLine="true"
         android:text="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantityTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/bottlesTextView" />
 
     <TextView
         android:id="@+id/beverageNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Beverage name"
+        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/beverageTitleTextView" />
 
     <EditText
         android:id="@+id/beverageNameEditText"
@@ -168,9 +166,34 @@
         android:ems="10"
         android:hint="Enter name"
         android:inputType="textPersonName"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beverageNameTextView" />
+
+    <TextView
+        android:id="@+id/beverageTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Add beverage"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="saveButtonEvent"
+        android:text="Save"
+        app:layout_constraintStart_toEndOf="@+id/calculateButton"
+        app:layout_constraintTop_toBottomOf="@+id/bottlesEditText" />
 
 </android.support.constraint.ConstraintLayout>
