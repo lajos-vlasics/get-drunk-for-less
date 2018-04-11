@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.R;
@@ -48,7 +47,7 @@ public class TutorialSliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+        View view = layoutInflater.inflate(R.layout.slide_layout_tutorial, container, false);
 
         ImageView tutorialImageView = view.findViewById(R.id.tutorialImageView);
         TextView tutorialTextView = view.findViewById(R.id.tutorialTextView);

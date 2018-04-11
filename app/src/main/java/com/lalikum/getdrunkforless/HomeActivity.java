@@ -15,18 +15,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Options options = Options.findById(Options.class, (long) 1);
+        Options options = Options.findById(Options.class, 1);
 
-
-//        System.out.println(options.getUserName());
-//        System.out.println(options.getUnitType());
-//        System.out.println(options.getCurrency());
-
-        Iterator<Options> optionsList = options.findAll(Options.class);
-        while (optionsList.hasNext()) {
-            System.out.println(optionsList.next().getCurrency());
-        }
-
+        System.out.println(options.getUserName());
+        System.out.println(options.getMeasurementSystem().getUnit());
+        System.out.println(options.getCurrency());
 
     }
 

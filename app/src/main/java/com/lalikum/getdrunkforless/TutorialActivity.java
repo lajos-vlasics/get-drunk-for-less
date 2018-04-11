@@ -1,6 +1,5 @@
 package com.lalikum.getdrunkforless;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -19,12 +18,12 @@ public class TutorialActivity extends AppCompatActivity {
     private LinearLayout slideDotsLayout;
 
     private int pageCount = 3;
+    private int currentPagePosition;
 
     private TextView[] slideDotsTextViewList;
 
     private Button previousButton;
     private Button nextButton;
-    private int currentPage;
 
     private TutorialSliderAdapter tutorialSliderAdapter;
 
@@ -36,14 +35,14 @@ public class TutorialActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             changeDotsColor(position);
-            currentPage = position;
+            currentPagePosition = position;
 
-            if (currentPage == 0) {
+            if (currentPagePosition == 0) {
                 previousButton.setEnabled(false);
-            } else if (currentPage == pageCount - 1) {
+            } else if (currentPagePosition == pageCount - 1) {
                 previousButton.setEnabled(true);
                 nextButton.setText("Continue");
-                // TODO change color of text
+                // TODO change color of text, or highlight button
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -115,22 +114,15 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     public void previousButtonEventListener(View view) {
-        slideViewPager.setCurrentItem(currentPage - 1);
+        slideViewPager.setCurrentItem(currentPagePosition - 1);
     }
 
     public void nextButtonEventListener(View view) {
-        slideViewPager.setCurrentItem(currentPage + 1);
+        slideViewPager.setCurrentItem(currentPagePosition + 1);
     }
 
     public void continueButtonEventListener(View view) {
         Intent intent = new Intent(TutorialActivity.this, OptionsActivity.class);
         startActivity(intent);
     }
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
-    }
-
 }

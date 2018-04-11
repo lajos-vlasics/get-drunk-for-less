@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.lalikum.getdrunkforless.controller.OptionsController;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     TextView welcomeTitleTextView;
@@ -16,8 +18,18 @@ public class WelcomeActivity extends AppCompatActivity {
     Animation fromTopAnimation;
     Animation fromBottomAnimation;
 
+    OptionsController optionsController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // check if its first launch, if not, go straight to home menu
+        //TODO what if no database exists?
+/*        optionsController = new OptionsController();
+        if (optionsController.isOptionsExists()) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        }*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 

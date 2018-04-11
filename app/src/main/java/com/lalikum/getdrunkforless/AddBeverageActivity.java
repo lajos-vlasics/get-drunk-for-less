@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-public class CalculateActivity extends AppCompatActivity {
+public class AddBeverageActivity extends AppCompatActivity {
 
     private float beverageSize;
     private float alcoholPercent;
@@ -25,7 +25,7 @@ public class CalculateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_beverage);
 
         Button calculateButton = findViewById(R.id.calculateButton);
         calculateButton.setOnClickListener(new View.OnClickListener() {

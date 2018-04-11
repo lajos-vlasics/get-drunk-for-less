@@ -5,15 +5,15 @@ import com.orm.SugarRecord;
 public class Options extends SugarRecord {
 
     private String userName;
-    private String unitType;
+    private MeasurementSystem measurementSystem;
     private String currency;
 
     public Options() {
     }
 
-    public Options(String userName, String unitType, String currency) {
+    public Options(String userName, MeasurementSystem measurement, String currency) {
         this.userName = userName;
-        this.unitType = unitType;
+        this.measurementSystem = measurement;
         this.currency = currency;
     }
 
@@ -21,20 +21,24 @@ public class Options extends SugarRecord {
         return userName;
     }
 
-    public String getUnitType() {
-        return unitType;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public void setUnitType(String unitType) {
-        this.unitType = unitType;
+    public MeasurementSystem getMeasurementSystem() {
+        return measurementSystem;
+    }
+
+    public void setMeasurementSystem(MeasurementSystem measurementSystem) {
+        this.measurementSystem = measurementSystem;
+    }
+
+    public String getUnit() {
+        return measurementSystem.getUnit();
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     public void setCurrency(String currency) {
