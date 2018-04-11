@@ -37,7 +37,7 @@
     <EditText
         android:id="@+id/priceEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Enter price"
@@ -166,6 +166,7 @@
         android:ems="10"
         android:hint="Enter name"
         android:inputType="textPersonName"
+        android:maxLength="16"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

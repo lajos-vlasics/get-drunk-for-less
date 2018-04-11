@@ -41,7 +41,7 @@ public class BeverageController {
         beverage.save();
     }
 
-    public Beverage getById(int id) {
+    public Beverage getById(long id) {
         return Beverage.findById(Beverage.class, id);
     }
 

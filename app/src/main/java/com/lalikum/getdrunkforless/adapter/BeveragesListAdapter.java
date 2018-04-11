@@ -95,5 +95,13 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         }
     }
 
+    public void removeBeverage(int position) {
+        beverageList.remove(position);
+    }
+
+    public Beverage getBeverageByPosition(int position) {
+        return beverageList.get(position);
+    }
+
 
 }

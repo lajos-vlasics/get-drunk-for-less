@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
@@ -24,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     BeverageController beverageController = new BeverageController();
 
     BeveragesListAdapter beveragesListAdapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         List<Beverage> beverageList = beverageController.getAll();
 
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.beveragesRecyclerView);
+        recyclerView = findViewById(R.id.beveragesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 //        beveragesListAdapter.setClickListener(this);
@@ -52,12 +56,27 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void deleteBeverage() {
+    public void deleteBeverage(View view) {
         // TODO show modal for it
+        RelativeLayout layout = (RelativeLayout) view.getParent();
+        int position = recyclerView.getChildLayoutPosition(layout);
+
+        Beverage beverage = beveragesListAdapter.getBeverageByPosition(position);
+        beverage.delete();
+
+        beveragesListAdapter.removeBeverage(position);
+        beveragesListAdapter.notifyDataSetChanged();
     }
 
-    public void editBeverage() {
+    public void editBeverage(View view) {
         // TODO edit drink here
+        RelativeLayout layout = (RelativeLayout) view.getParent();
+        int position = recyclerView.getChildLayoutPosition(layout);
+
+        Beverage beverage = beveragesListAdapter.getBeverageByPosition(position);
+        Intent intent = new Intent(this, AddBeverageActivity.class);
+        intent.putExtra("beverageId", beverage.getId());
+        startActivity(intent);
     }
 
 

@@ -46,8 +46,6 @@ public class AddBeverageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
-        // TODO fill inputs if edit mode
-
         beverageSizeTextView = findViewById(R.id.beverageSizeTextView);
         priceTextView = findViewById(R.id.priceTextView);
 
@@ -66,6 +64,14 @@ public class AddBeverageActivity extends AppCompatActivity {
 
         // Set focus on first input
         beverageNameEditText.requestFocus();
+
+        // TODO fill inputs if edit mode
+        Intent intent = getIntent();
+        long beverageId = intent.getLongExtra("beverageId", -1);
+        if (beverageId > -1) {
+            Beverage beverage = beverageController.getById(beverageId);
+        }
+
     }
 
     private boolean checkIfInputsAreEmpty(EditText... editTextList) {
@@ -118,9 +124,13 @@ public class AddBeverageActivity extends AppCompatActivity {
                 return null;
             }
             beverageName = beverageNameEditText.getText().toString();
+            // TODO set max length
             beverageSize = Float.parseFloat(beverageSizeEditText.getText().toString());
+            // TODO set max value 100
             alcoholByVolume = Float.parseFloat(alcoholByVolumeEditText.getText().toString());
+            // TODO set max length
             price = Float.parseFloat(priceEditText.getText().toString());
+            // TODO set max length
             bottles = Integer.parseInt(bottlesEditText.getText().toString());
         } catch (NumberFormatException e) {
             System.out.println("Can't parse input to float or int!");
