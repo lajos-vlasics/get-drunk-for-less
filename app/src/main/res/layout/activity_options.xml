@@ -110,7 +110,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:onClick="unitTypeRadioButtonClicked"
-            android:text="Metric (Liter)" />
+            android:text="Metric (ml)" />
 
         <RadioButton
             android:id="@+id/imperialRadioButton"

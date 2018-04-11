@@ -1,7 +1,7 @@
 package com.lalikum.getdrunkforless.model;
 
 public enum MeasurementSystem {
-    METRIC("L"), IMPERIAL("fl oz");
+    METRIC("ml"), IMPERIAL("fl oz");
 
     private String unit;
 

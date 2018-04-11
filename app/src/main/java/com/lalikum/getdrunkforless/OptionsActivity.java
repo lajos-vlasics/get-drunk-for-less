@@ -21,6 +21,7 @@ public class OptionsActivity extends AppCompatActivity {
 
     EditText userNameEditText;
     EditText currencyEditText;
+
     RadioButton metricRadioButton;
     RadioButton imperialRadioButton;
     RadioGroup unitRadioGroup;
@@ -37,6 +38,10 @@ public class OptionsActivity extends AppCompatActivity {
         metricRadioButton = findViewById(R.id.metricRadioButton);
         imperialRadioButton = findViewById(R.id.imperialRadioButton);
         unitRadioGroup = findViewById(R.id.unitRadioGroup);
+
+        // set unit fields from ENUM
+        metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
+        imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
 
         // If options exists fill from DB
         if (optionsController.isOptionsExists()) {
@@ -92,7 +97,6 @@ public class OptionsActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     private boolean checkIfInputsAreEmpty(EditText... editTextList) {
         boolean isEmptyInput = false;

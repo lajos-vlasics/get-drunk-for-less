@@ -1,25 +1,44 @@
 package com.lalikum.getdrunkforless;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.lalikum.getdrunkforless.controller.BeverageController;
+import com.lalikum.getdrunkforless.controller.OptionsController;
+import com.lalikum.getdrunkforless.model.Beverage;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
+    private OptionsController optionsController = new OptionsController();
+    private BeverageController beverageController = new BeverageController();
+
+    private TextView beverageSizeTextView;
+    private TextView priceTextView;
+
+    private EditText beverageNameEditText;
+    private EditText beverageSizeEditText;
+    private EditText alcoholByVolumeEditText;
+    private EditText priceEditText;
+    private EditText bottlesEditText;
+
+    private String unit;
+    private String currency;
+
+    private String beverageName;
     private float beverageSize;
-    private float alcoholPercent;
+    private float alcoholByVolume;
     private float price;
-    private int quantity;
+    private int bottles;
     private float pricePerAlcoholCl;
 
     @Override
@@ -27,51 +46,27 @@ public class AddBeverageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
-        Button calculateButton = findViewById(R.id.calculateButton);
-        calculateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText beverageSizeEditText = findViewById(R.id.beverageSizeEditText);
-                EditText alcoholPercentEditText = findViewById(R.id.alcoholPercentEditText);
-                EditText priceEditText = findViewById(R.id.priceEditText);
-                EditText quantityEditText = findViewById(R.id.quantityEditText);
+        // TODO fill inputs if edit mode
 
-                try {
-                    if (checkIfInputsAreEmpty(beverageSizeEditText, alcoholPercentEditText, priceEditText, quantityEditText)) {
-                        // TODO hide keyboard only if its over an error input field not visible
-//                    hideKeyboard();
-                        return;
-                    }
+        beverageSizeTextView = findViewById(R.id.beverageSizeTextView);
+        priceTextView = findViewById(R.id.priceTextView);
 
-                    beverageSize = Float.parseFloat(beverageSizeEditText.getText().toString());
-                    alcoholPercent = Float.parseFloat(alcoholPercentEditText.getText().toString());
-                    price = Float.parseFloat(priceEditText.getText().toString());
-                    quantity = Integer.parseInt(quantityEditText.getText().toString());
-                } catch (NumberFormatException e) {
-                    System.out.println("Can't parse input to float or int!");
-                    return;
-                }
+        beverageNameEditText = findViewById(R.id.beverageNameEditText);
+        beverageSizeEditText = findViewById(R.id.beverageSizeEditText);
+        alcoholByVolumeEditText = findViewById(R.id.alcoholByVolumeEditText);
+        priceEditText = findViewById(R.id.priceEditText);
+        bottlesEditText = findViewById(R.id.bottlesEditText);
 
-                float alcoholQuantityCl = beverageSize * quantity * alcoholPercent;
+        // set unit and currency field from options
+        unit = optionsController.getUnit();
+        currency = optionsController.getCurrency();
 
-                pricePerAlcoholCl = price / alcoholQuantityCl;
-
-                TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
-                TextView pricePerAlcoholTextView = findViewById(R.id.pricePerAlcoholTextView);
-
-                DecimalFormat df = new DecimalFormat();
-                df.setMaximumFractionDigits(2);
-                df.setRoundingMode(RoundingMode.HALF_UP);
-                // TODO show currency and unit after values
-                pureAlcoholTextView.setText("There is " + df.format(alcoholQuantityCl) + " cl pure alcohol in the beverage.");
-                pricePerAlcoholTextView.setText("That's " + df.format(pricePerAlcoholCl) + " Ft/cl alcohol value!");
-
-                hideKeyboard();
-            }
-        });
+        beverageSizeTextView.setText(String.format("Beverage size (%s)", unit));
+        priceTextView.setText(String.format("Price (%s)", currency));
     }
 
     private boolean checkIfInputsAreEmpty(EditText... editTextList) {
+        // Show error message in input field if somethings wrong
         boolean isEmptyInput = false;
 
         for (EditText editText : editTextList) {
@@ -79,6 +74,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             if (TextUtils.isEmpty(inputText)) {
                 editText.setError("Please fill this out!");
                 isEmptyInput = true;
+                //TODO error for string input
             } else if (Float.parseFloat(inputText) == 0) {
                 editText.setError("This cannot be null! Do you want to get drunk or what?");
                 isEmptyInput = true;
@@ -97,9 +93,50 @@ public class AddBeverageActivity extends AppCompatActivity {
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
+    private void toHomeActivity(View view) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
+
+    public void calculateButtonEvent(View view) {
+        try {
+            if (checkIfInputsAreEmpty(beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText)) {
+                // TODO hide keyboard only if its over an error input field not visible
+                return;
+            }
+            beverageName = beverageNameEditText.getText().toString();
+            beverageSize = Float.parseFloat(beverageSizeEditText.getText().toString());
+            alcoholByVolume = Float.parseFloat(alcoholByVolumeEditText.getText().toString());
+            price = Float.parseFloat(priceEditText.getText().toString());
+            bottles = Integer.parseInt(bottlesEditText.getText().toString());
+        } catch (NumberFormatException e) {
+            System.out.println("Can't parse input to float or int!");
+            return;
+        }
+
+        Beverage beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
+
+//        float alcoholQuantityCl = beverageSize * bottles * alcoholByVolume;
+//
+//        pricePerAlcoholCl = price / alcoholQuantityCl;
+
+        TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
+        TextView pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
+
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        // TODO show currency and unit after values
+        pureAlcoholTextView.setText("There is " + df.format(beverage.getAlcoholQuantity()) + " ml pure alcohol in the beverage.");
+        pricePerAlcoholTextView.setText("That's " + df.format(beverage.getAlcoholValue()) + " Ft/ml alcohol value!");
+
+        hideKeyboard();
+    }
+
+    public void saveButtonEvent(View view) {
+        calculateButtonEvent(view);
+        // TODO save to DB and return home screen
+        toHomeActivity(view);
+    }
+
 }

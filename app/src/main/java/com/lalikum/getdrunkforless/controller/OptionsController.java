@@ -26,4 +26,12 @@ public class OptionsController {
     public Options getInstance() {
         return Options.findById(Options.class, 1);
     }
+
+    public String getUnit() {
+        return getInstance().getUnit();
+    }
+
+    public String getCurrency() {
+        return getInstance().getCurrency();
+    }
 }
