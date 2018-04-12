@@ -14,16 +14,12 @@ import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.OptionsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 public class AddBeverageActivity extends AppCompatActivity {
 
+    Beverage beverage;
+    Beverage editBeverage;
     private OptionsController optionsController = new OptionsController();
     private BeverageController beverageController = new BeverageController();
-
-    Beverage editBeverage;
-
     private TextView beverageTitleTextView;
     private TextView beverageSizeTextView;
     private TextView priceTextView;
@@ -42,7 +38,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     private float alcoholByVolume;
     private float price;
     private int bottles;
-    private float pricePerAlcoholCl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,18 +94,22 @@ public class AddBeverageActivity extends AppCompatActivity {
         return isEmptyInput;
     }
 
-    private boolean checkIfInputsAreZero(EditText... editTextList) {
+    private boolean checkIfDigitInputsAreZero(EditText... editTextList) {
         // Show error message in input field if its zero
-        boolean isEmptyInput = false;
+        boolean isZeroInput = false;
 
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
+            if (TextUtils.isEmpty(inputText)) {
+                continue;
+            }
+            // TODO cant parse null to float!!!
             if (Float.parseFloat(inputText) == 0) {
                 editText.setError("This cannot be null! Do you want to get drunk or what?");
-                isEmptyInput = true;
+                isZeroInput = true;
             }
         }
-        return isEmptyInput;
+        return isZeroInput;
     }
 
 
@@ -127,12 +126,39 @@ public class AddBeverageActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public Beverage calculateButtonEvent(View view) {
+    public void calculateButtonEvent(View view) {
+        if (!setInputs()) {
+            return;
+        }
+        setBeverage();
+
+        TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
+        TextView pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
+
+        // TODO show currency and unit after values
+        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
+        pricePerAlcoholTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(beverage)));
+
+        hideKeyboard();
+    }
+
+    public void saveButtonEvent(View view) {
+        if (!setInputs()) {
+            return;
+        }
+        setBeverage();
+
+        beverageController.save(beverage);
+        toHomeActivity(view);
+    }
+
+    private boolean setInputs() {
         try {
-            if (checkIfInputsAreEmpty(beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText) ||
-                    checkIfInputsAreZero(beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText)) {
+            boolean isEmptyInput = checkIfInputsAreEmpty(beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText);
+            boolean isZeroInput = checkIfDigitInputsAreZero(beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText);
+            if (isEmptyInput || isZeroInput) {
                 // TODO hide keyboard only if its over an error input field not visible
-                return null;
+                return false;
             }
             beverageName = beverageNameEditText.getText().toString();
             // TODO set max length
@@ -145,10 +171,12 @@ public class AddBeverageActivity extends AppCompatActivity {
             bottles = Integer.parseInt(bottlesEditText.getText().toString());
         } catch (NumberFormatException e) {
             System.out.println("Can't parse input to float or int!");
-            return null;
+            return false;
         }
+        return true;
+    }
 
-        Beverage beverage;
+    private void setBeverage() {
         if (editBeverage == null) {
             beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
         } else {
@@ -160,30 +188,6 @@ public class AddBeverageActivity extends AppCompatActivity {
             beverage.setBottles(bottles);
             beverageController.calculate(beverage);
         }
-
-        TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
-        TextView pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
-
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        df.setRoundingMode(RoundingMode.HALF_UP);
-        // TODO show currency and unit after values
-        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
-        pricePerAlcoholTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(beverage)));
-
-        hideKeyboard();
-
-        return beverage;
-    }
-
-    public void saveButtonEvent(View view) {
-        Beverage beverage = calculateButtonEvent(view);
-        if (beverage == null) {
-            return;
-        } else {
-            beverageController.save(beverage);
-        }
-        toHomeActivity(view);
     }
 
 }
