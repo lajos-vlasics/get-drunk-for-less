@@ -24,7 +24,7 @@ public class BeverageController {
         return beverage;
     }
 
-    private void calculate(Beverage beverage) {
+    public void calculate(Beverage beverage) {
         float beverageSize = beverage.getSize();
         float alcoholByVolume = beverage.getAlcoholByVolume();
         float price = beverage.getPrice();

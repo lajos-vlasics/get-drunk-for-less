@@ -22,6 +22,9 @@ public class AddBeverageActivity extends AppCompatActivity {
     private OptionsController optionsController = new OptionsController();
     private BeverageController beverageController = new BeverageController();
 
+    Beverage editBeverage;
+
+    private TextView beverageTitleTextView;
     private TextView beverageSizeTextView;
     private TextView priceTextView;
 
@@ -46,6 +49,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
+        beverageTitleTextView = findViewById(R.id.beverageTitleTextView);
         beverageSizeTextView = findViewById(R.id.beverageSizeTextView);
         priceTextView = findViewById(R.id.priceTextView);
 
@@ -69,7 +73,14 @@ public class AddBeverageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long beverageId = intent.getLongExtra("beverageId", -1);
         if (beverageId > -1) {
-            Beverage beverage = beverageController.getById(beverageId);
+            editBeverage = beverageController.getById(beverageId);
+
+            beverageTitleTextView.setText("Edit beverage");
+            beverageNameEditText.setText(editBeverage.getName());
+            beverageSizeEditText.setText(String.valueOf(editBeverage.getSize()));
+            alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));
+            priceEditText.setText(String.valueOf(editBeverage.getPrice()));
+            bottlesEditText.setText(String.valueOf(editBeverage.getBottles()));
         }
 
     }
@@ -137,7 +148,18 @@ public class AddBeverageActivity extends AppCompatActivity {
             return null;
         }
 
-        Beverage beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
+        Beverage beverage;
+        if (editBeverage == null) {
+            beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
+        } else {
+            beverage = editBeverage;
+            beverage.setName(beverageName);
+            beverage.setSize(beverageSize);
+            beverage.setAlcoholByVolume(alcoholByVolume);
+            beverage.setPrice(price);
+            beverage.setBottles(bottles);
+            beverageController.calculate(beverage);
+        }
 
         TextView pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
         TextView pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
@@ -146,7 +168,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         df.setMaximumFractionDigits(2);
         df.setRoundingMode(RoundingMode.HALF_UP);
         // TODO show currency and unit after values
-        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
+        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
         pricePerAlcoholTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(beverage)));
 
         hideKeyboard();
