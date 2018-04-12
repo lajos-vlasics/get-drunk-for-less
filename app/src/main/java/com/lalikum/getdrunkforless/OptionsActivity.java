@@ -77,7 +77,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setUserNameInputError();
-                setOptionsOkButtonCheck();
+                setOptionsOkButtonActive();
             }
 
             @Override
@@ -94,7 +94,7 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setCurrencyInputError();
-                setOptionsOkButtonCheck();
+                setOptionsOkButtonActive();
             }
 
             @Override
@@ -111,7 +111,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setUserNameInputError();
-                    setOptionsOkButtonCheck();
+                    setOptionsOkButtonActive();
                 }
             }
         });
@@ -121,7 +121,7 @@ public class OptionsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setCurrencyInputError();
-                    setOptionsOkButtonCheck();
+                    setOptionsOkButtonActive();
                 }
             }
         });
@@ -168,16 +168,21 @@ public class OptionsActivity extends AppCompatActivity {
         }
     }
 
-    private void setOptionsOkButtonCheck() {
-        inputChecker.setButtonCheck(optionsOkButton, userNameEditText, currencyEditText);
+    private void setOptionsOkButtonActive() {
+        boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
+        if (isInputError) {
+            optionsOkButton.setEnabled(false);
+        } else {
+            optionsOkButton.setEnabled(true);
+        }
     }
 
     private boolean setUserNameInputError() {
-        return inputChecker.setEmptyInputError("Please tell me your name!", userNameEditText);
+        return inputChecker.isEmptyInput("Please tell me your name!", userNameEditText);
     }
 
     private boolean setCurrencyInputError() {
-        return inputChecker.setEmptyInputError("Set the default currency please!", currencyEditText);
+        return inputChecker.isEmptyInput("Set the default currency please!", currencyEditText);
     }
 
 }
