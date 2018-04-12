@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,23 +16,25 @@ import android.widget.TextView;
 import com.lalikum.getdrunkforless.controller.OptionsController;
 import com.lalikum.getdrunkforless.model.MeasurementSystem;
 import com.lalikum.getdrunkforless.model.Options;
+import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class OptionsActivity extends AppCompatActivity {
 
-    String userName;
-    MeasurementSystem measurementSystem = MeasurementSystem.METRIC;
-    String currency;
+    private String userName;
+    private MeasurementSystem measurementSystem = MeasurementSystem.METRIC;
+    private String currency;
 
-    EditText userNameEditText;
-    EditText currencyEditText;
+    private EditText userNameEditText;
+    private EditText currencyEditText;
 
-    RadioButton metricRadioButton;
-    RadioButton imperialRadioButton;
-    RadioGroup unitRadioGroup;
+    private RadioButton metricRadioButton;
+    private RadioButton imperialRadioButton;
+    private RadioGroup unitRadioGroup;
 
-    Button optionsOkButton;
+    private Button optionsOkButton;
 
-    OptionsController optionsController = new OptionsController();
+    private OptionsController optionsController = new OptionsController();
+    private InputChecker inputChecker = new InputChecker();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +76,8 @@ public class OptionsActivity extends AppCompatActivity {
         userNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setEmptyInputError(userNameEditText);
-                setSaveButtonCheck();
+                setUserNameInputError();
+                setOptionsOkButtonCheck();
             }
 
             @Override
@@ -92,8 +93,8 @@ public class OptionsActivity extends AppCompatActivity {
         currencyEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setEmptyInputError(currencyEditText);
-                setSaveButtonCheck();
+                setCurrencyInputError();
+                setOptionsOkButtonCheck();
             }
 
             @Override
@@ -109,8 +110,8 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    setEmptyInputError(userNameEditText);
-                    setSaveButtonCheck();
+                    setUserNameInputError();
+                    setOptionsOkButtonCheck();
                 }
             }
         });
@@ -119,8 +120,8 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    setEmptyInputError(currencyEditText);
-                    setSaveButtonCheck();
+                    setCurrencyInputError();
+                    setOptionsOkButtonCheck();
                 }
             }
         });
@@ -135,8 +136,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     public void saveOptions(View view) {
-        // TODO check if null
-        if (setEmptyInputError(userNameEditText, currencyEditText)) {
+        if (setUserNameInputError() || setCurrencyInputError()) {
             return;
         }
         userName = userNameEditText.getText().toString();
@@ -168,36 +168,16 @@ public class OptionsActivity extends AppCompatActivity {
         }
     }
 
-    private boolean setEmptyInputError(EditText... editTextList) {
-        boolean isEmptyInput = false;
-        for (EditText editText : editTextList) {
-            String inputText = editText.getText().toString();
-            if (TextUtils.isEmpty(inputText)) {
-                editText.setError("Please fill this out!");
-                isEmptyInput = true;
-            }
-        }
-        return isEmptyInput;
+    private void setOptionsOkButtonCheck() {
+        inputChecker.setButtonCheck(optionsOkButton, userNameEditText, currencyEditText);
     }
 
-    private boolean isEmptyInput(EditText... editTextList) {
-        boolean isEmptyInput = false;
-        for (EditText editText : editTextList) {
-            String inputText = editText.getText().toString();
-            if (TextUtils.isEmpty(inputText)) {
-                isEmptyInput = true;
-            }
-        }
-        return isEmptyInput;
+    private boolean setUserNameInputError() {
+        return inputChecker.setEmptyInputError("Please tell me your name!", userNameEditText);
     }
 
-    private void setSaveButtonCheck() {
-        boolean isEmpty = isEmptyInput(userNameEditText, currencyEditText);
-        if (isEmpty) {
-            optionsOkButton.setEnabled(false);
-        } else {
-            optionsOkButton.setEnabled(true);
-        }
+    private boolean setCurrencyInputError() {
+        return inputChecker.setEmptyInputError("Set the default currency please!", currencyEditText);
     }
 
 }
