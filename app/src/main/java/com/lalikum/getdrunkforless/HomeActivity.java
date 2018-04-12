@@ -30,6 +30,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // TODO set icon to actionbar
+        setTitle("My beverages");
 
         List<Beverage> beverageList = beverageController.getAll();
         // sort list by alcohol value

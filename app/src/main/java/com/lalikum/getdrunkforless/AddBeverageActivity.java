@@ -24,7 +24,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     private OptionsController optionsController = new OptionsController();
     private BeverageController beverageController = new BeverageController();
     private InputChecker inputChecker = new InputChecker();
-    private TextView beverageTitleTextView;
     private TextView beverageSizeTextView;
     private TextView priceTextView;
     private EditText beverageNameEditText;
@@ -54,8 +53,8 @@ public class AddBeverageActivity extends AppCompatActivity {
         // TODO make it scrollable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
+        setTitle("Add beverage");
 
-        beverageTitleTextView = findViewById(R.id.beverageTitleTextView);
         beverageSizeTextView = findViewById(R.id.beverageSizeTextView);
         priceTextView = findViewById(R.id.priceTextView);
         pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
@@ -83,9 +82,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long beverageId = intent.getLongExtra("beverageId", -1);
         if (beverageId > -1) {
+            setTitle("Edit beverage");
             editBeverage = beverageController.getById(beverageId);
 
-            beverageTitleTextView.setText("Edit beverage");
             beverageNameEditText.setText(editBeverage.getName());
             beverageSizeEditText.setText(String.valueOf(editBeverage.getSize()));
             alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));

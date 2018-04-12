@@ -73,6 +73,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
+        setTitle("Tutorial");
 
         slideViewPager = findViewById(R.id.slideViewPager);
         slideDotsLayout = findViewById(R.id.slideDotsLayout);

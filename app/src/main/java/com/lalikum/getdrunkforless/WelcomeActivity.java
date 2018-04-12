@@ -1,5 +1,6 @@
 package com.lalikum.getdrunkforless;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // check if its first launch, if not, go straight to welcome and home menu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        getSupportActionBar().hide();
 
         welcomeTitleTextView = findViewById(R.id.welcomeTitleTextView);
         getStartedButton = findViewById(R.id.getStartedButton);
