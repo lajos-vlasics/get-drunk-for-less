@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.R;
@@ -44,6 +45,12 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         holder.priceTextView.setText(beverageController.getPriceWithSuffix(beverage));
         holder.bottlesTextView.setText(beverageController.getBottlesWithSuffix(beverage));
         holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage));
+        // set valueBar
+        if (position == 0) {
+            holder.valueBar.setProgress(100);
+        } else {
+            holder.valueBar.setProgress((int) (beverageList.get(0).getAlcoholValue() /  beverageList.get(position).getAlcoholValue() * 100));
+        }
     }
 
     // total number of rows
@@ -53,13 +60,17 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     }
 
     // convenience method for getting data at click position
-    public Beverage getItem(int id) {
-        return beverageList.get(id);
+    public Beverage getItem(int position) {
+        return beverageList.get(position);
     }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
+    }
+
+    public void removeItem(int position) {
+        beverageList.remove(position);
     }
 
     // parent activity will implement this method to respond to click events
@@ -75,6 +86,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         TextView priceTextView;
         TextView bottlesTextView;
         TextView alcoholValueTextView;
+        ProgressBar valueBar;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +96,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             priceTextView = itemView.findViewById(R.id.priceLayoutTextView);
             bottlesTextView = itemView.findViewById(R.id.bottlesLayoutTextView);
             alcoholValueTextView = itemView.findViewById(R.id.alcoholValueLayoutTextView);
+            valueBar = itemView.findViewById(R.id.valueBar);
 
             itemView.setOnClickListener(this);
         }
@@ -93,14 +106,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             if (itemClickListener != null)
                 itemClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    public void removeBeverage(int position) {
-        beverageList.remove(position);
-    }
-
-    public Beverage getBeverageByPosition(int position) {
-        return beverageList.get(position);
     }
 
 
