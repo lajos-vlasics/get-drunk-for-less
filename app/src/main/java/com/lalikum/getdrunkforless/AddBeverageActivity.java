@@ -32,7 +32,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     private EditText alcoholByVolumeEditText;
     private EditText priceEditText;
     private EditText bottlesEditText;
-    private EditText[] editTextList;
 
     private Button saveButton;
 
@@ -52,6 +51,7 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO make it scrollable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
@@ -66,7 +66,6 @@ public class AddBeverageActivity extends AppCompatActivity {
         alcoholByVolumeEditText = findViewById(R.id.alcoholByVolumeEditText);
         priceEditText = findViewById(R.id.priceEditText);
         bottlesEditText = findViewById(R.id.bottlesEditText);
-        editTextList = new EditText[]{beverageNameEditText, beverageSizeEditText, alcoholByVolumeEditText, priceEditText, bottlesEditText};
 
         saveButton = findViewById(R.id.saveButton);
 
@@ -93,6 +92,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             priceEditText.setText(String.valueOf(editBeverage.getPrice()));
             bottlesEditText.setText(String.valueOf(editBeverage.getBottles()));
 
+            calculate();
             saveButton.setEnabled(true);
         }
 

@@ -27,9 +27,9 @@ public class TutorialSliderAdapter extends PagerAdapter {
     };
 
     private String[] slide_texts = {
-            "Lorem ipsum 1",
-            "Lorem ipsum 2",
-            "Lorem ipsum 3"
+            "Don't have enough money?",
+            "Still want to party at Level 100 ???",
+            "Don't worry. I can help you to find the best alcohol value booze to get the most of your money!"
     };
 
 

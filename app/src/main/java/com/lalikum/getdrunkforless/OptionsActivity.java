@@ -2,6 +2,7 @@ package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -32,6 +33,8 @@ public class OptionsActivity extends AppCompatActivity {
     private RadioGroup unitRadioGroup;
 
     private Button optionsOkButton;
+    private FloatingActionButton tutorialButton;
+    private FloatingActionButton homeButton;
 
     private OptionsController optionsController = new OptionsController();
     private InputChecker inputChecker = new InputChecker();
@@ -47,12 +50,14 @@ public class OptionsActivity extends AppCompatActivity {
         imperialRadioButton = findViewById(R.id.imperialRadioButton);
         unitRadioGroup = findViewById(R.id.unitRadioGroup);
         optionsOkButton = findViewById(R.id.optionsOkButton);
+        tutorialButton = findViewById(R.id.optionTutorialButton);
+        homeButton = findViewById(R.id.optionHomeButton);
 
         // set unit fields from ENUM
         metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
         imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
 
-        // If options exists fill from DB and enable Save button
+        // If options exists (from home menu button) fill from DB and enable Save button
         if (optionsController.isOptionsExists()) {
             Options options = optionsController.getInstance();
 
@@ -71,8 +76,11 @@ public class OptionsActivity extends AppCompatActivity {
 
             currencyEditText.setText(options.getCurrency());
             optionsOkButton.setEnabled(true);
+            tutorialButton.setVisibility(View.VISIBLE);
+            homeButton.setVisibility(View.VISIBLE);
         }
 
+        // add listeners
         userNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -133,6 +141,27 @@ public class OptionsActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        optionsOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toHomeActivity(v);
+            }
+        });
+
+        tutorialButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toTutorialActivity(v);
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toHomeActivity(v);
+            }
+        });
     }
 
     public void saveOptions(View view) {
@@ -148,6 +177,11 @@ public class OptionsActivity extends AppCompatActivity {
 
     public void toHomeActivity(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    private void toTutorialActivity(View view) {
+        Intent intent = new Intent(this, TutorialActivity.class);
         startActivity(intent);
     }
 

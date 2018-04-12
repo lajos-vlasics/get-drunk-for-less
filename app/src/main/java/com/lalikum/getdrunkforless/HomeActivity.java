@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         List<Beverage> beverageList = beverageController.getAll();
         // sort list by alcohol value
         Collections.sort(beverageList, new Comparator<Beverage>() {

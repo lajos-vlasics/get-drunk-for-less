@@ -18,19 +18,11 @@ public class WelcomeActivity extends AppCompatActivity {
     Animation fromTopAnimation;
     Animation fromBottomAnimation;
 
-    OptionsController optionsController;
+    OptionsController optionsController = new OptionsController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // check if its first launch, if not, go straight to home menu
-        // TODO what if no database exists?
-        // TODO simple welcome screen if nth launch
-        optionsController = new OptionsController();
-        if (optionsController.isOptionsExists()) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        }
-
+        // check if its first launch, if not, go straight to welcome and home menu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
@@ -42,10 +34,48 @@ public class WelcomeActivity extends AppCompatActivity {
 
         welcomeTitleTextView.setAnimation(fromTopAnimation);
         getStartedButton.setAnimation(fromBottomAnimation);
+
+        // simple welcome screen without get started button if nth launch
+        if (optionsController.isOptionsExists()) {
+            getStartedButton.setVisibility(View.GONE);
+
+            fromTopAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    toHomeActivity();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+        }
+
+        // event listeners
+        getStartedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toTutorialActivity();
+            }
+        });
     }
 
-    public void toTutorialActivity(View view) {
+    public void toTutorialActivity() {
         Intent intent = new Intent(this, TutorialActivity.class);
+        startActivity(intent);
+    }
+
+    public void toHomeActivity() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
