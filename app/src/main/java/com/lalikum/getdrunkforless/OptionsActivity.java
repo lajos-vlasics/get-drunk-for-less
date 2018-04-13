@@ -67,6 +67,7 @@ public class OptionsActivity extends AppCompatActivity {
             measurementSystem = options.getMeasurementSystem();
             unitRadioGroup.clearCheck();
             switch (measurementSystem) {
+                // TODO convert beverage units too...
                 case METRIC:
                     metricRadioButton.toggle();
                     break;
@@ -146,6 +147,7 @@ public class OptionsActivity extends AppCompatActivity {
         optionsOkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                saveOptions(v);
                 toHomeActivity(v);
             }
         });
