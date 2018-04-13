@@ -1,6 +1,5 @@
 package com.lalikum.getdrunkforless;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,48 +7,50 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.lalikum.getdrunkforless.controller.OptionsController;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    TextView welcomeTitleTextView;
-    Button getStartedButton;
-    Animation fromTopAnimation;
-    Animation fromBottomAnimation;
+    ImageView ivWelcomeTitle;
+    Button bGetStarted;
+    Animation anFromTop;
+    Animation anFromBottom;
 
     OptionsController optionsController = new OptionsController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // check if its first launch, if not, go straight to welcome and home menu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        getSupportActionBar().hide();
+        // TODO hide welcome correctly
+//        getSupportActionBar().hide();
 
-        welcomeTitleTextView = findViewById(R.id.welcomeTitleTextView);
-        getStartedButton = findViewById(R.id.getStartedButton);
+        ivWelcomeTitle = findViewById(R.id.ivWelcomeTitle);
+        bGetStarted = findViewById(R.id.bWelcomeGetStarted);
 
-        fromTopAnimation = AnimationUtils.loadAnimation(this, R.anim.from_top);
-        fromBottomAnimation = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+        anFromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
+        anFromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
 
-        welcomeTitleTextView.setAnimation(fromTopAnimation);
-        getStartedButton.setAnimation(fromBottomAnimation);
+        ivWelcomeTitle.setAnimation(anFromTop);
+        bGetStarted.setAnimation(anFromBottom);
 
         // simple welcome screen without get started button if nth launch
+        // TODO no db error at first run, but app can run
         if (optionsController.isOptionsExists()) {
-            getStartedButton.setVisibility(View.GONE);
+            bGetStarted.setVisibility(View.GONE);
 
-            fromTopAnimation.setAnimationListener(new Animation.AnimationListener() {
+            anFromTop.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                 }
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
+                    // TODO there is a little movement after thread sleep
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -63,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         // event listeners
-        getStartedButton.setOnClickListener(new View.OnClickListener() {
+        bGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toTutorialActivity();

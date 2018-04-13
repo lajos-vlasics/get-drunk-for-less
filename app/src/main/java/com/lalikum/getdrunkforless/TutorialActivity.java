@@ -107,9 +107,9 @@ public class TutorialActivity extends AppCompatActivity {
     private void changeDotsColor(int position) {
         for (int i = 0; i < slideDotsTextViewList.length; i++) {
             if (position == i) {
-                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorAccent));
+                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdRed));
             } else {
-                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorPrimary));
+                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdOrange));
             }
         }
     }
