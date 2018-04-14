@@ -2,7 +2,11 @@
 <resources>
     <color name="primary_material_light">#f44336</color>
     <color name="colorGdGreen">#1a501d</color>
-    <color name="colorGdOrange">#ff9500</color>
+    <color name="colorGdOrange">#ff9800</color>
+    <color name="colorGdDarkOrange">#be7100</color>
     <color name="colorGdRed">#a60b00</color>
-    <color name="colorGdDarkOrange">#936015</color>
+    <color name="colorGdLightGrey">#acacac</color>
+    <color name="primary_material_light_1">#e48383</color>
+    <color name="accent_material_dark">#ffc400</color>
+    <color name="colorGdLightOrange">#ffc400</color>
 </resources>

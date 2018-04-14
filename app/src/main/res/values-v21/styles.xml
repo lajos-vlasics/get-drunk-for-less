@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="GetDrunkDark" parent="Theme.AppCompat" >
+
+    <style name="GetDrunkDark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorGdOrange</item>
         <item name="android:colorBackground">@color/colorGdGreen</item>
-        <item name="colorAccent">@color/colorGdLightOrange</item>
+        <item name="android:statusBarColor">@color/colorGdDarkOrange</item>
+        <item name="android:navigationBarColor">@color/colorGdDarkOrange</item>
+        <item name="colorAccent">@color/colorGdOrange</item>
         <item name="colorPrimaryDark">@color/colorGdDarkOrange</item>
     </style>
 </resources>

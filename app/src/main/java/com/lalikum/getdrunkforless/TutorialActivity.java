@@ -1,6 +1,7 @@
 package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class TutorialActivity extends AppCompatActivity {
             } else if (currentPagePosition == pageCount - 1) {
                 previousButton.setEnabled(true);
                 nextButton.setText("Continue");
-                // TODO change color of text, or highlight button
+                nextButton.setTextColor(getResources().getColor(R.color.colorGdOrange));
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -54,6 +55,7 @@ public class TutorialActivity extends AppCompatActivity {
             } else {
                 previousButton.setEnabled(true);
                 nextButton.setText("Next");
+                nextButton.setTextColor(Color.WHITE); // TODO set to default text color not mock
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -107,9 +109,9 @@ public class TutorialActivity extends AppCompatActivity {
     private void changeDotsColor(int position) {
         for (int i = 0; i < slideDotsTextViewList.length; i++) {
             if (position == i) {
-                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdRed));
-            } else {
                 slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdOrange));
+            } else {
+                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdLightGrey));
             }
         }
     }

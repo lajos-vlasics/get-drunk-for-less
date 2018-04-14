@@ -49,4 +49,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHomeAddBeverageHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/addBeverageButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="49dp"
+        android:text="Add a beverage here!"
+        android:textSize="24sp"
+        android:visibility="gone" />
 </RelativeLayout>

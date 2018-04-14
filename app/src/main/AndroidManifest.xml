@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/gd_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/GetDrunkDark">
         <activity android:name=".AddBeverageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
@@ -19,21 +20,34 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    OptionsController optionsController = new OptionsController();
     BeverageController beverageController = new BeverageController();
 
     BeveragesListAdapter beveragesListAdapter;
     RecyclerView recyclerView;
+    TextView tvAddBeverageHere;
+
+    List<Beverage> beverageList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        recyclerView = findViewById(R.id.beveragesRecyclerView);
+        tvAddBeverageHere = findViewById(R.id.tvHomeAddBeverageHere);
+
+        beverageList = beverageController.getAll();
+
         // TODO set icon to actionbar
         setTitle("My beverages");
 
-        List<Beverage> beverageList = beverageController.getAll();
+        // in no beverage, than show Add beverage here text only
+        if (beverageList.size() == 0) {
+            showAddBeverageHereTextView();
+            return;
+        }
+
         // sort list by alcohol value
         Collections.sort(beverageList, new Comparator<Beverage>() {
             @Override
@@ -43,7 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // set up the RecyclerView
-        recyclerView = findViewById(R.id.beveragesRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 //        beveragesListAdapter.setClickListener(this);
@@ -72,6 +85,10 @@ public class HomeActivity extends AppCompatActivity {
 
         beveragesListAdapter.removeItem(position);
         beveragesListAdapter.notifyDataSetChanged();
+
+        if (beveragesListAdapter.getItemCount() == 0) {
+            showAddBeverageHereTextView();
+        }
     }
 
     public void editBeverage(View view) {
@@ -90,5 +107,9 @@ public class HomeActivity extends AppCompatActivity {
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
+    }
+
+    public void showAddBeverageHereTextView() {
+        tvAddBeverageHere.setVisibility(View.VISIBLE);
     }
 }
