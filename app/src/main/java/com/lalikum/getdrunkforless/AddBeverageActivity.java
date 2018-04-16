@@ -51,6 +51,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make it scrollable
+        // TODO UpperCase first letter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
         setTitle("Add beverage");
@@ -60,8 +61,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         pureAlcoholTextView = findViewById(R.id.tvAddBeveragePureAlcohol);
         alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
 
-        beverageNameEditText = findViewById(R.id.etAddBeverageName);
-        beverageSizeEditText = findViewById(R.id.etAddBeverageSize);
+        // TODO autocomplete beverages names
+        beverageNameEditText = findViewById(R.id.etAddBeverageName); // TODO UpperCase first letter
+        beverageSizeEditText = findViewById(R.id.etAddBeverageSize); // TODO change l/dl/cl/ml
         alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
         priceEditText = findViewById(R.id.etAddBeveragePrice);
         bottlesEditText = findViewById(R.id.etAddBeverageBottles);

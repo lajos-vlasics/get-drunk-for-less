@@ -43,6 +43,9 @@ public class HomeActivity extends AppCompatActivity {
         // TODO set icon to actionbar
         setTitle("My beverages");
 
+        // TODO visible scrollbar
+        // TODO search field in actionbar
+
         // in no beverage, than show Add beverage here text only
         if (beverageList.size() == 0) {
             showAddBeverageHereTextView();

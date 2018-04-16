@@ -38,8 +38,14 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        // TODO create empty container at the end
+        // TODO set list limit max count to prevent memory overflow
         Beverage beverage = beverageList.get(position);
+        // TODO show beverage top list numbers and pony heads (gold, silver, bronze)
+        // TODO show beverage type (wine beer short)
         holder.beverageNameTextView.setText(beverage.getName());
+        // TODO add a new text if the item was added now
+        // TODO scroll to the newly added item after save or edit
         holder.sizeTextView.setText(beverageController.getSizeWithSuffix(beverage));
         holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithSuffix(beverage));
         holder.priceTextView.setText(beverageController.getPriceWithSuffix(beverage));

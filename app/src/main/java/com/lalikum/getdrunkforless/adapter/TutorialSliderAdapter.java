@@ -21,6 +21,7 @@ public class TutorialSliderAdapter extends PagerAdapter {
     }
 
     private int[] slide_images = {
+            // TODO make a the pics in circle
             R.drawable.tutorial_1,
             R.drawable.tutorial_2,
             R.drawable.tutorial_3

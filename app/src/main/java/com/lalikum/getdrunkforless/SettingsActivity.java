@@ -46,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
         setTitle("Settings");
 
-        userNameEditText = findViewById(R.id.etSettingsUserName);
+        userNameEditText = findViewById(R.id.etSettingsUserName); // TODO UpperCase first letter
         currencyEditText = findViewById(R.id.etSettingsCurrency);
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
