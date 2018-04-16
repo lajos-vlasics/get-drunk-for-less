@@ -30,10 +30,10 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
 
-    private MenuItem optionsSaveMenuItem;
+    private MenuItem saveMenuItem;
     private FloatingActionButton tutorialButton;
 
-    private SettingsController optionsController = new SettingsController();
+    private SettingsController settingsController = new SettingsController();
     private InputChecker inputChecker = new InputChecker();
 
     private String userName;
@@ -59,9 +59,9 @@ public class SettingsActivity extends AppCompatActivity {
         imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
 
 
-        // If options exists (from home menu button) fill from DB and enable Save button
-        if (optionsController.isOptionsExists()) {
-            Settings settings = optionsController.getInstance();
+        // If settings DB exists (from home menu button) fill from DB and enable Save button
+        if (settingsController.isSettingsExists()) {
+            Settings settings = settingsController.getInstance();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setUserNameInputError();
-                setOptionsOkButtonActive();
+                setSaveButtonActive();
             }
 
             @Override
@@ -105,7 +105,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 setCurrencyInputError();
-                setOptionsOkButtonActive();
+                setSaveButtonActive();
             }
 
             @Override
@@ -122,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setUserNameInputError();
-                    setOptionsOkButtonActive();
+                    setSaveButtonActive();
                 }
             }
         });
@@ -132,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setCurrencyInputError();
-                    setOptionsOkButtonActive();
+                    setSaveButtonActive();
                 }
             }
         });
@@ -140,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
         currencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                saveOptions();
+                saveSettings();
                 return false;
             }
         });
@@ -160,10 +160,10 @@ public class SettingsActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu, menu);
 
-        optionsSaveMenuItem = menu.findItem(R.id.itemSettingsMenuSave);
+        saveMenuItem = menu.findItem(R.id.itemSettingsMenuSave);
         // enable save button if settings edited
-        if (optionsController.isOptionsExists()) {
-            optionsSaveMenuItem.setEnabled(true);
+        if (settingsController.isSettingsExists()) {
+            saveMenuItem.setEnabled(true);
         }
         return true;
     }
@@ -172,7 +172,7 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.itemSettingsMenuSave:
-                saveOptions();
+                saveSettings();
                 toHomeActivity();
                 return true;
             case android.R.id.home:
@@ -183,18 +183,17 @@ public class SettingsActivity extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
-    public void saveOptions() {
+    public void saveSettings() {
         if (setUserNameInputError() || setCurrencyInputError()) {
             return;
         }
         userName = userNameEditText.getText().toString();
         currency = currencyEditText.getText().toString();
 
-        optionsController.saveInstance(userName, measurementSystem, currency);
+        settingsController.saveInstance(userName, measurementSystem, currency);
         toHomeActivity();
     }
 
@@ -225,15 +224,15 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void setOptionsOkButtonActive() {
+    private void setSaveButtonActive() {
         boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
         if (isInputError) {
             // TODO change icon too
-            optionsSaveMenuItem.setEnabled(false);
-//            optionsSaveMenuItem.setIcon();
+            saveMenuItem.setEnabled(false);
+//            saveMenuItem.setIcon();
         } else {
-            optionsSaveMenuItem.setEnabled(true);
-//            optionsSaveMenuItem.setIcon();
+            saveMenuItem.setEnabled(true);
+//            saveMenuItem.setIcon();
 
         }
     }

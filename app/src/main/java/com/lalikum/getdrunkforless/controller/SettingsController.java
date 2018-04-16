@@ -6,14 +6,14 @@ import com.lalikum.getdrunkforless.model.Settings;
 
 public class SettingsController {
 
-    public boolean isOptionsExists() {
+    public boolean isSettingsExists() {
         Settings instance = Settings.findById(Settings.class, 1);
         return instance != null;
     }
 
     public void saveInstance(String userName, MeasurementSystem measurementSystem, String currency) {
         Settings instance;
-        if (isOptionsExists()) {
+        if (isSettingsExists()) {
             instance = Settings.findById(Settings.class, 1);
         } else {
             instance = new Settings();

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +29,9 @@ public class AddBeverageActivity extends AppCompatActivity {
     private EditText alcoholByVolumeEditText;
     private EditText priceEditText;
     private EditText bottlesEditText;
-    private Button saveButton;
+    private MenuItem saveMenuItem;
 
-    private SettingsController optionsController = new SettingsController();
+    private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
     private InputChecker inputChecker = new InputChecker();
 
@@ -54,6 +57,10 @@ public class AddBeverageActivity extends AppCompatActivity {
         // TODO hide keyboard on hover
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         setTitle("Add beverage");
 
         beverageSizeTextView = findViewById(R.id.tvAddBeverageSize);
@@ -62,17 +69,15 @@ public class AddBeverageActivity extends AppCompatActivity {
         alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
 
         // TODO autocomplete beverages names
-        beverageNameEditText = findViewById(R.id.etAddBeverageName); // TODO UpperCase first letter
+        beverageNameEditText = findViewById(R.id.etAddBeverageName);
         beverageSizeEditText = findViewById(R.id.etAddBeverageSize); // TODO change l/dl/cl/ml
         alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
         priceEditText = findViewById(R.id.etAddBeveragePrice);
         bottlesEditText = findViewById(R.id.etAddBeverageBottles);
 
-        saveButton = findViewById(R.id.btnAddBeverageSave);
-
-        // Set unit and currency field from options
-        unit = optionsController.getUnit();
-        currency = optionsController.getCurrency();
+        // Set unit and currency field from settings DB
+        unit = settingsController.getUnit();
+        currency = settingsController.getCurrency();
 
         beverageSizeTextView.setText(String.format("Size (%s)", unit));
         priceTextView.setText(String.format("Price (%s)", currency));
@@ -92,9 +97,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));
             priceEditText.setText(String.valueOf(editBeverage.getPrice()));
             bottlesEditText.setText(String.valueOf(editBeverage.getBottles()));
-
             calculate();
-            saveButton.setEnabled(true);
         }
 
         // set event listeners for edit texts
@@ -235,6 +238,40 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     }
 
+    // Set action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.add_beverage_menu, menu);
+
+        saveMenuItem = menu.findItem(R.id.itemAddBeverageMenuSave);
+        // enable save button if beverage edited
+        Intent intent = getIntent();
+        long beverageId = intent.getLongExtra("beverageId", -1);
+        if (beverageId > -1) {
+            saveMenuItem.setEnabled(true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.itemAddBeverageMenuSave:
+                saveButtonEvent();
+                toHomeActivity();
+                return true;
+            case android.R.id.home:
+                toHomeActivity();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private boolean isBeverageNameInputError(boolean setErrorText) {
         boolean isEmptyInput;
         if (setErrorText) {
@@ -315,10 +352,13 @@ public class AddBeverageActivity extends AppCompatActivity {
         if (isAnyInputError) {
             pureAlcoholTextView.setText("default empty text here");
             alcoholValueTextView.setText("default empty text here");
-            saveButton.setEnabled(false);
+            // TODO set icon
+            saveMenuItem.setEnabled(false);
+            // saveMenuItem.setIcon()
         } else {
             calculate();
-            saveButton.setEnabled(true);
+            saveMenuItem.setEnabled(true);
+            // saveMenuItem.setIcon()
         }
     }
 
@@ -331,7 +371,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         return isNameInputError || isSizeInputError || isAlcoholInputError || isPriceInputError || isBottlesInputError;
     }
 
-    private void toHomeActivity(View view) {
+    private void toHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
@@ -347,9 +387,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         alcoholValueTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(newBeverage)));
     }
 
-    public void saveButtonEvent(View view) {
+    public void saveButtonEvent() {
         beverageController.save(newBeverage);
-        toHomeActivity(view);
+        toHomeActivity();
     }
 
     private boolean setInputs() {

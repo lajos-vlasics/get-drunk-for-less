@@ -132,7 +132,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAddBeverageSave" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageBottles" />
 
     <TextView
         android:id="@+id/tvAddBeverageSize"
@@ -177,18 +177,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddBeveragePrice" />
-
-    <Button
-        android:id="@+id/btnAddBeverageSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:enabled="false"
-        android:onClick="saveButtonEvent"
-        android:text="Save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageBottles" />
 
 </android.support.constraint.ConstraintLayout>

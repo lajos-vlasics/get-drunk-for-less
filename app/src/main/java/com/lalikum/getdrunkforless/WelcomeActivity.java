@@ -18,7 +18,7 @@ public class WelcomeActivity extends AppCompatActivity {
     Animation fromTopAnim;
     Animation fromBottomAnim;
 
-    SettingsController optionsController = new SettingsController();
+    SettingsController settingsController = new SettingsController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // simple welcome screen without get started button if nth launch
         // TODO no db error at first run, but app can run
-        if (optionsController.isOptionsExists()) {
+        if (settingsController.isSettingsExists()) {
             getStartedButton.setVisibility(View.GONE);
             // TODO show pony instead of the GET STARTED btn
 
