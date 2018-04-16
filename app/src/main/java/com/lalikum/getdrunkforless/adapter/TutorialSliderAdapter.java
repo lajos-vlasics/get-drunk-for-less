@@ -49,8 +49,8 @@ public class TutorialSliderAdapter extends PagerAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout_tutorial, container, false);
 
-        ImageView tutorialImageView = view.findViewById(R.id.tutorialImageView);
-        TextView tutorialTextView = view.findViewById(R.id.tutorialTextView);
+        ImageView tutorialImageView = view.findViewById(R.id.ivTutorialSlideLayoutImage);
+        TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);
 
         tutorialImageView.setImageResource(slide_images[position]);
         tutorialTextView.setText(slide_texts[position]);

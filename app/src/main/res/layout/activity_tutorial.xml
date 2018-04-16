@@ -34,11 +34,10 @@
         app:layout_constraintTop_toBottomOf="@+id/vpTutorialSlide"></LinearLayout>
 
     <Button
-        android:id="@+id/previousButton"
+        android:id="@+id/btnTutorialPrevious"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:enabled="false"
@@ -48,12 +47,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/btnTutorialNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
         android:onClick="nextButtonEventListener"
         android:text="Next"

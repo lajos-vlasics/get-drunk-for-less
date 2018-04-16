@@ -23,20 +23,19 @@
         app:srcCompat="@drawable/gd_hat_water_purple_bg" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/optionsButton"
+        android:id="@+id/btnHomeSettings"
         android:layout_width="67dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:clickable="true"
         android:onClick="toOptionsActivity"
         android:src="@android:drawable/ic_menu_manage"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addBeverageButton" />
+        app:layout_constraintEnd_toStartOf="@+id/btnHomeAddBeverage" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addBeverageButton"
+        android:id="@+id/btnHomeAddBeverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
