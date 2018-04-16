@@ -23,14 +23,12 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private EditText userNameEditText;
-    private EditText currencyEditText;
-
+    private static EditText userNameEditText;
+    private static EditText currencyEditText;
+    private static MenuItem saveMenuItem;
     private RadioButton metricRadioButton;
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
-
-    private MenuItem saveMenuItem;
     private FloatingActionButton tutorialButton;
 
     private SettingsController settingsController = new SettingsController();
@@ -87,8 +85,6 @@ public class SettingsActivity extends AppCompatActivity {
         userNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setUserNameInputError();
-                setSaveButtonActive();
             }
 
             @Override
@@ -97,15 +93,15 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                setUserNameInputError();
+                setSaveButtonActive();
             }
         });
 
         currencyEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                setCurrencyInputError();
-                setSaveButtonActive();
+
             }
 
             @Override
@@ -114,6 +110,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                setCurrencyInputError();
+                setSaveButtonActive();
             }
         });
 

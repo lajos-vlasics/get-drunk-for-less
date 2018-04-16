@@ -24,12 +24,12 @@ public class AddBeverageActivity extends AppCompatActivity {
     private TextView alcoholValueTextView;
     private TextView beverageSizeTextView;
     private TextView priceTextView;
-    private EditText beverageNameEditText;
-    private EditText beverageSizeEditText;
-    private EditText alcoholByVolumeEditText;
-    private EditText priceEditText;
-    private EditText bottlesEditText;
-    private MenuItem saveMenuItem;
+    private static EditText beverageNameEditText;
+    private static EditText beverageSizeEditText;
+    private static EditText alcoholByVolumeEditText;
+    private static EditText priceEditText;
+    private static EditText bottlesEditText;
+    private static MenuItem saveMenuItem;
 
     private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
