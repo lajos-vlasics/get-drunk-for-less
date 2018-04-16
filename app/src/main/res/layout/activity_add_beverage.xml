@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Enter name"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:maxLength="16"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"

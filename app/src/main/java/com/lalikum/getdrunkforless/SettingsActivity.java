@@ -43,10 +43,10 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_options);
+        setContentView(R.layout.activity_settings);
         setTitle("Settings");
 
-        userNameEditText = findViewById(R.id.etSettingsUserName); // TODO UpperCase first letter
+        userNameEditText = findViewById(R.id.etSettingsUserName);
         currencyEditText = findViewById(R.id.etSettingsCurrency);
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
