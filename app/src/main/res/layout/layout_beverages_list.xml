@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
@@ -7,82 +9,84 @@
         android:id="@+id/beverageNameLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Beverage Name"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/alcoholValueLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/beverageNameLayoutTextView"
-        android:layout_marginEnd="141dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Alcohol value"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/deleteLayoutButton"
+        app:layout_constraintStart_toEndOf="@+id/beverageNameLayoutTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/priceLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/sizeLayoutTextView"
-        android:layout_centerHorizontal="true"
-        android:text="Price" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Price"
+        app:layout_constraintStart_toEndOf="@+id/alcoholByVolumeLayoutTextView"
+        app:layout_constraintTop_toBottomOf="@+id/beverageNameLayoutTextView" />
 
     <TextView
         android:id="@+id/sizeLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/beverageNameLayoutTextView"
-        android:layout_below="@+id/deleteLayoutButton"
-        android:text="Size" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beverageNameLayoutTextView" />
 
     <TextView
         android:id="@+id/bottlesLayoutTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/priceLayoutTextView"
-        android:layout_toStartOf="@+id/editLayoutButton"
-        android:text="Bottles" />
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Bottles"
+        app:layout_constraintStart_toEndOf="@+id/priceLayoutTextView"
+        app:layout_constraintTop_toBottomOf="@+id/beverageNameLayoutTextView" />
 
     <TextView
         android:id="@+id/alcoholByVolumeLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/priceLayoutTextView"
-        android:layout_marginStart="98dp"
-        android:text="Alcohol" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Alcohol"
+        app:layout_constraintStart_toEndOf="@+id/sizeLayoutTextView"
+        app:layout_constraintTop_toBottomOf="@+id/beverageNameLayoutTextView" />
 
     <Button
         android:id="@+id/deleteLayoutButton"
         android:layout_width="56dp"
         android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="deleteBeverage"
-        android:text="Del" />
-
-    <Button
-        android:id="@+id/editLayoutButton"
-        android:layout_width="56dp"
-        android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="58dp"
-        android:onClick="editBeverage"
-        android:text="edit" />
+        android:text="Del"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/valueBar"
-        style="?android:attr/progressBarStyleHorizontal"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="30dp"
         android:max="100"
-        android:progress="10" />
-</RelativeLayout>
+        android:progress="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</android.support.constraint.ConstraintLayout>

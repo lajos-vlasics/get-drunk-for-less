@@ -22,6 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO make more languages
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         // TODO hide welcome correctly

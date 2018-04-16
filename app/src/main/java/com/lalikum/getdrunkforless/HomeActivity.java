@@ -2,12 +2,14 @@ package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -56,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         // sort list by alcohol value
-        // TODO move to controller
+        // TODO move the sorting thin to controller class
         Collections.sort(beverageList, new Comparator<Beverage>() {
             @Override
             public int compare(Beverage o1, Beverage o2) {
@@ -67,11 +69,11 @@ public class HomeActivity extends AppCompatActivity {
         // set up the RecyclerView
         beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
-//        beveragesListAdapter.setClickListener(this);
         beveragesRecyclerView.setAdapter(beveragesListAdapter);
 
     }
 
+    // Create action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -90,7 +92,6 @@ public class HomeActivity extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -107,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void deleteBeverage(View view) {
         // TODO show modal for it
-        RelativeLayout layout = (RelativeLayout) view.getParent();
+        ConstraintLayout layout = (ConstraintLayout) view.getParent();
         int position = beveragesRecyclerView.getChildLayoutPosition(layout);
 
         Beverage beverage = beveragesListAdapter.getItem(position);
@@ -121,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    public void editBeverage(View view) {
+/*    public void editBeverageButtonEvent(View view) {
         RelativeLayout layout = (RelativeLayout) view.getParent();
         int position = beveragesRecyclerView.getChildLayoutPosition(layout);
 
@@ -129,7 +130,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddBeverageActivity.class);
         intent.putExtra("beverageId", beverage.getId());
         startActivity(intent);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

@@ -1,6 +1,7 @@
 package com.lalikum.getdrunkforless.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.lalikum.getdrunkforless.AddBeverageActivity;
 import com.lalikum.getdrunkforless.R;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.model.Beverage;
@@ -85,7 +87,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView beverageNameTextView;
         TextView sizeTextView;
         TextView alcoholByVolumeTextView;
@@ -104,15 +106,26 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             alcoholValueTextView = itemView.findViewById(R.id.alcoholValueLayoutTextView);
             valueBar = itemView.findViewById(R.id.valueBar);
 
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (itemClickListener != null)
-                itemClickListener.onItemClick(view, getAdapterPosition());
+            System.out.println(getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            // TODO edit with long press animation
+            System.out.println("Looooooooooooooooooooooooong press edit mode");
+            Context context = layoutInflater.getContext();
+            Beverage beverage = getItem(getAdapterPosition());
+            Intent intent = new Intent(context, AddBeverageActivity.class);
+            intent.putExtra("beverageId", beverage.getId());
+            context.startActivity(intent);
+            return false;
         }
     }
-
 
 }
