@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
+import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView addBeverageHereTextView;
     RecyclerView beveragesRecyclerView;
 
+    SettingsController settingsController = new SettingsController();
     BeverageController beverageController = new BeverageController();
     BeveragesListAdapter beveragesListAdapter;
 
@@ -41,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         beverageList = beverageController.getAll();
 
         // TODO set icon to actionbar
-        setTitle("My beverages");
+        setTitle(settingsController.getUserName() + "'s beverages");
 
         // TODO visible scrollbar
         // TODO search field in actionbar

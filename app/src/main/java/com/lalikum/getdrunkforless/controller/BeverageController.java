@@ -10,7 +10,7 @@ import java.util.List;
 
 public class BeverageController {
 
-    private OptionsController optionsController = new OptionsController();
+    private SettingsController optionsController = new SettingsController();
     private DecimalFormat decimalFormat = new DecimalFormat();
 
     public BeverageController() {

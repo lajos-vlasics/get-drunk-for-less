@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.controller.BeverageController;
-import com.lalikum.getdrunkforless.controller.OptionsController;
+import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 import com.lalikum.getdrunkforless.util.InputChecker;
 
@@ -28,7 +28,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     private EditText bottlesEditText;
     private Button saveButton;
 
-    private OptionsController optionsController = new OptionsController();
+    private SettingsController optionsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
     private InputChecker inputChecker = new InputChecker();
 
@@ -51,6 +51,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make it scrollable
+        // TODO hide keyboard on hover
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
         setTitle("Add beverage");

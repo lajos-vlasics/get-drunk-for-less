@@ -14,9 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.lalikum.getdrunkforless.controller.OptionsController;
+import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.MeasurementSystem;
-import com.lalikum.getdrunkforless.model.Options;
+import com.lalikum.getdrunkforless.model.Settings;
 import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
     private FloatingActionButton tutorialButton;
     private FloatingActionButton homeButton;
 
-    private OptionsController optionsController = new OptionsController();
+    private SettingsController optionsController = new SettingsController();
     private InputChecker inputChecker = new InputChecker();
 
     private String userName;
@@ -61,11 +61,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         // If options exists (from home menu button) fill from DB and enable Save button
         if (optionsController.isOptionsExists()) {
-            Options options = optionsController.getInstance();
+            Settings settings = optionsController.getInstance();
 
-            userNameEditText.setText(options.getUserName());
+            userNameEditText.setText(settings.getUserName());
 
-            measurementSystem = options.getMeasurementSystem();
+            measurementSystem = settings.getMeasurementSystem();
             unitRadioGroup.clearCheck();
             switch (measurementSystem) {
                 // TODO convert beverage units too...
@@ -77,7 +77,7 @@ public class SettingsActivity extends AppCompatActivity {
                     break;
             }
 
-            currencyEditText.setText(options.getCurrency());
+            currencyEditText.setText(settings.getCurrency());
             optionsSaveButton.setEnabled(true);
             tutorialButton.setVisibility(View.VISIBLE);
             homeButton.setVisibility(View.VISIBLE);

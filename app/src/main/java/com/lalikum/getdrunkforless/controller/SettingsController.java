@@ -2,21 +2,21 @@ package com.lalikum.getdrunkforless.controller;
 
 
 import com.lalikum.getdrunkforless.model.MeasurementSystem;
-import com.lalikum.getdrunkforless.model.Options;
+import com.lalikum.getdrunkforless.model.Settings;
 
-public class OptionsController {
+public class SettingsController {
 
     public boolean isOptionsExists() {
-        Options instance = Options.findById(Options.class, 1);
+        Settings instance = Settings.findById(Settings.class, 1);
         return instance != null;
     }
 
     public void saveInstance(String userName, MeasurementSystem measurementSystem, String currency) {
-        Options instance;
+        Settings instance;
         if (isOptionsExists()) {
-            instance = Options.findById(Options.class, 1);
+            instance = Settings.findById(Settings.class, 1);
         } else {
-            instance = new Options();
+            instance = new Settings();
         }
         instance.setUserName(userName);
         instance.setMeasurementSystem(measurementSystem);
@@ -24,8 +24,8 @@ public class OptionsController {
         instance.save();
     }
 
-    public Options getInstance() {
-        return Options.findById(Options.class, 1);
+    public Settings getInstance() {
+        return Settings.findById(Settings.class, 1);
     }
 
     public String getUnit() {
@@ -34,5 +34,9 @@ public class OptionsController {
 
     public String getCurrency() {
         return getInstance().getCurrency();
+    }
+
+    public String getUserName() {
+        return getInstance().getUserName();
     }
 }

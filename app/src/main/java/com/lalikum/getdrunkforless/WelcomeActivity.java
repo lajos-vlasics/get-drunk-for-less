@@ -9,7 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.lalikum.getdrunkforless.controller.OptionsController;
+import com.lalikum.getdrunkforless.controller.SettingsController;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class WelcomeActivity extends AppCompatActivity {
     Animation fromTopAnim;
     Animation fromBottomAnim;
 
-    OptionsController optionsController = new OptionsController();
+    SettingsController optionsController = new SettingsController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // TODO no db error at first run, but app can run
         if (optionsController.isOptionsExists()) {
             getStartedButton.setVisibility(View.GONE);
+            // TODO show pony instead of the GET STARTED btn
 
             fromTopAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
