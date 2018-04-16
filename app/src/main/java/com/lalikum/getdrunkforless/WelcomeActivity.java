@@ -13,10 +13,10 @@ import com.lalikum.getdrunkforless.controller.OptionsController;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    ImageView ivWelcomeTitle;
-    Button bGetStarted;
-    Animation anFromTop;
-    Animation anFromBottom;
+    ImageView welcomeTitleImageView;
+    Button getStartedButton;
+    Animation fromTopAnim;
+    Animation fromBottomAnim;
 
     OptionsController optionsController = new OptionsController();
 
@@ -25,23 +25,23 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         // TODO hide welcome correctly
-//        getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
-        ivWelcomeTitle = findViewById(R.id.ivWelcomeTitle);
-        bGetStarted = findViewById(R.id.bWelcomeGetStarted);
+        welcomeTitleImageView = findViewById(R.id.ivWelcomeTitle);
+        getStartedButton = findViewById(R.id.btnWelcomeGetStarted);
 
-        anFromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
-        anFromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+        fromTopAnim = AnimationUtils.loadAnimation(this, R.anim.from_top);
+        fromBottomAnim = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
 
-        ivWelcomeTitle.setAnimation(anFromTop);
-        bGetStarted.setAnimation(anFromBottom);
+        welcomeTitleImageView.setAnimation(fromTopAnim);
+        getStartedButton.setAnimation(fromBottomAnim);
 
         // simple welcome screen without get started button if nth launch
         // TODO no db error at first run, but app can run
         if (optionsController.isOptionsExists()) {
-            bGetStarted.setVisibility(View.GONE);
+            getStartedButton.setVisibility(View.GONE);
 
-            anFromTop.setAnimationListener(new Animation.AnimationListener() {
+            fromTopAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                 }
@@ -64,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         // event listeners
-        bGetStarted.setOnClickListener(new View.OnClickListener() {
+        getStartedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toTutorialActivity();

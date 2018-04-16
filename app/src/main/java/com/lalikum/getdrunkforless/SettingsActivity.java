@@ -19,11 +19,7 @@ import com.lalikum.getdrunkforless.model.MeasurementSystem;
 import com.lalikum.getdrunkforless.model.Options;
 import com.lalikum.getdrunkforless.util.InputChecker;
 
-public class OptionsActivity extends AppCompatActivity {
-
-    private String userName;
-    private MeasurementSystem measurementSystem = MeasurementSystem.METRIC;
-    private String currency;
+public class SettingsActivity extends AppCompatActivity {
 
     private EditText userNameEditText;
     private EditText currencyEditText;
@@ -32,12 +28,17 @@ public class OptionsActivity extends AppCompatActivity {
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
 
-    private Button optionsOkButton;
+    private Button optionsSaveButton;
     private FloatingActionButton tutorialButton;
     private FloatingActionButton homeButton;
 
     private OptionsController optionsController = new OptionsController();
     private InputChecker inputChecker = new InputChecker();
+
+    private String userName;
+    private MeasurementSystem measurementSystem = MeasurementSystem.METRIC;
+    private String currency;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +46,14 @@ public class OptionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
         setTitle("Settings");
 
-        userNameEditText = findViewById(R.id.userNameEditText);
-        currencyEditText = findViewById(R.id.currencyEditText);
-        metricRadioButton = findViewById(R.id.metricRadioButton);
-        imperialRadioButton = findViewById(R.id.imperialRadioButton);
-        unitRadioGroup = findViewById(R.id.unitRadioGroup);
-        optionsOkButton = findViewById(R.id.optionsOkButton);
-        tutorialButton = findViewById(R.id.optionTutorialButton);
-        homeButton = findViewById(R.id.optionHomeButton);
+        userNameEditText = findViewById(R.id.etSettingsUserName);
+        currencyEditText = findViewById(R.id.etSettingsCurrency);
+        metricRadioButton = findViewById(R.id.rbSettingsMetric);
+        imperialRadioButton = findViewById(R.id.ebSettingsImperial);
+        unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
+        optionsSaveButton = findViewById(R.id.btnSettingsSave);
+        tutorialButton = findViewById(R.id.btnSettingsTutorial);
+        homeButton = findViewById(R.id.btnSettingsHome);
 
         // set unit fields from ENUM
         metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
@@ -77,7 +78,7 @@ public class OptionsActivity extends AppCompatActivity {
             }
 
             currencyEditText.setText(options.getCurrency());
-            optionsOkButton.setEnabled(true);
+            optionsSaveButton.setEnabled(true);
             tutorialButton.setVisibility(View.VISIBLE);
             homeButton.setVisibility(View.VISIBLE);
         }
@@ -144,7 +145,7 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-        optionsOkButton.setOnClickListener(new View.OnClickListener() {
+        optionsSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveOptions(v);
@@ -194,11 +195,11 @@ public class OptionsActivity extends AppCompatActivity {
 
         // Check which radio button was clicked
         switch (view.getId()) {
-            case R.id.metricRadioButton:
+            case R.id.rbSettingsMetric:
                 if (checked)
                     measurementSystem = MeasurementSystem.METRIC;
                 break;
-            case R.id.imperialRadioButton:
+            case R.id.ebSettingsImperial:
                 if (checked)
                     measurementSystem = MeasurementSystem.IMPERIAL;
                 break;
@@ -208,9 +209,9 @@ public class OptionsActivity extends AppCompatActivity {
     private void setOptionsOkButtonActive() {
         boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
         if (isInputError) {
-            optionsOkButton.setEnabled(false);
+            optionsSaveButton.setEnabled(false);
         } else {
-            optionsOkButton.setEnabled(true);
+            optionsSaveButton.setEnabled(true);
         }
     }
 

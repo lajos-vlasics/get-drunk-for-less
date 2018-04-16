@@ -46,6 +46,7 @@ public class BeverageController {
     }
 
     public List<Beverage> getAll() {
+        // TODO make getAll normal and sorted version (in sql)
         Iterator<Beverage> beverageIterator = Beverage.findAll(Beverage.class);
 
         List<Beverage> beverageList = new ArrayList<>();

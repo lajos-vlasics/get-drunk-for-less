@@ -6,8 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".AddBeverageActivity">
 
+    <ImageView
+        android:id="@+id/ivWaterBg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gd_hat_water_purple_bg" />
+
     <EditText
-        android:id="@+id/beverageSizeEditText"
+        android:id="@+id/etAddBeverageName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Enter name"
+        android:inputType="textPersonName"
+        android:maxLength="16"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageName" />
+
+    <EditText
+        android:id="@+id/etAddBeverageSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -19,10 +48,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beverageSizeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageSize" />
 
     <EditText
-        android:id="@+id/alcoholByVolumeEditText"
+        android:id="@+id/etAddBeverageABV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -34,10 +63,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alcoholByVolumeTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageABV" />
 
     <EditText
-        android:id="@+id/priceEditText"
+        android:id="@+id/etAddBeveragePrice"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
@@ -50,81 +79,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
-
-    <TextView
-        android:id="@+id/alcoholValueTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:freezesText="true"
-        android:text="Price / Alcohol"
-        android:textAppearance="@android:style/TextAppearance.Material.Small"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pureAlcoholTextView" />
-
-    <TextView
-        android:id="@+id/pureAlcoholTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:freezesText="true"
-        android:text="Pure Alcohol"
-        android:textAppearance="@android:style/TextAppearance.Material.Small"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton" />
-
-    <TextView
-        android:id="@+id/beverageSizeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Size (unit)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beverageNameEditText" />
-
-    <TextView
-        android:id="@+id/alcoholByVolumeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Alcohol by volume (%)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beverageSizeEditText" />
-
-    <TextView
-        android:id="@+id/priceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Price (currency)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alcoholByVolumeEditText" />
-
-    <TextView
-        android:id="@+id/bottlesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginTop="8dp"
-        android:text="Bottles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeveragePrice" />
 
     <EditText
-        android:id="@+id/bottlesEditText"
+        android:id="@+id/etAddBeverageBottles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -137,10 +95,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottlesTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageBottles" />
 
     <TextView
-        android:id="@+id/beverageNameTextView"
+        android:id="@+id/tvAddBeverageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -149,23 +107,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/beverageNameEditText"
+    <TextView
+        android:id="@+id/tvAddBeverageAlcoholValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter name"
-        android:inputType="textPersonName"
-        android:maxLength="16"
-        android:singleLine="true"
+        android:freezesText="true"
+        android:text="Price / Alcohol"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeveragePureAlcohol" />
+
+    <TextView
+        android:id="@+id/tvAddBeveragePureAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:freezesText="true"
+        android:text="Pure Alcohol"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beverageNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddBeverageSave" />
+
+    <TextView
+        android:id="@+id/tvAddBeverageSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Size (unit)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageName" />
+
+    <TextView
+        android:id="@+id/tvAddBeverageABV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Alcohol by volume (%)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageSize" />
+
+    <TextView
+        android:id="@+id/tvAddBeveragePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Price (currency)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageABV" />
+
+    <TextView
+        android:id="@+id/tvAddBeverageBottles"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginTop="8dp"
+        android:text="Bottles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeveragePrice" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/btnAddBeverageSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -175,6 +189,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottlesEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageBottles" />
 
 </android.support.constraint.ConstraintLayout>

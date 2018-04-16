@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="77" />
+                                                <entry key="scalingPercent" value="99" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,9 +34,11 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="a60b00" />
-                                      <entry key="foregroundImage" value="$USER_HOME$/Documents/getdrunkforless/icon/gd_cap_icon.png" />
-                                      <entry key="outputName" value="gd_launcher" />
+                                      <entry key="backgroundColor" value="a322a6" />
+                                      <entry key="backgroundLayerName" value="gd_launcher_rainbow_bg" />
+                                      <entry key="foregroundImage" value="$USER_HOME$/Documents/getdrunkforless/icon/gd_rainbow_icon.png" />
+                                      <entry key="foregroundLayerName" value="gd_launcher_rainbow_fg" />
+                                      <entry key="outputName" value="gd_launcher_rainbow" />
                                       <entry key="showSafeZone" value="false" />
                                       <entry key="webIconShape" value="NONE" />
                                     </map>

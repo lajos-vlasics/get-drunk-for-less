@@ -15,18 +15,17 @@ import com.lalikum.getdrunkforless.adapter.TutorialSliderAdapter;
 
 public class TutorialActivity extends AppCompatActivity {
 
+    private Button previousButton;
+    private Button nextButton;
     private ViewPager slideViewPager;
     private LinearLayout slideDotsLayout;
+    private TextView[] slideDotsTextViewList;
+
+    private TutorialSliderAdapter tutorialSliderAdapter;
 
     private int pageCount = 3;
     private int currentPagePosition;
 
-    private TextView[] slideDotsTextViewList;
-
-    private Button previousButton;
-    private Button nextButton;
-
-    private TutorialSliderAdapter tutorialSliderAdapter;
 
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -43,7 +42,7 @@ public class TutorialActivity extends AppCompatActivity {
             } else if (currentPagePosition == pageCount - 1) {
                 previousButton.setEnabled(true);
                 nextButton.setText("Continue");
-                nextButton.setTextColor(getResources().getColor(R.color.colorGdOrange));
+                nextButton.setTextColor(getResources().getColor(R.color.colorGdGreen));
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -77,11 +76,11 @@ public class TutorialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutorial);
         setTitle("Tutorial");
 
-        slideViewPager = findViewById(R.id.slideViewPager);
-        slideDotsLayout = findViewById(R.id.slideDotsLayout);
+        slideViewPager = findViewById(R.id.vpTutorialSlide);
+        slideDotsLayout = findViewById(R.id.llTutorialSlideDots);
 
-        previousButton = findViewById(R.id.previousButton);
-        nextButton = findViewById(R.id.nextButton);
+        previousButton = findViewById(R.id.btnTutorialPrevious);
+        nextButton = findViewById(R.id.btnTutorialNext);
 
         tutorialSliderAdapter = new TutorialSliderAdapter(this);
 
@@ -109,7 +108,7 @@ public class TutorialActivity extends AppCompatActivity {
     private void changeDotsColor(int position) {
         for (int i = 0; i < slideDotsTextViewList.length; i++) {
             if (position == i) {
-                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdOrange));
+                slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdBlue));
             } else {
                 slideDotsTextViewList[i].setTextColor(getResources().getColor(R.color.colorGdLightGrey));
             }
@@ -125,7 +124,7 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     public void continueButtonEventListener(View view) {
-        Intent intent = new Intent(TutorialActivity.this, OptionsActivity.class);
+        Intent intent = new Intent(TutorialActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
 }

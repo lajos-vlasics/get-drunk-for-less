@@ -17,13 +17,8 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
-    TextView pureAlcoholTextView;
-    TextView pricePerAlcoholTextView;
-    private Beverage beverage;
-    private Beverage editBeverage;
-    private OptionsController optionsController = new OptionsController();
-    private BeverageController beverageController = new BeverageController();
-    private InputChecker inputChecker = new InputChecker();
+    private TextView pureAlcoholTextView;
+    private TextView alcoholValueTextView;
     private TextView beverageSizeTextView;
     private TextView priceTextView;
     private EditText beverageNameEditText;
@@ -31,9 +26,14 @@ public class AddBeverageActivity extends AppCompatActivity {
     private EditText alcoholByVolumeEditText;
     private EditText priceEditText;
     private EditText bottlesEditText;
-
     private Button saveButton;
 
+    private OptionsController optionsController = new OptionsController();
+    private BeverageController beverageController = new BeverageController();
+    private InputChecker inputChecker = new InputChecker();
+
+    private Beverage newBeverage;
+    private Beverage editBeverage;
     private String unit;
     private String currency;
 
@@ -43,10 +43,10 @@ public class AddBeverageActivity extends AppCompatActivity {
     private float price;
     private int bottles;
 
-    private int maxAlcoholByVolume = 100;
-    private int maxSize = 10000000;
-    private int maxPrice = 1000000;
-    private int maxBottles = 100;
+    private static int maxAlcoholByVolume = 100;
+    private static int maxBeverageSize = 10000000;
+    private static int maxPrice = 1000000;
+    private static int maxBottles = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +55,18 @@ public class AddBeverageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_beverage);
         setTitle("Add beverage");
 
-        beverageSizeTextView = findViewById(R.id.beverageSizeTextView);
-        priceTextView = findViewById(R.id.priceTextView);
-        pureAlcoholTextView = findViewById(R.id.pureAlcoholTextView);
-        pricePerAlcoholTextView = findViewById(R.id.alcoholValueTextView);
+        beverageSizeTextView = findViewById(R.id.tvAddBeverageSize);
+        priceTextView = findViewById(R.id.tvAddBeveragePrice);
+        pureAlcoholTextView = findViewById(R.id.tvAddBeveragePureAlcohol);
+        alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
 
-        beverageNameEditText = findViewById(R.id.beverageNameEditText);
-        beverageSizeEditText = findViewById(R.id.beverageSizeEditText);
-        alcoholByVolumeEditText = findViewById(R.id.alcoholByVolumeEditText);
-        priceEditText = findViewById(R.id.priceEditText);
-        bottlesEditText = findViewById(R.id.bottlesEditText);
+        beverageNameEditText = findViewById(R.id.etAddBeverageName);
+        beverageSizeEditText = findViewById(R.id.etAddBeverageSize);
+        alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
+        priceEditText = findViewById(R.id.etAddBeveragePrice);
+        bottlesEditText = findViewById(R.id.etAddBeverageBottles);
 
-        saveButton = findViewById(R.id.saveButton);
+        saveButton = findViewById(R.id.btnAddBeverageSave);
 
         // Set unit and currency field from options
         unit = optionsController.getUnit();
@@ -249,13 +249,12 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isHigherInput;
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput("Please tell me the beverage size!", beverageSizeEditText);
-            isZeroInput = inputChecker.isZeroInput("Is this water??? Are you an animal? Do you want to get drunk or what?", beverageSizeEditText);
-            isHigherInput = inputChecker.isHigherInput("OMG! Do you want to drink that all alone? Write a lower number please.", maxSize, beverageSizeEditText);
-
+            isZeroInput = inputChecker.isZeroInput("This cannot be null! Do you want to get drunk or what?", beverageSizeEditText);
+            isHigherInput = inputChecker.isHigherInput("OMG! Do you want to drink that all alone? Write a lower number please.", maxBeverageSize, beverageSizeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(beverageSizeEditText);
             isZeroInput = inputChecker.isZeroInput(beverageSizeEditText);
-            isHigherInput = inputChecker.isHigherInput(maxSize, beverageSizeEditText);
+            isHigherInput = inputChecker.isHigherInput(maxBeverageSize, beverageSizeEditText);
 
         }
         return isEmptyInput || isZeroInput || isHigherInput;
@@ -267,7 +266,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isHigherInput;
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput("Please tell me the alcohol by volume!", alcoholByVolumeEditText);
-            isZeroInput = inputChecker.isZeroInput("This cannot be null! Do you want to get drunk or what?", alcoholByVolumeEditText);
+            isZeroInput = inputChecker.isZeroInput("Is this water??? Are you an animal? Do you want to get drunk or what?", alcoholByVolumeEditText);
             isHigherInput = inputChecker.isHigherInput("The alcohol volume can't be higher than 100% (Or You know something that I don't!)", maxAlcoholByVolume, alcoholByVolumeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(alcoholByVolumeEditText);
@@ -313,7 +312,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isAnyInputError = isAnyInputError();
         if (isAnyInputError) {
             pureAlcoholTextView.setText("default empty text here");
-            pricePerAlcoholTextView.setText("default empty text here");
+            alcoholValueTextView.setText("default empty text here");
             saveButton.setEnabled(false);
         } else {
             calculate();
@@ -342,12 +341,12 @@ public class AddBeverageActivity extends AppCompatActivity {
         setBeverage();
 
         // TODO show currency and unit after values
-        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(beverage)));
-        pricePerAlcoholTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(beverage)));
+        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(newBeverage)));
+        alcoholValueTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(newBeverage)));
     }
 
     public void saveButtonEvent(View view) {
-        beverageController.save(beverage);
+        beverageController.save(newBeverage);
         toHomeActivity(view);
     }
 
@@ -365,15 +364,15 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     private void setBeverage() {
         if (editBeverage == null) {
-            beverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
+            newBeverage = beverageController.create(beverageName, beverageSize, alcoholByVolume, price, bottles);
         } else {
-            beverage = editBeverage;
-            beverage.setName(beverageName);
-            beverage.setSize(beverageSize);
-            beverage.setAlcoholByVolume(alcoholByVolume);
-            beverage.setPrice(price);
-            beverage.setBottles(bottles);
-            beverageController.calculate(beverage);
+            newBeverage = editBeverage;
+            newBeverage.setName(beverageName);
+            newBeverage.setSize(beverageSize);
+            newBeverage.setAlcoholByVolume(alcoholByVolume);
+            newBeverage.setPrice(price);
+            newBeverage.setBottles(bottles);
+            beverageController.calculate(newBeverage);
         }
     }
 

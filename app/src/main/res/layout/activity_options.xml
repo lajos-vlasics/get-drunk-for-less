@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OptionsActivity">
+    tools:context=".SettingsActivity">
+
+    <ImageView
+        android:id="@+id/ivSettingWater"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gd_hat_water_purple_bg" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -18,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/userNameEditText"
+        android:id="@+id/etSettingsUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -40,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/etSettingsUserName" />
 
     <TextView
         android:id="@+id/currencyTextView"
@@ -51,10 +67,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/unitRadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/rbgSettingsUnit" />
 
     <EditText
-        android:id="@+id/currencyEditText"
+        android:id="@+id/etSettingsCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -69,16 +85,17 @@
         app:layout_constraintTop_toBottomOf="@+id/currencyTextView" />
 
     <Button
-        android:id="@+id/optionsOkButton"
+        android:id="@+id/btnSettingsSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/colorGdDarkGreen"
         android:enabled="false"
         android:text="Ok"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currencyEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/etSettingsCurrency" />
 
     <RadioGroup
         android:id="@+id/unitRadioGroup"
@@ -92,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/unitTextView">
 
         <RadioButton
-            android:id="@+id/metricRadioButton"
+            android:id="@+id/rbSettingsMetric"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -101,7 +118,7 @@
             android:text="Metric (ml)" />
 
         <RadioButton
-            android:id="@+id/imperialRadioButton"
+            android:id="@+id/ebSettingsImperial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,7 +128,7 @@
     </RadioGroup>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/optionTutorialButton"
+        android:id="@+id/btnSettingsTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -120,7 +137,7 @@
         android:clickable="true"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/optionHomeButton"
+        app:layout_constraintStart_toEndOf="@+id/btnSettingsHome"
         app:srcCompat="@android:drawable/ic_dialog_info" />
 
     <android.support.design.widget.FloatingActionButton

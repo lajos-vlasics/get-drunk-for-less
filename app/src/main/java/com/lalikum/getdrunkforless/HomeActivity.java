@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
-import com.lalikum.getdrunkforless.controller.OptionsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 
 import java.util.Collections;
@@ -20,11 +21,11 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    BeverageController beverageController = new BeverageController();
+    TextView addBeverageHereTextView;
+    RecyclerView beveragesRecyclerView;
 
+    BeverageController beverageController = new BeverageController();
     BeveragesListAdapter beveragesListAdapter;
-    RecyclerView recyclerView;
-    TextView tvAddBeverageHere;
 
     List<Beverage> beverageList;
 
@@ -34,8 +35,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        recyclerView = findViewById(R.id.beveragesRecyclerView);
-        tvAddBeverageHere = findViewById(R.id.tvHomeAddBeverageHere);
+        beveragesRecyclerView = findViewById(R.id.rvHomeBeverages);
+        addBeverageHereTextView = findViewById(R.id.tvHomeAddBeverageHere);
 
         beverageList = beverageController.getAll();
 
@@ -49,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         // sort list by alcohol value
+        // TODO move to controller
         Collections.sort(beverageList, new Comparator<Beverage>() {
             @Override
             public int compare(Beverage o1, Beverage o2) {
@@ -57,16 +59,23 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         // set up the RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 //        beveragesListAdapter.setClickListener(this);
-        recyclerView.setAdapter(beveragesListAdapter);
+        beveragesRecyclerView.setAdapter(beveragesListAdapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
     }
 
 
     public void toOptionsActivity(View view) {
-        Intent intent = new Intent(this, OptionsActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
@@ -78,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
     public void deleteBeverage(View view) {
         // TODO show modal for it
         RelativeLayout layout = (RelativeLayout) view.getParent();
-        int position = recyclerView.getChildLayoutPosition(layout);
+        int position = beveragesRecyclerView.getChildLayoutPosition(layout);
 
         Beverage beverage = beveragesListAdapter.getItem(position);
         beverage.delete();
@@ -93,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void editBeverage(View view) {
         RelativeLayout layout = (RelativeLayout) view.getParent();
-        int position = recyclerView.getChildLayoutPosition(layout);
+        int position = beveragesRecyclerView.getChildLayoutPosition(layout);
 
         Beverage beverage = beveragesListAdapter.getItem(position);
         Intent intent = new Intent(this, AddBeverageActivity.class);
@@ -110,6 +119,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void showAddBeverageHereTextView() {
-        tvAddBeverageHere.setVisibility(View.VISIBLE);
+        addBeverageHereTextView.setVisibility(View.VISIBLE);
     }
 }

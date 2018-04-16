@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_material_light">#f44336</color>
-    <color name="colorGdGreen">#1a501d</color>
+    <color name="colorGdLightGreen">#57ff61</color>
+    <color name="colorGdGreen">#00e20d</color>
+    <color name="colorGdDarkGreen">#008f08</color>
+    <color name="colorGdLightOrange">#ffc400</color>
     <color name="colorGdOrange">#ff9800</color>
     <color name="colorGdDarkOrange">#be7100</color>
     <color name="colorGdRed">#a60b00</color>
+    <color name="colorGdLightPurple">#f269ff</color>
+    <color name="colorGdPurple">#e900ff</color>
+    <color name="colorGdDarkPurple">#7f098b</color>
+    <color name="colorGdDarkestPurple">#44004b</color>
+    <color name="colorGdPink">#ff0084</color>
+    <color name="colorGdLightBlue">#5a9eff</color>
+    <color name="colorGdBlue">#006aff</color>
+    <color name="colorGdDarkBlue">#0000ff</color>
     <color name="colorGdLightGrey">#acacac</color>
-    <color name="primary_material_light_1">#e48383</color>
-    <color name="accent_material_dark">#ffc400</color>
-    <color name="colorGdLightOrange">#ffc400</color>
 </resources>
