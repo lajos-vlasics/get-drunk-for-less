@@ -23,24 +23,11 @@
         app:srcCompat="@drawable/gd_hat_water_purple_bg" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnHomeSettings"
-        android:layout_width="67dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        android:onClick="toOptionsActivity"
-        android:src="@android:drawable/ic_menu_manage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnHomeAddBeverage" />
-
-    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnHomeAddBeverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
         android:clickable="true"
         android:onClick="toAddBeverageActivity"
         android:src="@android:drawable/ic_input_add"
@@ -61,13 +48,12 @@
         android:id="@+id/tvHomeAddBeverageHere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Add a beverage here!"
+        android:text="Add beverage"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnHomeAddBeverage" />
 
 </android.support.constraint.ConstraintLayout>
