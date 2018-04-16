@@ -75,14 +75,14 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
+        inflater.inflate(R.menu.home_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btnHomeABSettings:
+            case R.id.btnHomeMenuSettings:
                 toSettingsActivity();
                 return true;
 

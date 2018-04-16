@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
 
-    private Button optionsSaveButton;
+    private MenuItem optionsSaveMenuItem;
     private FloatingActionButton tutorialButton;
     private FloatingActionButton homeButton;
 
@@ -51,7 +53,6 @@ public class SettingsActivity extends AppCompatActivity {
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
         unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
-        optionsSaveButton = findViewById(R.id.btnSettingsSave);
         tutorialButton = findViewById(R.id.btnSettingsTutorial);
         homeButton = findViewById(R.id.btnSettingsHome);
 
@@ -78,7 +79,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             currencyEditText.setText(settings.getCurrency());
-            optionsSaveButton.setEnabled(true);
             tutorialButton.setVisibility(View.VISIBLE);
             homeButton.setVisibility(View.VISIBLE);
         }
@@ -140,16 +140,8 @@ public class SettingsActivity extends AppCompatActivity {
         currencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                saveOptions(view);
+                saveOptions();
                 return false;
-            }
-        });
-
-        optionsSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveOptions(v);
-                toHomeActivity(v);
             }
         });
 
@@ -163,12 +155,40 @@ public class SettingsActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toHomeActivity(v);
+                toHomeActivity();
             }
         });
     }
 
-    public void saveOptions(View view) {
+    // Set action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        optionsSaveMenuItem = menu.findItem(R.id.itemSettingsMenuSave);
+        if (optionsController.isOptionsExists()) {
+            optionsSaveMenuItem.setEnabled(true);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.itemSettingsMenuSave:
+                saveOptions();
+                toHomeActivity();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    public void saveOptions() {
         if (setUserNameInputError() || setCurrencyInputError()) {
             return;
         }
@@ -176,10 +196,10 @@ public class SettingsActivity extends AppCompatActivity {
         currency = currencyEditText.getText().toString();
 
         optionsController.saveInstance(userName, measurementSystem, currency);
-        toHomeActivity(view);
+        toHomeActivity();
     }
 
-    public void toHomeActivity(View view) {
+    public void toHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
@@ -209,9 +229,13 @@ public class SettingsActivity extends AppCompatActivity {
     private void setOptionsOkButtonActive() {
         boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
         if (isInputError) {
-            optionsSaveButton.setEnabled(false);
+            // TODO change icon too
+            optionsSaveMenuItem.setEnabled(false);
+//            optionsSaveMenuItem.setIcon();
         } else {
-            optionsSaveButton.setEnabled(true);
+            optionsSaveMenuItem.setEnabled(true);
+//            optionsSaveMenuItem.setIcon();
+
         }
     }
 

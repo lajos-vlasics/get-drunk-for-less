@@ -82,19 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSettingsCurrency" />
 
-    <Button
-        android:id="@+id/btnSettingsSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorGdDarkGreen"
-        android:enabled="false"
-        android:text="Ok"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSettingsCurrency" />
-
     <RadioGroup
         android:id="@+id/rbgSettingsUnit"
         android:layout_width="wrap_content"
