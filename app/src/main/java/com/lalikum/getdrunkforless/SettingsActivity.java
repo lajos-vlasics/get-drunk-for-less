@@ -32,7 +32,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private MenuItem optionsSaveMenuItem;
     private FloatingActionButton tutorialButton;
-    private FloatingActionButton homeButton;
 
     private SettingsController optionsController = new SettingsController();
     private InputChecker inputChecker = new InputChecker();
@@ -54,15 +53,17 @@ public class SettingsActivity extends AppCompatActivity {
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
         unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
         tutorialButton = findViewById(R.id.btnSettingsTutorial);
-        homeButton = findViewById(R.id.btnSettingsHome);
 
         // set unit fields from ENUM
         metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
         imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
 
+
         // If options exists (from home menu button) fill from DB and enable Save button
         if (optionsController.isOptionsExists()) {
             Settings settings = optionsController.getInstance();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
 
             userNameEditText.setText(settings.getUserName());
 
@@ -80,7 +81,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             currencyEditText.setText(settings.getCurrency());
             tutorialButton.setVisibility(View.VISIBLE);
-            homeButton.setVisibility(View.VISIBLE);
         }
 
         // add listeners
@@ -152,12 +152,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toHomeActivity();
-            }
-        });
     }
 
     // Set action bar
@@ -165,7 +159,9 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu, menu);
+
         optionsSaveMenuItem = menu.findItem(R.id.itemSettingsMenuSave);
+        // enable save button if settings edited
         if (optionsController.isOptionsExists()) {
             optionsSaveMenuItem.setEnabled(true);
         }
@@ -177,6 +173,9 @@ public class SettingsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.itemSettingsMenuSave:
                 saveOptions();
+                toHomeActivity();
+                return true;
+            case android.R.id.home:
                 toHomeActivity();
                 return true;
 
