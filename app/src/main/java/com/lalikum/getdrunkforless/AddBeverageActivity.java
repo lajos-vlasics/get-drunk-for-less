@@ -235,7 +235,6 @@ public class AddBeverageActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     // Set action bar

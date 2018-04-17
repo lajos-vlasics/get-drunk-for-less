@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
         // TODO search field in actionbar
 
         // init
-        // TODO set settings icon to actionbar
+        // TODO set custom settings icon to actionbar
         setTitle(settingsController.getUserName() + "'s beverages");
         hideAddBeverageHereTextView();
 
