@@ -249,7 +249,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long beverageId = intent.getLongExtra("beverageId", -1);
         if (beverageId > -1) {
-            saveMenuItem.setEnabled(true);
+            setSaveButtonActive();
         }
         return true;
     }
@@ -352,14 +352,23 @@ public class AddBeverageActivity extends AppCompatActivity {
         if (isAnyInputError) {
             pureAlcoholTextView.setText("default empty text here");
             alcoholValueTextView.setText("default empty text here");
-            // TODO set icon
-            saveMenuItem.setEnabled(false);
-            // saveMenuItem.setIcon()
+            // TODO bad icon color
+            setSaveButtonInactive();
         } else {
             calculate();
-            saveMenuItem.setEnabled(true);
-            // saveMenuItem.setIcon()
+            setSaveButtonActive();
         }
+    }
+
+    public void setSaveButtonActive() {
+        // TODO bad icon color
+        saveMenuItem.setIcon(R.drawable.ic_save_active);
+        saveMenuItem.setEnabled(true);
+    }
+
+    public void setSaveButtonInactive() {
+        saveMenuItem.setIcon(R.drawable.ic_save_inactive);
+        saveMenuItem.setEnabled(false);
     }
 
     private boolean isAnyInputError() {
