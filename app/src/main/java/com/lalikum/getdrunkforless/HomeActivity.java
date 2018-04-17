@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,14 +30,15 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    TextView addBeverageHereTextView;
-    RecyclerView beveragesRecyclerView;
+    private TextView addBeverageHereTextView;
+    private RecyclerView beveragesRecyclerView;
+    private static ImageButton addBeverageImageButton;
 
-    SettingsController settingsController = new SettingsController();
-    BeverageController beverageController = new BeverageController();
-    BeveragesListAdapter beveragesListAdapter;
+    private SettingsController settingsController = new SettingsController();
+    private BeverageController beverageController = new BeverageController();
+    private BeveragesListAdapter beveragesListAdapter;
 
-    List<Beverage> beverageList;
+    private List<Beverage> beverageList;
 
 
     @Override
@@ -46,29 +48,33 @@ public class HomeActivity extends AppCompatActivity {
 
         beveragesRecyclerView = findViewById(R.id.rvHomeBeverages);
         addBeverageHereTextView = findViewById(R.id.tvHomeAddBeverageHere);
+        addBeverageImageButton = findViewById(R.id.btnHomeAddBeverage);
 
-        beverageList = beverageController.getAll();
-
-        // TODO set icon to actionbar
-        setTitle(settingsController.getUserName() + "'s beverages");
+        beverageList = beverageController.getAllSortedByAlcoholValue();
 
         // TODO visible scrollbar
         // TODO search field in actionbar
 
-        // in no beverage, than show Add beverage here text only
-        if (beverageList.size() == 0) {
-            showAddBeverageHereTextView();
-            return;
-        }
+        // init
+        // TODO set settings icon to actionbar
+        setTitle(settingsController.getUserName() + "'s beverages");
+        hideAddBeverageHereTextView();
 
-        // sort list by alcohol value
-        // TODO move the sorting thin to controller class
-        Collections.sort(beverageList, new Comparator<Beverage>() {
+        // listeners
+        addBeverageImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public int compare(Beverage o1, Beverage o2) {
-                return Float.compare(o1.getAlcoholValue(), o2.getAlcoholValue());
+            public void onClick(View v) {
+                System.out.println("asdfasdf");
+                toAddBeverageActivity();
             }
         });
+
+
+        // in no beverage, return immediately
+        if (beverageList.size() == 0) {
+            showAddBeverageHereTextView();
+//            return;
+        }
 
         // set up the RecyclerView
         beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -77,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         beveragesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         beveragesRecyclerView.setAdapter(beveragesListAdapter);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
+
 
     }
 
@@ -102,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    // listeners
+    // slide delete listener
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -124,13 +131,12 @@ public class HomeActivity extends AppCompatActivity {
     };
 
 
-
     public void toSettingsActivity() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
-    public void toAddBeverageActivity(View view) {
+    public void toAddBeverageActivity() {
         Intent intent = new Intent(this, AddBeverageActivity.class);
         startActivity(intent);
     }
@@ -156,5 +162,9 @@ public class HomeActivity extends AppCompatActivity {
 
     public void showAddBeverageHereTextView() {
         addBeverageHereTextView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideAddBeverageHereTextView() {
+        addBeverageHereTextView.setVisibility(View.INVISIBLE);
     }
 }

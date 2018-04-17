@@ -80,7 +80,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             currencyEditText.setText(settings.getCurrency());
             tutorialButton.setVisibility(View.VISIBLE);
-            setSaveButtonActive();
         }
 
         // add listeners

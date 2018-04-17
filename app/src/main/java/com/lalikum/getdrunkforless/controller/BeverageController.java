@@ -5,6 +5,8 @@ import com.lalikum.getdrunkforless.model.Beverage;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -82,5 +84,17 @@ public class BeverageController {
     public String getAlcoholValueWithSuffix(Beverage beverage) {
         return String.format("%s %s/%s", decimalFormat.format(beverage.getAlcoholValue()), optionsController.getCurrency(), optionsController.getUnit());
 
+    }
+
+    public List<Beverage> getAllSortedByAlcoholValue() {
+        // TODO sort via sql
+        List<Beverage> beverageList = getAll();
+        Collections.sort(beverageList, new Comparator<Beverage>() {
+            @Override
+            public int compare(Beverage o1, Beverage o2) {
+                return Float.compare(o1.getAlcoholValue(), o2.getAlcoholValue());
+            }
+        });
+        return beverageList;
     }
 }
