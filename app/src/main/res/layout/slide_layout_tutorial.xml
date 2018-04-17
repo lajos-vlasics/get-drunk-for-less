@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tutorial_1" />
+        app:srcCompat="@drawable/iw_tutorial_1" />
 
     <TextView
         android:id="@+id/tvTutorialSlideLayoutText"

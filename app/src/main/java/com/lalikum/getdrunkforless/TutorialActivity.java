@@ -23,7 +23,7 @@ public class TutorialActivity extends AppCompatActivity {
 
     private TutorialSliderAdapter tutorialSliderAdapter;
 
-    private int pageCount = 3;
+    private int pageCount = 4;
     private int currentPagePosition;
 
 

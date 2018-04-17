@@ -21,16 +21,17 @@ public class TutorialSliderAdapter extends PagerAdapter {
     }
 
     private int[] slide_images = {
-            // TODO make a the pics in circle
-            R.drawable.tutorial_1,
-            R.drawable.tutorial_2,
-            R.drawable.tutorial_3
+            R.drawable.iw_tutorial_1,
+            R.drawable.iw_tutorial_2,
+            R.drawable.iw_tutorial_3,
+            R.drawable.iw_tutorial_4
     };
 
     private String[] slide_texts = {
             "Running out of money?",
             "Still want to party HARD? Don't worry no more...",
-            "I can help you to find the best value beverages by calculating it's pure alcohol value!"
+            "I can help you to find the best beverages deals in a store or a bar!",
+            "By calculating it's pure alcohol value!"
     };
 
 
