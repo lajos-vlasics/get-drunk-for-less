@@ -1,11 +1,15 @@
 package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,7 +73,10 @@ public class HomeActivity extends AppCompatActivity {
         // set up the RecyclerView
         beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
+        beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        beveragesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         beveragesRecyclerView.setAdapter(beveragesListAdapter);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
 
     }
 
@@ -95,6 +102,28 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    // listeners
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            // Row is swiped from recycler view
+            // remove it from adapter
+            // TODO show animation for it
+            deleteBeverage(viewHolder.getAdapterPosition());
+        }
+
+        @Override
+        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            // view the background view
+        }
+    };
+
+
 
     public void toSettingsActivity() {
         Intent intent = new Intent(this, SettingsActivity.class);
@@ -106,31 +135,16 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void deleteBeverage(View view) {
-        // TODO show modal for it
-        ConstraintLayout layout = (ConstraintLayout) view.getParent();
-        int position = beveragesRecyclerView.getChildLayoutPosition(layout);
-
+    public void deleteBeverage(int position) {
         Beverage beverage = beveragesListAdapter.getItem(position);
         beverage.delete();
 
         beveragesListAdapter.removeItem(position);
-        beveragesListAdapter.notifyDataSetChanged();
 
         if (beveragesListAdapter.getItemCount() == 0) {
             showAddBeverageHereTextView();
         }
     }
-
-/*    public void editBeverageButtonEvent(View view) {
-        RelativeLayout layout = (RelativeLayout) view.getParent();
-        int position = beveragesRecyclerView.getChildLayoutPosition(layout);
-
-        Beverage beverage = beveragesListAdapter.getItem(position);
-        Intent intent = new Intent(this, AddBeverageActivity.class);
-        intent.putExtra("beverageId", beverage.getId());
-        startActivity(intent);
-    }*/
 
     @Override
     public void onBackPressed() {

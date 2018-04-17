@@ -79,6 +79,8 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 
     public void removeItem(int position) {
         beverageList.remove(position);
+        this.notifyDataSetChanged();
+
     }
 
     // parent activity will implement this method to respond to click events

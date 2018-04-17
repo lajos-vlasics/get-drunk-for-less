@@ -20,12 +20,10 @@
         android:id="@+id/alcoholValueLayoutTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Alcohol value"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/deleteLayoutButton"
         app:layout_constraintStart_toEndOf="@+id/beverageNameLayoutTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,17 +66,6 @@
         android:text="Alcohol"
         app:layout_constraintStart_toEndOf="@+id/sizeLayoutTextView"
         app:layout_constraintTop_toBottomOf="@+id/beverageNameLayoutTextView" />
-
-    <Button
-        android:id="@+id/deleteLayoutButton"
-        android:layout_width="56dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:onClick="deleteBeverage"
-        android:text="Del"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/valueBar"
