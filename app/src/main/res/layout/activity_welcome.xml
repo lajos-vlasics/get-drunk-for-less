@@ -29,16 +29,30 @@
     <ImageView
         android:id="@+id/ivWelcomeTitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintBottom_toTopOf="@+id/btnWelcomeGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/iw_welcome_title" />
+
+    <ImageView
+        android:id="@+id/ivWelcomeUnicorn"
+        android:layout_width="276dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51"
-        app:srcCompat="@drawable/iw_welcome_title" />
+        app:srcCompat="@drawable/iw_unicorn_puke_fly" />
+
 </android.support.constraint.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioButton metricRadioButton;
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
-    private FloatingActionButton tutorialButton;
+    private ImageButton tutorialButton;
 
     private SettingsController settingsController = new SettingsController();
     private InputChecker inputChecker = new InputChecker();
@@ -52,10 +52,11 @@ public class SettingsActivity extends AppCompatActivity {
         unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
         tutorialButton = findViewById(R.id.btnSettingsTutorial);
 
+        // init
+        tutorialButton.setVisibility(View.GONE);
         // set unit fields from ENUM
         metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
         imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
-
 
         // If settings DB exists (from home menu button) fill from DB and enable Save button
         if (settingsController.isSettingsExists()) {
@@ -79,6 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             currencyEditText.setText(settings.getCurrency());
             tutorialButton.setVisibility(View.VISIBLE);
+            setSaveButtonActive();
         }
 
         // add listeners
@@ -94,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 setUserNameInputError();
-                setSaveButtonActive();
+                setSaveButtonStatus();
             }
         });
 
@@ -111,7 +113,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 setCurrencyInputError();
-                setSaveButtonActive();
+                setSaveButtonStatus();
             }
         });
 
@@ -120,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setUserNameInputError();
-                    setSaveButtonActive();
+                    setSaveButtonStatus();
                 }
             }
         });
@@ -130,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     setCurrencyInputError();
-                    setSaveButtonActive();
+                    setSaveButtonStatus();
                 }
             }
         });
@@ -161,7 +163,9 @@ public class SettingsActivity extends AppCompatActivity {
         saveMenuItem = menu.findItem(R.id.itemSettingsMenuSave);
         // enable save button if settings edited
         if (settingsController.isSettingsExists()) {
-            saveMenuItem.setEnabled(true);
+            setSaveButtonActive();
+        } else {
+            setSaveButtonInactive();
         }
         return true;
     }
@@ -222,17 +226,24 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void setSaveButtonActive() {
+    private void setSaveButtonStatus() {
         boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
         if (isInputError) {
-            // TODO change icon too
-            saveMenuItem.setEnabled(false);
-//            saveMenuItem.setIcon();
+            setSaveButtonInactive();
         } else {
-            saveMenuItem.setEnabled(true);
-//            saveMenuItem.setIcon();
-
+            setSaveButtonActive();
         }
+    }
+
+    public void setSaveButtonActive() {
+        // TODO bad icon color
+        saveMenuItem.setIcon(R.drawable.ic_save_rainbow);
+        saveMenuItem.setEnabled(true);
+    }
+
+    public void setSaveButtonInactive() {
+        saveMenuItem.setIcon(R.drawable.ic_save_grey);
+        saveMenuItem.setEnabled(false);
     }
 
     private boolean setUserNameInputError() {

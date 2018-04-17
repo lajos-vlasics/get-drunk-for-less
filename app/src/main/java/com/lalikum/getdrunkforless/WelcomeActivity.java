@@ -14,6 +14,7 @@ import com.lalikum.getdrunkforless.controller.SettingsController;
 public class WelcomeActivity extends AppCompatActivity {
 
     ImageView welcomeTitleImageView;
+    ImageView unicornImageView;
     Button getStartedButton;
     Animation fromTopAnim;
     Animation fromBottomAnim;
@@ -23,12 +24,14 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make more languages
+        // TODO make ok horizontal view (now its disabled)
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         // TODO hide welcome correctly
         getSupportActionBar().hide();
 
         welcomeTitleImageView = findViewById(R.id.ivWelcomeTitle);
+        unicornImageView = findViewById(R.id.ivWelcomeUnicorn);
         getStartedButton = findViewById(R.id.btnWelcomeGetStarted);
 
         fromTopAnim = AnimationUtils.loadAnimation(this, R.anim.from_top);
@@ -36,14 +39,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
         welcomeTitleImageView.setAnimation(fromTopAnim);
         getStartedButton.setAnimation(fromBottomAnim);
+        unicornImageView.setAnimation(fromBottomAnim);
 
         // simple welcome screen without get started button if nth launch
         // TODO no db error at first run, but app can run
         if (settingsController.isSettingsExists()) {
             getStartedButton.setVisibility(View.GONE);
+            unicornImageView.setVisibility(View.VISIBLE);
             // TODO show pony instead of the GET STARTED btn
 
-            fromTopAnim.setAnimationListener(new Animation.AnimationListener() {
+            fromBottomAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                 }
