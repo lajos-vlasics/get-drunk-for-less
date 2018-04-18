@@ -2,6 +2,7 @@ package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +24,8 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private static TextInputLayout userNameTextInputLayout;
+    private static TextInputLayout currencyTextInputLayout;
     private static EditText userNameEditText;
     private static EditText currencyEditText;
     private static MenuItem saveMenuItem;
@@ -45,7 +48,11 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         setTitle("Settings");
 
+        userNameTextInputLayout = findViewById(R.id.tilSettingsUserName);
+        currencyTextInputLayout = findViewById(R.id.tilSettingsCurrency);
+        // TODO set max length
         userNameEditText = findViewById(R.id.etSettingsUserName);
+        // TODO set max length
         currencyEditText = findViewById(R.id.etSettingsCurrency);
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
@@ -61,9 +68,16 @@ public class SettingsActivity extends AppCompatActivity {
         // If settings DB exists (from home menu button) fill from DB and enable Save button
         if (settingsController.isSettingsExists()) {
             Settings settings = settingsController.getInstance();
+            // show things
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            tutorialButton.setVisibility(View.VISIBLE);
 
+            // disable floating label animations
+            userNameTextInputLayout.setHintAnimationEnabled(false);
+            currencyTextInputLayout.setHintAnimationEnabled(false);
+
+            // populate fields
             userNameEditText.setText(settings.getUserName());
 
             measurementSystem = settings.getMeasurementSystem();
@@ -79,7 +93,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             currencyEditText.setText(settings.getCurrency());
-            tutorialButton.setVisibility(View.VISIBLE);
+
+            // enable floating label animations
+            userNameTextInputLayout.setHintAnimationEnabled(true);
+            currencyTextInputLayout.setHintAnimationEnabled(true);
         }
 
         // add listeners
