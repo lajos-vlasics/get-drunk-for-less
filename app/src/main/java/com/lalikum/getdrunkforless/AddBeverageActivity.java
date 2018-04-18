@@ -351,7 +351,6 @@ public class AddBeverageActivity extends AppCompatActivity {
         if (isAnyInputError) {
             pureAlcoholTextView.setText("default empty text here");
             alcoholValueTextView.setText("default empty text here");
-            // TODO bad icon color
             setSaveButtonInactive();
         } else {
             calculate();
@@ -360,7 +359,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     }
 
     public void setSaveButtonActive() {
-        // TODO bad icon color
         saveMenuItem.setIcon(R.drawable.ic_save_active);
         saveMenuItem.setEnabled(true);
     }

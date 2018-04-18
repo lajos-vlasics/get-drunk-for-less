@@ -53,7 +53,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 //        holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithSuffix(beverage));
 //        holder.priceTextView.setText(beverageController.getPriceWithSuffix(beverage));
 //        holder.bottlesTextView.setText(beverageController.getBottlesWithSuffix(beverage));
-        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage));
+        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage) + " of alcohol");
         // set valueBar
         if (position == 0) {
             holder.valueBar.setProgress(100);
@@ -73,7 +73,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
                 holder.medalImageView.setImageResource(R.drawable.iw_bronze_head);
                 break;
             default:
-                holder.medalImageView.setVisibility(View.GONE);
+                holder.medalImageView.setImageResource(R.drawable.iw_sad_head);
                 break;
         }
     }

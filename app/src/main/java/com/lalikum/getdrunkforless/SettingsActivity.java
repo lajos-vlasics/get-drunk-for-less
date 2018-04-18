@@ -235,7 +235,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void setSaveButtonActive() {
-        // TODO bad icon color
         saveMenuItem.setIcon(R.drawable.ic_save_active);
         saveMenuItem.setEnabled(true);
     }

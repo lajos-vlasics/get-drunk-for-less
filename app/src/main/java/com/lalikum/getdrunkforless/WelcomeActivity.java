@@ -46,7 +46,6 @@ public class WelcomeActivity extends AppCompatActivity {
         if (settingsController.isSettingsExists()) {
             getStartedButton.setVisibility(View.GONE);
             unicornImageView.setVisibility(View.VISIBLE);
-            // TODO show pony instead of the GET STARTED btn
 
             fromBottomAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -57,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     // TODO there is a little movement after thread sleep
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(1500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
