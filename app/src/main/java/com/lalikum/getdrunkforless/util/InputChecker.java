@@ -34,10 +34,9 @@ public class InputChecker {
             String inputText = editText.getText().toString();
             // prevent parse error null string
             if (TextUtils.isEmpty(inputText)) {
-                isZeroInput = true;
                 continue;
             }
-            if (Float.parseFloat(inputText) == 0) {
+            if (inputText.equals(".") || Float.parseFloat(inputText) == 0) {
                 isZeroInput = true;
             }
         }
@@ -50,10 +49,9 @@ public class InputChecker {
             String inputText = editText.getText().toString();
             // prevent parse error null string
             if (TextUtils.isEmpty(inputText)) {
-                isZeroInput = true;
                 continue;
             }
-            if (Float.parseFloat(inputText) == 0) {
+            if (inputText.equals(".") || Float.parseFloat(inputText) == 0) {
                 editText.setError(errorMessage);
                 isZeroInput = true;
             }
@@ -66,8 +64,7 @@ public class InputChecker {
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
             // prevent parse error null string
-            if (TextUtils.isEmpty(inputText)) {
-                isHigherInput = true;
+            if (TextUtils.isEmpty(inputText) || inputText.equals(".")) {
                 continue;
             }
             if (Float.parseFloat(inputText) > max) {
@@ -82,8 +79,7 @@ public class InputChecker {
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
             // prevent parse error null string
-            if (TextUtils.isEmpty(inputText)) {
-                isHigherInput = true;
+            if (TextUtils.isEmpty(inputText) || inputText.equals(".")) {
                 continue;
             }
             if (Float.parseFloat(inputText) > max) {
