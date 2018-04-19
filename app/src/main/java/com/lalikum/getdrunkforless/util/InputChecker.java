@@ -6,87 +6,78 @@ import android.widget.EditText;
 public class InputChecker {
 
     public boolean isEmptyInput(EditText... editTextList) {
-        boolean isEmptyInput = false;
-        for (EditText editText : editTextList) {
-            String inputText = editText.getText().toString();
-            if (TextUtils.isEmpty(inputText)) {
-                isEmptyInput = true;
-            }
-        }
-        return isEmptyInput;
+        return isEmptyInput(false, "", editTextList);
     }
 
     public boolean isEmptyInput(String errorMessage, EditText... editTextList) {
-        boolean isEmptyInput = false;
+        return isEmptyInput(true, errorMessage, editTextList);
+    }
+
+    private boolean isEmptyInput(boolean isErrorMessage, String errorMessage, EditText... editTextList) {
+        boolean isError = false;
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
             if (TextUtils.isEmpty(inputText)) {
-                editText.setError(errorMessage);
-                isEmptyInput = true;
+                if (isErrorMessage) {
+                    editText.setError(errorMessage);
+                }
+                isError = true;
             }
         }
-        return isEmptyInput;
+        return isError;
     }
 
     public boolean isZeroInput(EditText... editTextList) {
-        boolean isZeroInput = false;
-        for (EditText editText : editTextList) {
-            String inputText = editText.getText().toString();
-            // prevent parse error null string
-            if (TextUtils.isEmpty(inputText)) {
-                continue;
-            }
-            if (inputText.equals(".") || Float.parseFloat(inputText) == 0) {
-                isZeroInput = true;
-            }
-        }
-        return isZeroInput;
+        return isZeroInput(false, "", editTextList);
     }
 
     public boolean isZeroInput(String errorMessage, EditText... editTextList) {
-        boolean isZeroInput = false;
+        return isZeroInput(true, errorMessage, editTextList);
+    }
+
+    private boolean isZeroInput(boolean isErrorMessage, String errorMessage, EditText... editTextList) {
+        boolean isError = false;
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
             // prevent parse error null string
             if (TextUtils.isEmpty(inputText)) {
+                isError = true;
                 continue;
             }
             if (inputText.equals(".") || Float.parseFloat(inputText) == 0) {
-                editText.setError(errorMessage);
-                isZeroInput = true;
+                if (isErrorMessage) {
+                    editText.setError(errorMessage);
+                    isError = true;
+                }
             }
         }
-        return isZeroInput;
+        return isError;
     }
 
     public boolean isHigherInput(int max, EditText... editTextList) {
-        boolean isHigherInput = false;
-        for (EditText editText : editTextList) {
-            String inputText = editText.getText().toString();
-            // prevent parse error null string
-            if (TextUtils.isEmpty(inputText) || inputText.equals(".")) {
-                continue;
-            }
-            if (Float.parseFloat(inputText) > max) {
-                isHigherInput = true;
-            }
-        }
-        return isHigherInput;
+        return isHigherInput(false, "", max, editTextList);
     }
 
     public boolean isHigherInput(String errorMessage, int max, EditText... editTextList) {
-        boolean isHigherInput = false;
+        return isHigherInput(true, errorMessage, max, editTextList);
+    }
+
+    private boolean isHigherInput(boolean isErrorMessage, String errorMessage, int max, EditText... editTextList) {
+        boolean isError = false;
         for (EditText editText : editTextList) {
             String inputText = editText.getText().toString();
             // prevent parse error null string
             if (TextUtils.isEmpty(inputText) || inputText.equals(".")) {
+                isError = true;
                 continue;
             }
             if (Float.parseFloat(inputText) > max) {
-                editText.setError(errorMessage);
-                isHigherInput = true;
+                if (isErrorMessage) {
+                    editText.setError(errorMessage);
+                    isError = true;
+                }
             }
         }
-        return isHigherInput;
+        return isError;
     }
 }
