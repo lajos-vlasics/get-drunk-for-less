@@ -2,6 +2,7 @@ package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -9,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,10 +20,13 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
-    private TextView pureAlcoholTextView;
+    private TextInputLayout beverageNameTextInputLayout;
+    private TextInputLayout beverageSizeTextInputLayout;
+    private TextInputLayout alcoholByVolumeTextInputLayout;
+    private TextInputLayout priceByVolumeTextInputLayout;
+    private TextInputLayout bottlesTextInputLayout;
     private TextView alcoholValueTextView;
-    private TextView beverageSizeTextView;
-    private TextView priceTextView;
+    private TextView ofAlcoholTextView;
     private static EditText beverageNameEditText;
     private static EditText beverageSizeEditText;
     private static EditText alcoholByVolumeEditText;
@@ -49,7 +52,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     private static int maxAlcoholByVolume = 100;
     private static int maxBeverageSize = 10000000;
     private static int maxPrice = 1000000;
-    private static int maxBottles = 100;
+    private static int maxBottles = 100; // TODO set in EditText xml
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +66,13 @@ public class AddBeverageActivity extends AppCompatActivity {
 
         setTitle("Add beverage");
 
-        beverageSizeTextView = findViewById(R.id.tvAddBeverageSize);
-        priceTextView = findViewById(R.id.tvAddBeveragePrice);
-        pureAlcoholTextView = findViewById(R.id.tvAddBeveragePureAlcohol);
+        beverageNameTextInputLayout = findViewById(R.id.tilAddBeverageName);
+        beverageSizeTextInputLayout = findViewById(R.id.tilAddBeverageSize);
+        alcoholByVolumeTextInputLayout = findViewById(R.id.tilAddBeverageABV);
+        priceByVolumeTextInputLayout = findViewById(R.id.tilAddBeveragePrice);
+        bottlesTextInputLayout = findViewById(R.id.tilAddBeverageBottles);
+
+        ofAlcoholTextView = findViewById(R.id.tvAddBeverageOfAlcohol);
         alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
 
         // TODO autocomplete beverages names
@@ -79,25 +86,37 @@ public class AddBeverageActivity extends AppCompatActivity {
         unit = settingsController.getUnit();
         currency = settingsController.getCurrency();
 
-        beverageSizeTextView.setText(String.format("Size (%s)", unit));
-        priceTextView.setText(String.format("Price (%s)", currency));
-
-        // Set focus on first input
-        beverageNameEditText.requestFocus();
+        beverageSizeTextInputLayout.setHint(String.format("Size (%s)", unit));
+        priceByVolumeTextInputLayout.setHint(String.format("Price (%s)", currency));
 
         // fill inputs if edit mode
         Intent intent = getIntent();
         long beverageId = intent.getLongExtra("beverageId", -1);
         if (beverageId > -1) {
             setTitle("Edit beverage");
-            editBeverage = beverageController.getById(beverageId);
+            // turn off textInputLayout hint animations
+            beverageNameTextInputLayout.setHintAnimationEnabled(false);
+            beverageSizeTextInputLayout.setHintAnimationEnabled(false);
+            alcoholByVolumeTextInputLayout.setHintAnimationEnabled(false);
+            priceByVolumeTextInputLayout.setHintAnimationEnabled(false);
+            bottlesTextInputLayout.setHintAnimationEnabled(false);
 
+            editBeverage = beverageController.getById(beverageId);
             beverageNameEditText.setText(editBeverage.getName());
             beverageSizeEditText.setText(String.valueOf(editBeverage.getSize()));
             alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));
             priceEditText.setText(String.valueOf(editBeverage.getPrice()));
             bottlesEditText.setText(String.valueOf(editBeverage.getBottles()));
             calculate();
+
+            setAlcoholValueTextLayoutVisibility(true);
+
+            // turn on textInputLayout hint animations
+            beverageNameTextInputLayout.setHintAnimationEnabled(true);
+            beverageSizeTextInputLayout.setHintAnimationEnabled(true);
+            alcoholByVolumeTextInputLayout.setHintAnimationEnabled(true);
+            priceByVolumeTextInputLayout.setHintAnimationEnabled(true);
+            bottlesTextInputLayout.setHintAnimationEnabled(true);
         }
 
         // set event listeners for edit texts
@@ -237,6 +256,16 @@ public class AddBeverageActivity extends AppCompatActivity {
         });
     }
 
+    private void setAlcoholValueTextLayoutVisibility(boolean b) {
+        if (b) {
+            ofAlcoholTextView.setVisibility(View.VISIBLE);
+            alcoholValueTextView.setVisibility(View.VISIBLE);
+        } else {
+            ofAlcoholTextView.setVisibility(View.INVISIBLE);
+            alcoholValueTextView.setVisibility(View.INVISIBLE);
+        }
+    }
+
     // Set action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -349,11 +378,11 @@ public class AddBeverageActivity extends AppCompatActivity {
     private void calculateIfPossible() {
         boolean isAnyInputError = isAnyInputError();
         if (isAnyInputError) {
-            pureAlcoholTextView.setText("default empty text here");
-            alcoholValueTextView.setText("default empty text here");
+            setAlcoholValueTextLayoutVisibility(false);
             setSaveButtonInactive();
         } else {
             calculate();
+            setAlcoholValueTextLayoutVisibility(true);
             setSaveButtonActive();
         }
     }
@@ -388,9 +417,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         }
         setBeverage();
 
-        // TODO show currency and unit after values
-        pureAlcoholTextView.setText(String.format("There is %s pure alcohol in the Beverage.", beverageController.getAlcoholQuantityWithSuffix(newBeverage)));
-        alcoholValueTextView.setText(String.format("That's %s alcohol value!", beverageController.getAlcoholValueWithSuffix(newBeverage)));
+        alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(newBeverage));
     }
 
     public void saveButtonEvent() {

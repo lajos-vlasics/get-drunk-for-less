@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context=".AddBeverageActivity">
 
     <ImageView
@@ -14,168 +16,171 @@
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/iw_hat_water_bg" />
 
-    <EditText
-        android:id="@+id/etAddBeverageName"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddBeverageName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter name"
-        android:inputType="textCapWords"
-        android:maxLength="16"
-        android:singleLine="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageName" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/etAddBeverageSize"
-        android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddBeverageName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Beverage name"
+            android:inputType="textCapWords"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddBeverageSize"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter size"
-        android:inputType="numberDecimal"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageSize" />
+        app:layout_constraintTop_toBottomOf="@+id/tilAddBeverageName">
 
-    <EditText
-        android:id="@+id/etAddBeverageABV"
-        android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddBeverageSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddBeverageABV"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter alcohol"
-        android:inputType="numberDecimal"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilAddBeverageSize">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddBeverageABV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alcohol by volume (%)"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddBeveragePrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilAddBeverageABV">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddBeveragePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddBeverageBottles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilAddBeveragePrice">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddBeverageBottles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number of bottles in the package"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:text="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="222dp"
+        android:layout_height="206dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageABV" />
-
-    <EditText
-        android:id="@+id/etAddBeveragePrice"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter price"
-        android:imeOptions="normal"
-        android:inputType="numberDecimal"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeveragePrice" />
-
-    <EditText
-        android:id="@+id/etAddBeverageBottles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter quantity"
-        android:inputType="number"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:text="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageBottles" />
-
-    <TextView
-        android:id="@+id/tvAddBeverageName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tilAddBeverageBottles"
+        app:srcCompat="@drawable/iw_bag" />
 
     <TextView
         android:id="@+id/tvAddBeverageAlcoholValue"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="45dp"
         android:freezesText="true"
-        android:text="Price / Alcohol"
-        android:textAppearance="@android:style/TextAppearance.Material.Small"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddBeveragePureAlcohol" />
-
-    <TextView
-        android:id="@+id/tvAddBeveragePureAlcohol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:freezesText="true"
-        android:text="Pure Alcohol"
-        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:gravity="center"
+        android:shadowColor="@color/colorGdDarkPurple"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="2"
+        android:text="22.22 Ft/ml"
+        android:textColor="@android:color/background_light"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageBottles" />
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/tvAddBeverageSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Size (unit)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageName" />
-
-    <TextView
-        android:id="@+id/tvAddBeverageABV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Alcohol by volume (%)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageSize" />
-
-    <TextView
-        android:id="@+id/tvAddBeveragePrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Price (currency)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeverageABV" />
-
-    <TextView
-        android:id="@+id/tvAddBeverageBottles"
-        android:layout_width="wrap_content"
-        android:layout_height="14dp"
-        android:layout_marginTop="8dp"
-        android:text="Bottles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddBeveragePrice" />
+        android:id="@+id/tvAddBeverageOfAlcohol"
+        android:layout_width="120dp"
+        android:layout_height="29dp"
+        android:freezesText="true"
+        android:gravity="center"
+        android:shadowColor="@color/colorGdDarkPurple"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="2"
+        android:text="of alcohol"
+        android:textColor="@android:color/background_light"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/tvAddBeverageAlcoholValue"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddBeverageAlcoholValue" />
 
 </android.support.constraint.ConstraintLayout>

@@ -30,8 +30,8 @@ public class TutorialSliderAdapter extends PagerAdapter {
     private String[] slide_texts = {
             "Running out of money?",
             "Still want to party HARD? Don't worry no more...",
-            "I can help you to find the best beverages deals in a store or a bar!",
-            "By calculating it's pure alcohol value!"
+            "I can help calculate the pure alcohol value of a beverage and find the best deals in town.",
+            "So that You can have a really good time!"
     };
 
 
@@ -54,7 +54,7 @@ public class TutorialSliderAdapter extends PagerAdapter {
         ImageView tutorialImageView = view.findViewById(R.id.ivTutorialSlideLayoutImage);
         TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);
 
-        // TODO running out of memory
+        // TODO running out of memory beacuse of big pics
         tutorialImageView.setImageResource(slide_images[position]);
         tutorialTextView.setText(slide_texts[position]);
 
