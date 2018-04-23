@@ -15,4 +15,8 @@
     <string name="tutorial_slide_text2">Still want to party HARD? Don\'t worry no more…</string>
     <string name="tutorial_slide_text3">I can help calculate the pure alcohol value of a beverage and find the best deals in town.</string>
     <string name="tutorial_slide_text4">So that You can have a really good time!</string>
+    <string name="home_title_suffix">\'s beverages</string>
+    <string name="home_add_beverage">add beverage</string>
+    <string name="home_settings">settings</string>
+    <string name="home_of_alcohol_suffix">of alcohol</string>
 </resources>

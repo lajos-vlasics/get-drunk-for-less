@@ -24,11 +24,13 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     private List<Beverage> beverageList;
     private LayoutInflater layoutInflater;
     private ItemClickListener itemClickListener;
+    private Context context;
 
     // data is passed into the constructor
     public BeveragesListAdapter(Context context, List<Beverage> data) {
         this.layoutInflater = LayoutInflater.from(context);
         this.beverageList = data;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -53,7 +55,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 //        holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithSuffix(beverage));
 //        holder.priceTextView.setText(beverageController.getPriceWithSuffix(beverage));
 //        holder.bottlesTextView.setText(beverageController.getBottlesWithSuffix(beverage));
-        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage) + " of alcohol");
+        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
         // set valueBar
         if (position == 0) {
             holder.valueBar.setProgress(100);
@@ -139,7 +141,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         @Override
         public boolean onLongClick(View v) {
             // TODO edit with long press animation
-            System.out.println("Looooooooooooooooooooooooong press edit mode");
             Context context = layoutInflater.getContext();
             Beverage beverage = getItem(getAdapterPosition());
             Intent intent = new Intent(context, AddBeverageActivity.class);

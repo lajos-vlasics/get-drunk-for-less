@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private TextView addBeverageHereTextView;
     private RecyclerView beveragesRecyclerView;
-    private static ImageButton addBeverageImageButton;
+    private ImageButton addBeverageImageButton;
 
     private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
@@ -56,14 +56,13 @@ public class HomeActivity extends AppCompatActivity {
         // TODO search field in actionbar
 
         // init
-        setTitle(settingsController.getUserName() + "'s beverages");
+        setTitle(settingsController.getUserName() + " " + getString(R.string.home_title_suffix));
         hideAddBeverageHereTextView();
 
         // listeners
         addBeverageImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("asdfasdf");
                 toAddBeverageActivity();
             }
         });
@@ -72,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         // in no beverage, return immediately
         if (beverageList.size() == 0) {
             showAddBeverageHereTextView();
-//            return;
+            return;
         }
 
         // set up the RecyclerView
@@ -82,8 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         beveragesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         beveragesRecyclerView.setAdapter(beveragesListAdapter);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
-
-
     }
 
     // Create action bar

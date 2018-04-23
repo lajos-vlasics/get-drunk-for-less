@@ -15,15 +15,13 @@ import com.lalikum.getdrunkforless.adapter.TutorialSliderAdapter;
 
 public class TutorialActivity extends AppCompatActivity {
 
+    private static int pageCount = 4;
     private Button previousButton;
     private Button nextButton;
     private ViewPager slideViewPager;
     private LinearLayout slideDotsLayout;
     private TextView[] slideDotsTextViewList;
-
     private TutorialSliderAdapter tutorialSliderAdapter;
-
-    private static int pageCount = 4;
     private int currentPagePosition;
 
 
