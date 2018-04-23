@@ -10,7 +10,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/GetDrunkDark">
-        <activity android:name=".AddBeverageActivity" />
+        <activity android:name=".AddBeverageActivity"
+            android:label="@string/add_beverage_title_add"/>
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

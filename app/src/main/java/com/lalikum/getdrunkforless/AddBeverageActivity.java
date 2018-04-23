@@ -64,8 +64,6 @@ public class AddBeverageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        setTitle("Add beverage");
-
         beverageNameTextInputLayout = findViewById(R.id.tilAddBeverageName);
         beverageSizeTextInputLayout = findViewById(R.id.tilAddBeverageSize);
         alcoholByVolumeTextInputLayout = findViewById(R.id.tilAddBeverageABV);
@@ -86,14 +84,14 @@ public class AddBeverageActivity extends AppCompatActivity {
         unit = settingsController.getUnit();
         currency = settingsController.getCurrency();
 
-        beverageSizeTextInputLayout.setHint(String.format("Size (%s)", unit));
-        priceByVolumeTextInputLayout.setHint(String.format("Price (%s)", currency));
+        beverageSizeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_size), unit));
+        priceByVolumeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_price), currency));
 
         // fill inputs if edit mode
         Intent intent = getIntent();
         long beverageId = intent.getLongExtra("beverageId", -1);
         if (beverageId > -1) {
-            setTitle("Edit beverage");
+            setTitle(getString(R.string.add_beverage_title_edit));
             // turn off textInputLayout hint animations
             beverageNameTextInputLayout.setHintAnimationEnabled(false);
             beverageSizeTextInputLayout.setHintAnimationEnabled(false);
@@ -303,7 +301,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     private boolean isBeverageNameInputError(boolean setErrorText) {
         boolean isEmptyInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput("Please tell me the beverage name!", beverageNameEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_name), beverageNameEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(beverageNameEditText);
         }
@@ -315,9 +313,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isZeroInput;
         boolean isHigherInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput("Please tell me the beverage size!", beverageSizeEditText);
-            isZeroInput = inputChecker.isZeroInput("This cannot be null! Do you want to get drunk or what?", beverageSizeEditText);
-            isHigherInput = inputChecker.isHigherInput("OMG! Do you want to drink that all alone? Write a lower number please.", maxBeverageSize, beverageSizeEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_size), beverageSizeEditText);
+            isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_zero_size), beverageSizeEditText);
+            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_higher_size), maxBeverageSize, beverageSizeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(beverageSizeEditText);
             isZeroInput = inputChecker.isZeroInput(beverageSizeEditText);
@@ -332,9 +330,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isZeroInput;
         boolean isHigherInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput("Please tell me the alcohol by volume!", alcoholByVolumeEditText);
-            isZeroInput = inputChecker.isZeroInput("Is this water??? Are you an animal? Do you want to get drunk or what?", alcoholByVolumeEditText);
-            isHigherInput = inputChecker.isHigherInput("The alcohol volume can't be higher than 100% (Or You know something that I don't!)", maxAlcoholByVolume, alcoholByVolumeEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_abv), alcoholByVolumeEditText);
+            isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_abv), alcoholByVolumeEditText);
+            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_abv), maxAlcoholByVolume, alcoholByVolumeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(alcoholByVolumeEditText);
             isZeroInput = inputChecker.isZeroInput(alcoholByVolumeEditText);
@@ -348,9 +346,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isZeroInput;
         boolean isHigherInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput("Please write the price of the beverage here!", priceEditText);
-            isZeroInput = inputChecker.isZeroInput("Ok, that's totally free. That's is not the situation I was programmed for...", priceEditText);
-            isHigherInput = inputChecker.isHigherInput("That's clearly not worth it. Write a lower number please.", maxPrice, priceEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_price), priceEditText);
+            isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_price), priceEditText);
+            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_price), maxPrice, priceEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(priceEditText);
             isZeroInput = inputChecker.isZeroInput(priceEditText);
@@ -364,9 +362,9 @@ public class AddBeverageActivity extends AppCompatActivity {
         boolean isZeroInput;
         boolean isHigherInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput("Please write how many bottles in the package!", bottlesEditText);
-            isZeroInput = inputChecker.isZeroInput("This cannot be null! Do you want to get drunk or what?", bottlesEditText);
-            isHigherInput = inputChecker.isHigherInput("I don't think that kind of package exits. Write a lower number please", maxBottles, bottlesEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_bottles), bottlesEditText);
+            isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_bottles), bottlesEditText);
+            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_bottles), maxBottles, bottlesEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(bottlesEditText);
             isZeroInput = inputChecker.isZeroInput(bottlesEditText);

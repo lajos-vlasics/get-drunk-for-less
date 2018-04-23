@@ -41,8 +41,9 @@
             android:id="@+id/etAddBeverageName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Beverage name"
+            android:hint="@string/add_beverage_name"
             android:inputType="textCapWords"
+            android:maxLength="16"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
@@ -64,6 +65,7 @@
             android:id="@+id/etAddBeverageSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/add_beverage_size"
             android:inputType="numberDecimal"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -85,7 +87,7 @@
             android:id="@+id/etAddBeverageABV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Alcohol by volume (%)"
+            android:hint="@string/add_beverage_abv"
             android:inputType="numberDecimal"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -107,6 +109,7 @@
             android:id="@+id/etAddBeveragePrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/add_beverage_price"
             android:inputType="numberDecimal"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
@@ -128,7 +131,7 @@
             android:id="@+id/etAddBeverageBottles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Number of bottles in the package"
+            android:hint="@string/add_beverage_bottles"
             android:inputType="number"
             android:selectAllOnFocus="true"
             android:singleLine="true"
@@ -157,7 +160,6 @@
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="2"
-        android:text="22.22 Ft/ml"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -175,7 +177,7 @@
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="2"
-        android:text="of alcohol"
+        android:text="@string/add_beverage_of_alcohol_suffix"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold"
