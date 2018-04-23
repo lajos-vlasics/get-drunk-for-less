@@ -23,8 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO make more languages
-        // TODO make ok horizontal view (now its disabled)
+        // TODO make proper horizontal view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         // TODO hide welcome correctly
@@ -56,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 public void onAnimationEnd(Animation animation) {
                     // TODO there is a little movement after thread sleep
                     try {
-                        Thread.sleep(1500);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

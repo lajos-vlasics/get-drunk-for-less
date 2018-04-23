@@ -6,7 +6,7 @@
         android:id="@+id/itemAddBeverageMenuSave"
         android:enabled="false"
         android:icon="@drawable/ic_save_inactive"
-        android:title="Save"
+        android:title="@string/add_beverage_save"
         app:showAsAction="always" />
 
 </menu>

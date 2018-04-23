@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="get_started">Lássunk neki!</string>
-    <string name="settings_your_name">Név</string>
+    <string name="settings_your_name">Neved</string>
     <string name="settings_currency">Pénznem</string>
-    <string name="settings_save">Save</string>
+    <string name="settings_save">mentés</string>
     <string name="settings_title">Beállítások</string>
     <string name="settings_imperial">angolszász</string>
     <string name="settings_metric">metrikus</string>
@@ -13,7 +13,7 @@
     <string name="tutorial_continue">Tovább</string>
     <string name="tutorial_slide_text1">Nincs elég lovettád?</string>
     <string name="tutorial_slide_text2">Mégis fullban nyomnád a partit? Ne aggódj…</string>
-    <string name="tutorial_slide_text4">Így könnyebben megtalálhatod a boltban, vagy a kocsmában a legjobb ár/érték arányú piát.</string>
+    <string name="tutorial_slide_text4">Így könnyebben megtalálhatod a boltban, vagy a kocsmában a legjobb ár/érték arányú piákat.</string>
     <string name="tutorial_slide_text3">Velem kiszámolhatod, hogy mennyibe kerül az egységnyi alkohol értéke egy italban.</string>
     <string name="home_title_suffix">italai</string>
     <string name="home_add_beverage">Ital hozzáadása</string>
@@ -32,7 +32,7 @@
     <string name="add_beverage_zero_size">Ez nem lehet nulla? Most be akarsz rúgni, vagy nem?</string>
     <string name="add_beverage_higher_size">Te jó ég! Ezt mind egyedül akarod meginni? Írj egy kisebb számot kérlek!</string>
     <string name="add_beverage_error_empty_abv">Kérlek írd ide az alkohol tartalmat, százalékban!</string>
-    <string name="add_beverage_error_zero_abv">Mi ez? Víz? Mi vagy te, állat?</string>
+    <string name="add_beverage_error_zero_abv">Mit iszol? Vizet? Mi vagy te, állat?</string>
     <string name="add_beverage_error_higher_abv">Az alkohol százalék nem lehet több 100%-nál!</string>
     <string name="add_beverage_error_empty_price">Kérlek írd ide az ital árát!</string>
     <string name="add_beverage_error_zero_price">OK, ez tök ingyen van, ezzel nem is érdemes számolni.</string>
@@ -40,4 +40,12 @@
     <string name="add_beverage_error_empty_bottles">Kérlek írd ide, hogy hány darabos csomagot vennél!</string>
     <string name="add_beverage_error_zero_bottles">Ez nem lehet nulla! Legalább 1-et írj ide, ha nem is csomagról van szó.</string>
     <string name="add_beverage_error_higher_bottles">Ne hinném, hogy ekkora csomag létezik, írj egy kisebb számot!</string>
+    <string name="add_beverage_image_pony_with_bag">egy póni zsákkal a hátán</string>
+    <string name="home_button_add_beverage">ital hozzáadása gomb</string>
+    <string name="settings_button_tutorial">bevezető gomb</string>
+    <string name="welcome_image_title">Rúgj be kevesebből!</string>
+    <string name="welcome_image_womit_pony">hányó póni</string>
+    <string name="home_image_medal_pony">póni medállal a nyakában</string>
+    <string name="tutorial_image_pony">bevezető kép pónival</string>
+    <string name="add_beverage_save">mentés</string>
 </resources>

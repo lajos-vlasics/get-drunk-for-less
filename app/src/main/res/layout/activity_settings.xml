@@ -61,6 +61,7 @@
         android:layout_marginStart="24dp"
         android:background="@android:color/transparent"
         android:clickable="true"
+        android:contentDescription="@string/settings_button_tutorial"
         android:scaleType="fitXY"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

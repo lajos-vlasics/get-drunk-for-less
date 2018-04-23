@@ -52,6 +52,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     private static int maxAlcoholByVolume = 100;
     private static int maxBeverageSize = 10000000;
     private static int maxPrice = 1000000;
+    private static int defaultBottles = 1;
     private static int maxBottles = 100; // TODO set in EditText xml
 
     @Override
@@ -86,6 +87,10 @@ public class AddBeverageActivity extends AppCompatActivity {
 
         beverageSizeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_size), unit));
         priceByVolumeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_price), currency));
+
+        bottlesTextInputLayout.setHintAnimationEnabled(false);
+        bottlesEditText.setText(String.valueOf(defaultBottles));
+        bottlesTextInputLayout.setHintAnimationEnabled(true);
 
         // fill inputs if edit mode
         Intent intent = getIntent();

@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // TODO visible scrollbar
         // TODO search field in actionbar
+        // TODO fix water img to bg somehow
 
         // init
         setTitle(settingsController.getUserName() + " " + getString(R.string.home_title_suffix));

@@ -4,7 +4,7 @@
     <string name="settings_title">Settings</string>
     <string name="settings_your_name">Your name</string>
     <string name="settings_currency">Currency</string>
-    <string name="settings_save">Save</string>
+    <string name="settings_save">save</string>
     <string name="settings_metric">metric</string>
     <string name="settings_imperial">imperial</string>
     <string name="tutorial_title">Tutorial</string>
@@ -40,5 +40,13 @@
     <string name="add_beverage_error_empty_bottles">Please write how many bottles in the package!</string>
     <string name="add_beverage_error_zero_bottles">This cannot be null! Do you want to get drunk or what?</string>
     <string name="add_beverage_error_higher_bottles">I don\'t think that kind of package exits. Write a lower number please</string>
+    <string name="add_beverage_image_pony_with_bag">pony with a bag</string>
+    <string name="home_button_add_beverage">add beverage button</string>
+    <string name="settings_button_tutorial">tutorial button</string>
+    <string name="welcome_image_title">Get drunk for less!</string>
+    <string name="welcome_image_womit_pony">wommiting pony</string>
+    <string name="home_image_medal_pony">pony with a medal</string>
+    <string name="tutorial_image_pony">tutorial image with a pony</string>
+    <string name="add_beverage_save">save</string>
 
 </resources>

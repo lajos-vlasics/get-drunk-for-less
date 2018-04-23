@@ -54,7 +54,7 @@
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
         android:onClick="nextButtonEventListener"
-        android:text="Next"
+        android:text="@string/tutorial_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
