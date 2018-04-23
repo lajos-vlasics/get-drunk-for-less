@@ -47,8 +47,8 @@ public class InputChecker {
             if (inputText.equals(".") || Float.parseFloat(inputText) == 0) {
                 if (isErrorMessage) {
                     editText.setError(errorMessage);
-                    isError = true;
                 }
+                isError = true;
             }
         }
         return isError;
@@ -74,8 +74,8 @@ public class InputChecker {
             if (Float.parseFloat(inputText) > max) {
                 if (isErrorMessage) {
                     editText.setError(errorMessage);
-                    isError = true;
                 }
+                isError = true;
             }
         }
         return isError;
