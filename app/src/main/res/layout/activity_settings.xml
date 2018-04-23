@@ -41,7 +41,7 @@
             android:layout_weight="1"
             android:checked="true"
             android:onClick="unitTypeRadioButtonClicked"
-            android:text="Metric (ml)" />
+            android:text="@string/settings_metric" />
 
         <RadioButton
             android:id="@+id/ebSettingsImperial"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="unitTypeRadioButtonClicked"
-            android:text="Imperial (fl oz)" />
+            android:text="@string/settings_imperial" />
 
     </RadioGroup>
 
@@ -81,7 +81,7 @@
             android:id="@+id/etSettingsUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your name"
+            android:hint="@string/settings_your_name"
             android:inputType="textCapSentences"
             android:maxLength="12"
             android:singleLine="true" />
@@ -100,7 +100,7 @@
             android:id="@+id/etSettingsCurrency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Currency"
+            android:hint="@string/settings_currency"
             android:inputType="textCapWords"
             android:maxLength="3"
             android:singleLine="true" />

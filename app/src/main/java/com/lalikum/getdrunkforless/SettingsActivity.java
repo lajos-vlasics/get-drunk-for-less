@@ -46,7 +46,6 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        setTitle("Settings");
 
         userNameTextInputLayout = findViewById(R.id.tilSettingsUserName);
         currencyTextInputLayout = findViewById(R.id.tilSettingsCurrency);
@@ -58,12 +57,11 @@ public class SettingsActivity extends AppCompatActivity {
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
         unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
         tutorialButton = findViewById(R.id.btnSettingsTutorial);
-
         // init
         tutorialButton.setVisibility(View.GONE);
         // set unit fields from ENUM
-        metricRadioButton.setText(String.format("Metric (%s)", MeasurementSystem.METRIC.getUnit()));
-        imperialRadioButton.setText(String.format("Imperial (%s)", MeasurementSystem.IMPERIAL.getUnit()));
+        metricRadioButton.setText(String.format("%s (%s)", getString(R.string.settings_metric), MeasurementSystem.METRIC.getUnit()));
+        imperialRadioButton.setText(String.format("%s (%s)", getString(R.string.settings_imperial), MeasurementSystem.IMPERIAL.getUnit()));
 
         // If settings DB exists (from home menu button) fill from DB and enable Save button
         if (settingsController.isSettingsExists()) {

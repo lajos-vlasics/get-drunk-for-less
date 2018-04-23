@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:background="@color/colorGdDarkGreen"
-        android:text="Get started!"
+        android:text="@string/get_started"
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="visible"
