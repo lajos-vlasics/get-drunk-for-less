@@ -7,4 +7,12 @@
     <string name="settings_save">Save</string>
     <string name="settings_metric">metric</string>
     <string name="settings_imperial">imperial</string>
+    <string name="tutorial_title">Tutorial</string>
+    <string name="tutorial_previous">Previous</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_continue">Continue</string>
+    <string name="tutorial_slide_text1">Running out of money?</string>
+    <string name="tutorial_slide_text2">Still want to party HARD? Don\'t worry no more…</string>
+    <string name="tutorial_slide_text3">I can help calculate the pure alcohol value of a beverage and find the best deals in town.</string>
+    <string name="tutorial_slide_text4">So that You can have a really good time!</string>
 </resources>

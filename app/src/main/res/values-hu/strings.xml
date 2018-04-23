@@ -7,4 +7,12 @@
     <string name="settings_title">Beállítások</string>
     <string name="settings_imperial">angolszász</string>
     <string name="settings_metric">metrikus</string>
+    <string name="tutorial_title">Bevezető</string>
+    <string name="tutorial_previous">Előző</string>
+    <string name="tutorial_next">Következő</string>
+    <string name="tutorial_continue">Tovább</string>
+    <string name="tutorial_slide_text1">Nincs elég lovettád?</string>
+    <string name="tutorial_slide_text2">Mégis fullban nyomnád a PARTIT? Ne aggódj…</string>
+    <string name="tutorial_slide_text4">Így könnyebben megtalálhatod a boltban, vagy a kocsmában a legjobb ár/érték arányú piát.</string>
+    <string name="tutorial_slide_text3">Velem kiszámolhatod, hogy mennyibe kerül az egységnyi alkohol értéke egy italban.</string>
 </resources>

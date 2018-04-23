@@ -16,28 +16,18 @@ public class TutorialSliderAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public TutorialSliderAdapter(Context context) {
+    private int[] slideImages;
+    private String[] slideTexts;
+
+    public TutorialSliderAdapter(Context context, int[] slideImageIds, String[] slideTexts) {
         this.context = context;
+        this.slideImages = slideImageIds;
+        this.slideTexts = slideTexts;
     }
-
-    private int[] slide_images = {
-            R.drawable.iw_tutorial_1,
-            R.drawable.iw_tutorial_2,
-            R.drawable.iw_tutorial_3,
-            R.drawable.iw_tutorial_4
-    };
-
-    private String[] slide_texts = {
-            "Running out of money?",
-            "Still want to party HARD? Don't worry no more...",
-            "I can help calculate the pure alcohol value of a beverage and find the best deals in town.",
-            "So that You can have a really good time!"
-    };
-
 
     @Override
     public int getCount() {
-        return slide_images.length;
+        return slideImages.length;
     }
 
     @Override
@@ -55,8 +45,8 @@ public class TutorialSliderAdapter extends PagerAdapter {
         TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);
 
         // TODO running out of memory beacuse of big pics
-        tutorialImageView.setImageResource(slide_images[position]);
-        tutorialTextView.setText(slide_texts[position]);
+        tutorialImageView.setImageResource(slideImages[position]);
+        tutorialTextView.setText(slideTexts[position]);
 
         container.addView(view);
 

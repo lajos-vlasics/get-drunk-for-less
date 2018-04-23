@@ -23,7 +23,7 @@ public class TutorialActivity extends AppCompatActivity {
 
     private TutorialSliderAdapter tutorialSliderAdapter;
 
-    private int pageCount = 4;
+    private static int pageCount = 4;
     private int currentPagePosition;
 
 
@@ -41,7 +41,7 @@ public class TutorialActivity extends AppCompatActivity {
                 previousButton.setEnabled(false);
             } else if (currentPagePosition == pageCount - 1) {
                 previousButton.setEnabled(true);
-                nextButton.setText("Continue");
+                nextButton.setText(getString(R.string.tutorial_continue));
                 nextButton.setTextColor(getResources().getColor(R.color.colorGdGreen));
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +53,7 @@ public class TutorialActivity extends AppCompatActivity {
 
             } else {
                 previousButton.setEnabled(true);
-                nextButton.setText("Next");
+                nextButton.setText(getString(R.string.tutorial_next));
                 nextButton.setTextColor(Color.WHITE); // TODO set to default text color not mock
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,6 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
-        setTitle("Tutorial");
 
         slideViewPager = findViewById(R.id.vpTutorialSlide);
         slideDotsLayout = findViewById(R.id.llTutorialSlideDots);
@@ -82,7 +81,21 @@ public class TutorialActivity extends AppCompatActivity {
         previousButton = findViewById(R.id.btnTutorialPrevious);
         nextButton = findViewById(R.id.btnTutorialNext);
 
-        tutorialSliderAdapter = new TutorialSliderAdapter(this);
+        int[] slideImageIds = {
+                R.drawable.iw_tutorial_1,
+                R.drawable.iw_tutorial_2,
+                R.drawable.iw_tutorial_3,
+                R.drawable.iw_tutorial_4
+        };
+
+        String[] slideTexts = {
+                getString(R.string.tutorial_slide_text1),
+                getString(R.string.tutorial_slide_text2),
+                getString(R.string.tutorial_slide_text3),
+                getString(R.string.tutorial_slide_text4)
+        };
+
+        tutorialSliderAdapter = new TutorialSliderAdapter(this, slideImageIds, slideTexts);
 
         slideViewPager.setAdapter(tutorialSliderAdapter);
 
