@@ -98,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         // add listeners
+        // TODO error message fills auto if screen orientation changes
         userNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

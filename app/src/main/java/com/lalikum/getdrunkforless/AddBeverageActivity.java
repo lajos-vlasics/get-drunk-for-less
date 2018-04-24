@@ -58,7 +58,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make it scrollable
-        // TODO hide keyboard on hover
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
@@ -123,6 +122,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         }
 
         // set event listeners for edit texts
+        // TODO error message fills auto if screen orientation changes
         beverageNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -277,10 +277,9 @@ public class AddBeverageActivity extends AppCompatActivity {
     }
 
     // hide keyboard when touching outside an EditText
-    // TODO keyboard always pops up
+    // TODO keyboard always pops up after change edittext field
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        System.out.println(getCurrentFocus() instanceof EditText);
         if (getCurrentFocus() != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);

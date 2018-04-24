@@ -26,7 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // TODO make proper horizontal view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        // TODO hide welcome correctly
+        // TODO hide action bar correctly
         getSupportActionBar().hide();
 
         welcomeTitleImageView = findViewById(R.id.ivWelcomeTitle);
@@ -41,7 +41,7 @@ public class WelcomeActivity extends AppCompatActivity {
         unicornImageView.setAnimation(fromBottomAnim);
 
         // simple welcome screen without get started button if nth launch
-        // TODO no db error at first run, but app can run
+        // TODO db error at first run, but app can run
         if (settingsController.isSettingsExists()) {
             getStartedButton.setVisibility(View.GONE);
             unicornImageView.setVisibility(View.VISIBLE);
@@ -53,7 +53,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    // TODO there is a little movement after thread sleep
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
