@@ -57,7 +57,6 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO make it scrollable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 

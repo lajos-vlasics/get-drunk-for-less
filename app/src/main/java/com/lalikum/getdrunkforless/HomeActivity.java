@@ -52,7 +52,6 @@ public class HomeActivity extends AppCompatActivity {
 
         beverageList = beverageController.getAllSortedByAlcoholValue();
 
-        // TODO visible scrollbar
         // TODO search field in actionbar
         // TODO fix water img to bg somehow
 
