@@ -51,11 +51,11 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now
         // TODO scroll to the newly added item after save or edit
-//        holder.sizeTextView.setText(beverageController.getSizeWithSuffix(beverage));
-//        holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithSuffix(beverage));
-//        holder.priceTextView.setText(beverageController.getPriceWithSuffix(beverage));
-//        holder.bottlesTextView.setText(beverageController.getBottlesWithSuffix(beverage));
-        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
+//        holder.sizeTextView.setText(beverageController.getSizeWithUnit(beverage));
+//        holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithUnit(beverage));
+//        holder.priceTextView.setText(beverageController.getPriceWithUnit(beverage));
+//        holder.bottlesTextView.setText(beverageController.getBottlesWithUnit(beverage));
+        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
         // set valueBar
         if (position == 0) {
             holder.valueBar.setProgress(100);

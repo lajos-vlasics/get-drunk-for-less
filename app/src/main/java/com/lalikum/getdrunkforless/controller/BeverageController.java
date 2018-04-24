@@ -4,10 +4,6 @@ import com.lalikum.getdrunkforless.model.Beverage;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 public class BeverageController {
@@ -22,11 +18,11 @@ public class BeverageController {
 
     public Beverage create(String beverageName, float beverageSize, float alcoholByVolume, float price, int bottles) {
         Beverage beverage = new Beverage(beverageName, beverageSize, alcoholByVolume, price, bottles);
-        calculate(beverage);
+        calculateAlcoholValue(beverage);
         return beverage;
     }
 
-    public void calculate(Beverage beverage) {
+    public void calculateAlcoholValue(Beverage beverage) {
         float beverageSize = beverage.getSize();
         float alcoholByVolume = beverage.getAlcoholByVolume();
         float price = beverage.getPrice();
@@ -48,52 +44,36 @@ public class BeverageController {
     }
 
     public List<Beverage> getAll() {
-        Iterator<Beverage> beverageIterator = Beverage.findAll(Beverage.class);
-
-        List<Beverage> beverageList = new ArrayList<>();
-
-        while (beverageIterator.hasNext()) {
-            beverageList.add(beverageIterator.next());
-        }
-
-        return beverageList;
+        return Beverage.listAll(Beverage.class);
     }
 
-    public String getSizeWithSuffix(Beverage beverage) {
+    public String getSizeWithUnit(Beverage beverage) {
         return decimalFormat.format(beverage.getSize()) + " " + optionsController.getUnit();
     }
 
-    public String getAlcoholByVolumeWithSuffix(Beverage beverage) {
+    public String getAlcoholByVolumeWithUnit(Beverage beverage) {
         return decimalFormat.format(beverage.getAlcoholByVolume()) + " %";
     }
 
-    public String getPriceWithSuffix(Beverage beverage) {
+    public String getPriceWithUnit(Beverage beverage) {
         // TODO remove commas from 1,000 things
         return decimalFormat.format(beverage.getPrice()) + " " + optionsController.getCurrency();
     }
 
-    public String getBottlesWithSuffix(Beverage beverage) {
+    public String getBottlesWithUnit(Beverage beverage) {
         return beverage.getBottles() + " bottle";
     }
 
-    public String getAlcoholQuantityWithSuffix(Beverage beverage) {
+    public String getAlcoholQuantityWithUnit(Beverage beverage) {
         return String.format("%s %s", decimalFormat.format(beverage.getAlcoholQuantity()), optionsController.getUnit());
     }
 
-    public String getAlcoholValueWithSuffix(Beverage beverage) {
+    public String getAlcoholValueWithUnit(Beverage beverage) {
         return String.format("%s %s/%s", decimalFormat.format(beverage.getAlcoholValue()), optionsController.getCurrency(), optionsController.getUnit());
 
     }
 
     public List<Beverage> getAllSortedByAlcoholValue() {
-        // TODO sort via sql
-        List<Beverage> beverageList = getAll();
-        Collections.sort(beverageList, new Comparator<Beverage>() {
-            @Override
-            public int compare(Beverage o1, Beverage o2) {
-                return Float.compare(o1.getAlcoholValue(), o2.getAlcoholValue());
-            }
-        });
-        return beverageList;
+        return Beverage.listAll(Beverage.class, "alcohol_value");
     }
 }

@@ -427,7 +427,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         }
         setBeverage();
 
-        alcoholValueTextView.setText(beverageController.getAlcoholValueWithSuffix(newBeverage));
+        alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(newBeverage));
     }
 
     public void saveButtonEvent() {
@@ -457,7 +457,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             newBeverage.setAlcoholByVolume(alcoholByVolume);
             newBeverage.setPrice(price);
             newBeverage.setBottles(bottles);
-            beverageController.calculate(newBeverage);
+            beverageController.calculateAlcoholValue(newBeverage);
         }
     }
 
