@@ -106,9 +106,9 @@ public class AddBeverageActivity extends AppCompatActivity {
 
             editBeverage = beverageController.getById(beverageId);
             beverageNameEditText.setText(editBeverage.getName());
-            beverageSizeEditText.setText(String.valueOf(editBeverage.getSize()));
+            beverageSizeEditText.setText(getNoDecimalStringIfInteger(editBeverage.getSize()));
             alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));
-            priceEditText.setText(String.valueOf(editBeverage.getPrice()));
+            priceEditText.setText(getNoDecimalStringIfInteger(editBeverage.getPrice()));
             bottlesEditText.setText(String.valueOf(editBeverage.getBottles()));
             calculate();
 
@@ -257,6 +257,13 @@ public class AddBeverageActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String getNoDecimalStringIfInteger(float f) {
+        if (f % 1 == 0) {
+            return String.valueOf(Integer.valueOf(Math.round(f)));
+        }
+        return String.valueOf(f);
     }
 
     private void setAlcoholValueTextLayoutVisibility(boolean b) {
