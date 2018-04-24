@@ -1,6 +1,5 @@
 package com.lalikum.getdrunkforless;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,17 +23,17 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
-    private static EditText beverageNameEditText;
-    private static EditText beverageSizeEditText;
-    private static EditText alcoholByVolumeEditText;
-    private static EditText priceEditText;
-    private static EditText bottlesEditText;
-    private static MenuItem saveMenuItem;
     private static int maxAlcoholByVolume = 100;
     private static int maxBeverageSize = 10000000;
     private static int maxPrice = 1000000;
     private static int defaultBottles = 1;
     private static int maxBottles = 100; // TODO set in EditText xml
+    private static MenuItem saveMenuItem;
+    private EditText beverageNameEditText;
+    private EditText beverageSizeEditText;
+    private EditText alcoholByVolumeEditText;
+    private EditText priceEditText;
+    private EditText bottlesEditText;
     private TextInputLayout beverageNameTextInputLayout;
     private TextInputLayout beverageSizeTextInputLayout;
     private TextInputLayout alcoholByVolumeTextInputLayout;

@@ -13,11 +13,11 @@ import com.lalikum.getdrunkforless.controller.SettingsController;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    ImageView welcomeTitleImageView;
-    ImageView unicornImageView;
-    Button getStartedButton;
-    Animation fromTopAnim;
-    Animation fromBottomAnim;
+    private ImageView welcomeTitleImageView;
+    private ImageView unicornImageView;
+    private Button getStartedButton;
+    private Animation fromTopAnim;
+    private Animation fromBottomAnim;
 
     SettingsController settingsController = new SettingsController();
 

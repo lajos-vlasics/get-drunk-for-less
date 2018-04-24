@@ -24,11 +24,11 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private static TextInputLayout userNameTextInputLayout;
-    private static TextInputLayout currencyTextInputLayout;
-    private static EditText userNameEditText;
-    private static EditText currencyEditText;
     private static MenuItem saveMenuItem;
+    private TextInputLayout userNameTextInputLayout;
+    private TextInputLayout currencyTextInputLayout;
+    private EditText userNameEditText;
+    private EditText currencyEditText;
     private RadioButton metricRadioButton;
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
