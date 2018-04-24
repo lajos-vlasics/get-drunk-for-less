@@ -46,7 +46,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         // TODO create empty container at the end
         // TODO set list limit max count to prevent memory overflow
         Beverage beverage = beverageList.get(position);
-        // TODO show beverage top list numbers and pony heads (gold, silver, bronze)
         // TODO show beverage type (wine beer short drink)
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now

@@ -1,5 +1,7 @@
 package com.lalikum.getdrunkforless;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -9,7 +11,9 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +24,17 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
+    private static EditText beverageNameEditText;
+    private static EditText beverageSizeEditText;
+    private static EditText alcoholByVolumeEditText;
+    private static EditText priceEditText;
+    private static EditText bottlesEditText;
+    private static MenuItem saveMenuItem;
+    private static int maxAlcoholByVolume = 100;
+    private static int maxBeverageSize = 10000000;
+    private static int maxPrice = 1000000;
+    private static int defaultBottles = 1;
+    private static int maxBottles = 100; // TODO set in EditText xml
     private TextInputLayout beverageNameTextInputLayout;
     private TextInputLayout beverageSizeTextInputLayout;
     private TextInputLayout alcoholByVolumeTextInputLayout;
@@ -27,33 +42,18 @@ public class AddBeverageActivity extends AppCompatActivity {
     private TextInputLayout bottlesTextInputLayout;
     private TextView alcoholValueTextView;
     private TextView ofAlcoholTextView;
-    private static EditText beverageNameEditText;
-    private static EditText beverageSizeEditText;
-    private static EditText alcoholByVolumeEditText;
-    private static EditText priceEditText;
-    private static EditText bottlesEditText;
-    private static MenuItem saveMenuItem;
-
     private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
     private InputChecker inputChecker = new InputChecker();
-
     private Beverage newBeverage;
     private Beverage editBeverage;
     private String unit;
     private String currency;
-
     private String beverageName;
     private float beverageSize;
     private float alcoholByVolume;
     private float price;
     private int bottles;
-
-    private static int maxAlcoholByVolume = 100;
-    private static int maxBeverageSize = 10000000;
-    private static int maxPrice = 1000000;
-    private static int defaultBottles = 1;
-    private static int maxBottles = 100; // TODO set in EditText xml
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -274,6 +274,18 @@ public class AddBeverageActivity extends AppCompatActivity {
             ofAlcoholTextView.setVisibility(View.INVISIBLE);
             alcoholValueTextView.setVisibility(View.INVISIBLE);
         }
+    }
+
+    // hide keyboard when touching outside an EditText
+    // TODO keyboard always pops up
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        System.out.println(getCurrentFocus() instanceof EditText);
+        if (getCurrentFocus() != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     // Set action bar
