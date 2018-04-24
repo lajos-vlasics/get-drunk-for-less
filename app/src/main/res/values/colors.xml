@@ -16,4 +16,6 @@
     <color name="colorGdBlue">#006aff</color>
     <color name="colorGdDarkBlue">#0000ff</color>
     <color name="colorGdLightGrey">#acacac</color>
+    <color name="colorGdGrey">#636363</color>
+    <color name="colorGdDarkGrey">#3e3e3e</color>
 </resources>

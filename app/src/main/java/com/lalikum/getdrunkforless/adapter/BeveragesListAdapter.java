@@ -29,8 +29,10 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // data is passed into the constructor
     public BeveragesListAdapter(Context context, List<Beverage> data) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.beverageList = data;
         this.context = context;
+        // set null for an empty last row
+        this.beverageList = data;
+        beverageList.add(null);
     }
 
     // inflates the row layout from xml when needed
@@ -43,6 +45,16 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        // make an empty holder in last place
+        if (position == getItemCount() - 1) {
+            holder.itemView.setOnClickListener(null);
+            holder.itemView.setOnLongClickListener(null);
+            holder.beverageNameTextView.setVisibility(View.GONE);
+            holder.alcoholValueTextView.setVisibility(View.GONE);
+            holder.medalImageView.setVisibility(View.GONE);
+            holder.valueBar.setVisibility(View.GONE);
+            return;
+        }
         // TODO create empty container at the end
         // TODO set list limit max count to prevent memory overflow
         Beverage beverage = beverageList.get(position);
@@ -50,16 +62,12 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now
         // TODO scroll to the newly added item after save or edit
-//        holder.sizeTextView.setText(beverageController.getSizeWithUnit(beverage));
-//        holder.alcoholByVolumeTextView.setText(beverageController.getAlcoholByVolumeWithUnit(beverage));
-//        holder.priceTextView.setText(beverageController.getPriceWithUnit(beverage));
-//        holder.bottlesTextView.setText(beverageController.getBottlesWithUnit(beverage));
         holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
         // set valueBar
         if (position == 0) {
             holder.valueBar.setProgress(100);
         } else {
-            holder.valueBar.setProgress((int) (beverageList.get(0).getAlcoholValue() /  beverageList.get(position).getAlcoholValue() * 100));
+            holder.valueBar.setProgress((int) (beverageList.get(0).getAlcoholValue() / beverageList.get(position).getAlcoholValue() * 100));
         }
 
         // set medal image
@@ -108,11 +116,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView beverageNameTextView;
-        // TODO show beverage details
-//        TextView sizeTextView;
-//        TextView alcoholByVolumeTextView;
-//        TextView priceTextView;
-//        TextView bottlesTextView;
+        // TODO show more beverage details
         TextView alcoholValueTextView;
         ProgressBar valueBar;
         ImageView medalImageView;
@@ -120,26 +124,22 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         ViewHolder(View itemView) {
             super(itemView);
             beverageNameTextView = itemView.findViewById(R.id.tvHomeBeverageName);
-//            sizeTextView = itemView.findViewById(R.id.sizeLayoutTextView);
-//            alcoholByVolumeTextView = itemView.findViewById(R.id.alcoholByVolumeLayoutTextView);
-//            priceTextView = itemView.findViewById(R.id.priceLayoutTextView);
-//            bottlesTextView = itemView.findViewById(R.id.bottlesLayoutTextView);
             alcoholValueTextView = itemView.findViewById(R.id.tvHomeAlcoholValue);
             valueBar = itemView.findViewById(R.id.vbHomeAlcoholValueBar);
             medalImageView = itemView.findViewById(R.id.ivHomeMedal);
 
-//            itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            System.out.println(getAdapterPosition());
+            System.out.println("simple click");
         }
 
         @Override
         public boolean onLongClick(View v) {
             // TODO edit with long press animation
+            System.out.println("long click");
             Context context = layoutInflater.getContext();
             Beverage beverage = getItem(getAdapterPosition());
             Intent intent = new Intent(context, AddBeverageActivity.class);

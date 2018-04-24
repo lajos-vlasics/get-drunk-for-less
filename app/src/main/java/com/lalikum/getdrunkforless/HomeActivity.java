@@ -3,29 +3,25 @@ package com.lalikum.getdrunkforless;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
+import com.lalikum.getdrunkforless.util.BeverageDividerItemDecoration;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -67,20 +63,21 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
         // in no beverage, return immediately
         if (beverageList.size() == 0) {
             showAddBeverageHereTextView();
-            return;
-        }
+        } else {
+            // set up the RecyclerView
+            beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
+            beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        // set up the RecyclerView
-        beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
-        beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        beveragesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        beveragesRecyclerView.setAdapter(beveragesListAdapter);
-        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
+            RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
+            beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
+
+            beveragesRecyclerView.setAdapter(beveragesListAdapter);
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
+        }
     }
 
     // Create action bar
@@ -138,12 +135,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void deleteBeverage(int position) {
+        // prevent delete if its the last empty row
+        if (position == beveragesListAdapter.getItemCount() - 1) {
+            return;
+        }
         Beverage beverage = beveragesListAdapter.getItem(position);
+        beveragesListAdapter.removeItem(position);
         beverage.delete();
 
-        beveragesListAdapter.removeItem(position);
-
-        if (beveragesListAdapter.getItemCount() == 0) {
+        // show add button text, if adapter contains no beverages, only the null row
+        if (beverageList.size() == 1) {
             showAddBeverageHereTextView();
         }
     }
