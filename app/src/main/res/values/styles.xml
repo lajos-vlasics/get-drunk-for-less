@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="GetDrunkDark" parent="Theme.AppCompat" >
-        <item name="colorPrimary">@color/colorGdOrange</item>
-        <item name="android:colorBackground">@color/colorGdGreen</item>
-        <item name="colorAccent">@color/colorGdLightOrange</item>
-        <item name="colorPrimaryDark">@color/colorGdDarkOrange</item>
+        <item name="colorPrimary">@color/colorGdPink</item>
+        <item name="colorPrimaryDark">@color/colorGdDarkPurple</item>
+        <item name="android:colorBackground">@color/colorGdDarkestPurple</item>
+        <item name="colorAccent">@color/colorGdPurple</item>
     </style>
 </resources>

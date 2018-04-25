@@ -21,28 +21,31 @@ import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 import com.lalikum.getdrunkforless.util.InputChecker;
 
+import java.util.Objects;
+
 public class AddBeverageActivity extends AppCompatActivity {
 
     private static int maxAlcoholByVolume = 100;
-    private static int maxBeverageSize = 10000000;
-    private static int maxPrice = 1000000;
     private static int defaultBottles = 1;
-    private static int maxBottles = 100; // TODO set in EditText xml
     private static MenuItem saveMenuItem;
     private EditText beverageNameEditText;
     private EditText beverageSizeEditText;
     private EditText alcoholByVolumeEditText;
     private EditText priceEditText;
     private EditText bottlesEditText;
+
     private TextInputLayout beverageNameTextInputLayout;
     private TextInputLayout beverageSizeTextInputLayout;
     private TextInputLayout alcoholByVolumeTextInputLayout;
     private TextInputLayout priceByVolumeTextInputLayout;
     private TextInputLayout bottlesTextInputLayout;
+
     private TextView alcoholValueTextView;
     private TextView ofAlcoholTextView;
+
     private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
+
     private InputChecker inputChecker = new InputChecker();
     private Beverage newBeverage;
     private Beverage editBeverage;
@@ -56,10 +59,12 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO landscape mode keyboard only one row
+        // TODO check max name length on small screen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         beverageNameTextInputLayout = findViewById(R.id.tilAddBeverageName);
@@ -71,9 +76,8 @@ public class AddBeverageActivity extends AppCompatActivity {
         ofAlcoholTextView = findViewById(R.id.tvAddBeverageOfAlcohol);
         alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
 
-        // TODO autocomplete beverages names
         beverageNameEditText = findViewById(R.id.etAddBeverageName);
-        beverageSizeEditText = findViewById(R.id.etAddBeverageSize); // TODO change l/dl/cl/ml
+        beverageSizeEditText = findViewById(R.id.etAddBeverageSize);
         alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
         priceEditText = findViewById(R.id.etAddBeveragePrice);
         bottlesEditText = findViewById(R.id.etAddBeverageBottles);
@@ -275,12 +279,12 @@ public class AddBeverageActivity extends AppCompatActivity {
     }
 
     // hide keyboard when touching outside an EditText
-    // TODO keyboard always pops up after change edittext field
+    // TODO keyboard always pops up after change edittext field and water bg moves too
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (getCurrentFocus() != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            Objects.requireNonNull(imm).hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -332,18 +336,15 @@ public class AddBeverageActivity extends AppCompatActivity {
     private boolean isBeverageSizeInputError(boolean setErrorText) {
         boolean isEmptyInput;
         boolean isZeroInput;
-        boolean isHigherInput;
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_size), beverageSizeEditText);
             isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_zero_size), beverageSizeEditText);
-            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_higher_size), maxBeverageSize, beverageSizeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(beverageSizeEditText);
             isZeroInput = inputChecker.isZeroInput(beverageSizeEditText);
-            isHigherInput = inputChecker.isHigherInput(maxBeverageSize, beverageSizeEditText);
 
         }
-        return isEmptyInput || isZeroInput || isHigherInput;
+        return isEmptyInput || isZeroInput;
     }
 
     private boolean isAlcoholByVolumeInputError(boolean setErrorText) {
@@ -365,33 +366,27 @@ public class AddBeverageActivity extends AppCompatActivity {
     private boolean isPriceInputError(boolean setErrorText) {
         boolean isEmptyInput;
         boolean isZeroInput;
-        boolean isHigherInput;
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_price), priceEditText);
             isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_price), priceEditText);
-            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_price), maxPrice, priceEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(priceEditText);
             isZeroInput = inputChecker.isZeroInput(priceEditText);
-            isHigherInput = inputChecker.isHigherInput(maxPrice, priceEditText);
         }
-        return isEmptyInput || isZeroInput || isHigherInput;
+        return isEmptyInput || isZeroInput;
     }
 
     private boolean isBottlesInputError(boolean setErrorText) {
         boolean isEmptyInput;
         boolean isZeroInput;
-        boolean isHigherInput;
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_bottles), bottlesEditText);
             isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_bottles), bottlesEditText);
-            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_bottles), maxBottles, bottlesEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(bottlesEditText);
             isZeroInput = inputChecker.isZeroInput(bottlesEditText);
-            isHigherInput = inputChecker.isHigherInput(maxBottles, bottlesEditText);
         }
-        return isEmptyInput || isZeroInput || isHigherInput;
+        return isEmptyInput || isZeroInput;
     }
 
     private void calculateIfPossible() {

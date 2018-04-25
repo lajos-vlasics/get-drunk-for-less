@@ -55,13 +55,9 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             holder.valueBar.setVisibility(View.GONE);
             return;
         }
-        // TODO create empty container at the end
-        // TODO set list limit max count to prevent memory overflow
         Beverage beverage = beverageList.get(position);
-        // TODO show beverage type (wine beer short drink)
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now
-        // TODO scroll to the newly added item after save or edit
         holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
         // set valueBar
         if (position == 0) {
@@ -116,7 +112,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         TextView beverageNameTextView;
-        // TODO show more beverage details
         TextView alcoholValueTextView;
         ProgressBar valueBar;
         ImageView medalImageView;

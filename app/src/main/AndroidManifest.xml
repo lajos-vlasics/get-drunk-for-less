@@ -5,23 +5,32 @@
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:label="@string/app_name"
         android:icon="@mipmap/gd_launcher_rainbow_fg"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/GetDrunkDark">
-        <activity android:name=".AddBeverageActivity"
-            android:label="@string/add_beverage_title_add"/>
-        <activity android:name=".WelcomeActivity">
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/GetDrunkDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity"
-            android:label="@string/tutorial_title"/>
-        <activity android:name=".SettingsActivity"
-            android:label="@string/settings_title"/>
-        <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".AddBeverageActivity"
+            android:label="@string/add_beverage_title_add"
+            android:theme="@style/GetDrunkDark" />
+        <activity
+            android:name=".TutorialActivity"
+            android:label="@string/tutorial_title"
+            android:theme="@style/GetDrunkDark" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_title"
+            android:theme="@style/GetDrunkDark" />
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/GetDrunkDark" />
     </application>
-
 </manifest>

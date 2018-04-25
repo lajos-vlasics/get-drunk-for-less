@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
@@ -25,6 +26,8 @@ import com.lalikum.getdrunkforless.util.BeverageDividerItemDecoration;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private static int beverageCountLimit = 30;
 
     private TextView addBeverageHereTextView;
     private RecyclerView beveragesRecyclerView;
@@ -130,6 +133,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void toAddBeverageActivity() {
+        // prevent adding new beverages if already got 30
+        if (beverageList.size() > beverageCountLimit) {
+            Toast.makeText(this, getString(R.string.add_beverage_toast_message), Toast.LENGTH_LONG).show();
+            return;
+        }
         Intent intent = new Intent(this, AddBeverageActivity.class);
         startActivity(intent);
     }

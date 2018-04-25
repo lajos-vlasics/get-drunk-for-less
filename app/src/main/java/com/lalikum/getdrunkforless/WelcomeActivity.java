@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import com.lalikum.getdrunkforless.controller.SettingsController;
 
+import java.util.Objects;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     private ImageView welcomeTitleImageView;
@@ -26,8 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // TODO make proper horizontal view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        // TODO hide action bar correctly
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         welcomeTitleImageView = findViewById(R.id.ivWelcomeTitle);
         unicornImageView = findViewById(R.id.ivWelcomeUnicorn);

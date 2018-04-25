@@ -49,9 +49,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         userNameTextInputLayout = findViewById(R.id.tilSettingsUserName);
         currencyTextInputLayout = findViewById(R.id.tilSettingsCurrency);
-        // TODO set max length
+        // TODO check max length on small screen
         userNameEditText = findViewById(R.id.etSettingsUserName);
-        // TODO set max length
         currencyEditText = findViewById(R.id.etSettingsCurrency);
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);

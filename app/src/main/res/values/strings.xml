@@ -30,16 +30,13 @@
     <string name="add_beverage_error_empty_name">Please tell me the beverage name!</string>
     <string name="add_beverage_error_empty_size">Please tell me the beverage size!</string>
     <string name="add_beverage_zero_size">This cannot be null! Do you want to get drunk or what?</string>
-    <string name="add_beverage_higher_size">OMG! Do you want to drink that all alone? Write a lower number please.</string>
     <string name="add_beverage_error_empty_abv">Please tell me the alcohol by volume!</string>
     <string name="add_beverage_error_zero_abv">Is this water??? Are you an animal? Do you want to get drunk or what?</string>
     <string name="add_beverage_error_higher_abv">The alcohol volume can\'t be higher than 100% (Or You know something that I don\'t!)</string>
     <string name="add_beverage_error_empty_price">Please write the price of the beverage here!</string>
     <string name="add_beverage_error_zero_price">OK, that\'s totally free. That\'s is not the situation I was programmed for…</string>
-    <string name="add_beverage_error_higher_price">That\'s clearly not worth it. Write a lower number please.</string>
     <string name="add_beverage_error_empty_bottles">Please write how many bottles in the package!</string>
     <string name="add_beverage_error_zero_bottles">This cannot be null! Do you want to get drunk or what?</string>
-    <string name="add_beverage_error_higher_bottles">I don\'t think that kind of package exits. Write a lower number please</string>
     <string name="add_beverage_image_pony_with_bag">pony with a bag</string>
     <string name="home_button_add_beverage">add beverage button</string>
     <string name="settings_button_tutorial">tutorial button</string>
@@ -48,5 +45,6 @@
     <string name="home_image_medal_pony">pony with a medal</string>
     <string name="tutorial_image_pony">tutorial image with a pony</string>
     <string name="add_beverage_save">save</string>
+    <string name="add_beverage_toast_message">Please delete a beverage if you want to add a new one!</string>
 
 </resources>
