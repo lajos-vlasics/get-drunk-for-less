@@ -61,6 +61,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // TODO landscape mode keyboard only one row
         // TODO check max name length on small screen
+        // TODO autocomplete beverage names
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 

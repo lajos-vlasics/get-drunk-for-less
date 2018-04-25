@@ -33,14 +33,48 @@ public class SettingsActivity extends AppCompatActivity {
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
     private ImageButton tutorialButton;
-
     private SettingsController settingsController = new SettingsController();
     private InputChecker inputChecker = new InputChecker();
-
     private String userName;
     private MeasurementSystem measurementSystem = MeasurementSystem.METRIC;
     private String currency;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // add TextWatcher listeners here to prevent error messages after orientation changes
+        userNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                setUserNameInputError();
+                setSaveButtonStatus();
+            }
+        });
+
+        currencyEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                setCurrencyInputError();
+                setSaveButtonStatus();
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,41 +129,6 @@ public class SettingsActivity extends AppCompatActivity {
             userNameTextInputLayout.setHintAnimationEnabled(true);
             currencyTextInputLayout.setHintAnimationEnabled(true);
         }
-
-        // add listeners
-        // TODO error message fills auto if screen orientation changes
-        userNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                setUserNameInputError();
-                setSaveButtonStatus();
-            }
-        });
-
-        currencyEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                setCurrencyInputError();
-                setSaveButtonStatus();
-            }
-        });
 
         userNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
