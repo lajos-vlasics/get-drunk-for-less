@@ -57,6 +57,14 @@ public class AddBeverageActivity extends AppCompatActivity {
     private float price;
     private int bottles;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // add TextWatcher listeners here to prevent error messages after orientation changes
+        setTextChangedListeners();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO landscape mode keyboard only one row
@@ -124,142 +132,8 @@ public class AddBeverageActivity extends AppCompatActivity {
             bottlesTextInputLayout.setHintAnimationEnabled(true);
         }
 
-        // set event listeners for edit texts
-        // TODO error message fills auto if screen orientation changes
-        beverageNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                isBeverageNameInputError(true);
-                calculateIfPossible();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        beverageNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    isBeverageNameInputError(true);
-                    calculateIfPossible();
-                }
-            }
-        });
-
-        beverageSizeEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                isBeverageSizeInputError(true);
-                calculateIfPossible();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        beverageSizeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    isBeverageSizeInputError(true);
-                    calculateIfPossible();
-                }
-            }
-        });
-
-        alcoholByVolumeEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                isAlcoholByVolumeInputError(true);
-                calculateIfPossible();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        alcoholByVolumeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    isAlcoholByVolumeInputError(true);
-                    calculateIfPossible();
-                }
-            }
-        });
-
-        priceEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                isPriceInputError(true);
-                calculateIfPossible();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        priceEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    isPriceInputError(true);
-                    calculateIfPossible();
-                }
-            }
-        });
-
-        bottlesEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                isBottlesInputError(true);
-                calculateIfPossible();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        bottlesEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    isBottlesInputError(true);
-                    calculateIfPossible();
-                }
-            }
-        });
+        // set event listeners for
+        setFocusChangeListeners();
     }
 
     private String getNoDecimalStringIfInteger(float f) {
@@ -464,6 +338,141 @@ public class AddBeverageActivity extends AppCompatActivity {
             newBeverage.setBottles(bottles);
             beverageController.calculateAlcoholValue(newBeverage);
         }
+    }
+
+    private void setTextChangedListeners() {
+        beverageNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                isBeverageNameInputError(true);
+                calculateIfPossible();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        beverageSizeEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                isBeverageSizeInputError(true);
+                calculateIfPossible();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        alcoholByVolumeEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                isAlcoholByVolumeInputError(true);
+                calculateIfPossible();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        priceEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                isPriceInputError(true);
+                calculateIfPossible();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        bottlesEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                isBottlesInputError(true);
+                calculateIfPossible();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void setFocusChangeListeners() {
+        beverageNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    isBeverageNameInputError(true);
+                    calculateIfPossible();
+                }
+            }
+        });
+
+        beverageSizeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    isBeverageSizeInputError(true);
+                    calculateIfPossible();
+                }
+            }
+        });
+
+        alcoholByVolumeEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    isAlcoholByVolumeInputError(true);
+                    calculateIfPossible();
+                }
+            }
+        });
+
+        priceEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    isPriceInputError(true);
+                    calculateIfPossible();
+                }
+            }
+        });
+
+        bottlesEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    isBottlesInputError(true);
+                    calculateIfPossible();
+                }
+            }
+        });
     }
 
 }
