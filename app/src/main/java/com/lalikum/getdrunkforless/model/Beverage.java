@@ -8,7 +8,6 @@ public class Beverage extends SugarRecord {
     private float size;
     private float alcoholByVolume;
     private float price;
-    private int bottles;
 
     private float alcoholQuantity;
     private float alcoholValue;
@@ -16,12 +15,11 @@ public class Beverage extends SugarRecord {
     public Beverage() {
     }
 
-    public Beverage(String name, float size, float alcoholByVolume, float price, int bottles) {
+    public Beverage(String name, float size, float alcoholByVolume, float price) {
         this.name = name;
         this.size = size;
         this.alcoholByVolume = alcoholByVolume;
         this.price = price;
-        this.bottles = bottles;
     }
 
     public String getName() {
@@ -54,14 +52,6 @@ public class Beverage extends SugarRecord {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public int getBottles() {
-        return bottles;
-    }
-
-    public void setBottles(int bottles) {
-        this.bottles = bottles;
     }
 
     public float getAlcoholQuantity() {

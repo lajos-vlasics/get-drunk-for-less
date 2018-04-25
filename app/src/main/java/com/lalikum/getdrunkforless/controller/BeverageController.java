@@ -16,8 +16,8 @@ public class BeverageController {
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
     }
 
-    public Beverage create(String beverageName, float beverageSize, float alcoholByVolume, float price, int bottles) {
-        Beverage beverage = new Beverage(beverageName, beverageSize, alcoholByVolume, price, bottles);
+    public Beverage create(String beverageName, float beverageSize, float alcoholByVolume, float price) {
+        Beverage beverage = new Beverage(beverageName, beverageSize, alcoholByVolume, price);
         calculateAlcoholValue(beverage);
         return beverage;
     }
@@ -26,9 +26,8 @@ public class BeverageController {
         float beverageSize = beverage.getSize();
         float alcoholByVolume = beverage.getAlcoholByVolume();
         float price = beverage.getPrice();
-        int bottles = beverage.getBottles();
 
-        float alcoholQuantity = beverageSize * bottles * alcoholByVolume / 100;
+        float alcoholQuantity = beverageSize * alcoholByVolume / 100;
         float alcoholValue = price / alcoholQuantity;
 
         beverage.setAlcoholQuantity(alcoholQuantity);
@@ -58,10 +57,6 @@ public class BeverageController {
     public String getPriceWithUnit(Beverage beverage) {
         // TODO remove commas from 1,000 things
         return decimalFormat.format(beverage.getPrice()) + " " + optionsController.getCurrency();
-    }
-
-    public String getBottlesWithUnit(Beverage beverage) {
-        return beverage.getBottles() + " bottle";
     }
 
     public String getAlcoholQuantityWithUnit(Beverage beverage) {

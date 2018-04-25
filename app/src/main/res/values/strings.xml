@@ -23,7 +23,6 @@
     <string name="add_beverage_size">Size</string>
     <string name="add_beverage_abv">Alcohol by volume (%)</string>
     <string name="add_beverage_price">Price</string>
-    <string name="add_beverage_bottles">Number of bottles in the package</string>
     <string name="add_beverage_of_alcohol_suffix">of alcohol</string>
     <string name="add_beverage_title_edit">Edit beverage</string>
     <string name="add_beverage_title_add">Add beverage</string>
@@ -35,8 +34,6 @@
     <string name="add_beverage_error_higher_abv">The alcohol volume can\'t be higher than 100% (Or You know something that I don\'t!)</string>
     <string name="add_beverage_error_empty_price">Please write the price of the beverage here!</string>
     <string name="add_beverage_error_zero_price">OK, that\'s totally free. That\'s is not the situation I was programmed for…</string>
-    <string name="add_beverage_error_empty_bottles">Please write how many bottles in the package!</string>
-    <string name="add_beverage_error_zero_bottles">This cannot be null! Do you want to get drunk or what?</string>
     <string name="add_beverage_image_pony_with_bag">pony with a bag</string>
     <string name="home_button_add_beverage">add beverage button</string>
     <string name="settings_button_tutorial">tutorial button</string>

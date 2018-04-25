@@ -23,7 +23,6 @@
     <string name="add_beverage_size">Méret</string>
     <string name="add_beverage_abv">Alkohol tartalom (%)</string>
     <string name="add_beverage_price">Ár</string>
-    <string name="add_beverage_bottles">Darabszám</string>
     <string name="add_beverage_of_alcohol_suffix">alkohol</string>
     <string name="add_beverage_title_edit">Ital szerkesztése</string>
     <string name="add_beverage_title_add">Ital hozzáadása</string>
@@ -35,8 +34,6 @@
     <string name="add_beverage_error_higher_abv">Az alkohol százalék nem lehet több 100%-nál!</string>
     <string name="add_beverage_error_empty_price">Kérlek írd ide az ital árát!</string>
     <string name="add_beverage_error_zero_price">OK, ez tök ingyen van, ezzel nem is érdemes számolni.</string>
-    <string name="add_beverage_error_empty_bottles">Kérlek írd ide, hogy hány darabos csomagot vennél!</string>
-    <string name="add_beverage_error_zero_bottles">Ez nem lehet nulla! Legalább 1-et írj ide, ha nem is csomagról van szó.</string>
     <string name="add_beverage_image_pony_with_bag">egy póni zsákkal a hátán</string>
     <string name="home_button_add_beverage">ital hozzáadása gomb</string>
     <string name="settings_button_tutorial">bevezető gomb</string>
