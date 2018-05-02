@@ -73,7 +73,6 @@ public class HomeActivity extends AppCompatActivity {
             // set up the RecyclerView
             beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
-            beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
             RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
             beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
@@ -116,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             // Row is swiped from recycler view
             // remove it from adapter
-            // TODO show animation for it
+            // TODO show swipe animation
             deleteBeverage(viewHolder.getAdapterPosition());
         }
 

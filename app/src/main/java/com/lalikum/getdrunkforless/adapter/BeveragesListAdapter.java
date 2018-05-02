@@ -45,10 +45,10 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // make an empty holder in last place
         if (position == getItemCount() - 1) {
+            // make an empty holder in last place
             holder.itemView.setOnClickListener(null);
-            holder.itemView.setOnLongClickListener(null);
+            holder.itemView.setBackground(null);
             holder.beverageNameTextView.setVisibility(View.GONE);
             holder.alcoholValueTextView.setVisibility(View.GONE);
             holder.medalImageView.setVisibility(View.GONE);
@@ -95,7 +95,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     }
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
 
@@ -110,7 +110,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     }
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView beverageNameTextView;
         TextView alcoholValueTextView;
         ProgressBar valueBar;
@@ -122,25 +122,16 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             alcoholValueTextView = itemView.findViewById(R.id.tvHomeAlcoholValue);
             valueBar = itemView.findViewById(R.id.vbHomeAlcoholValueBar);
             medalImageView = itemView.findViewById(R.id.ivHomeMedal);
-
-            itemView.setOnLongClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            System.out.println("simple click");
-        }
-
-        @Override
-        public boolean onLongClick(View v) {
-            // TODO edit with long press animation
-            System.out.println("long click");
             Context context = layoutInflater.getContext();
             Beverage beverage = getItem(getAdapterPosition());
             Intent intent = new Intent(context, AddBeverageActivity.class);
             intent.putExtra("beverageId", beverage.getId());
             context.startActivity(intent);
-            return false;
         }
     }
 
