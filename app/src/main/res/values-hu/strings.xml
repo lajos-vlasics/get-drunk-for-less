@@ -43,4 +43,5 @@
     <string name="tutorial_image_pony">bevezető kép pónival</string>
     <string name="add_beverage_save">mentés</string>
     <string name="add_beverage_toast_message">Kérlek törölj egy meglévő italt, hogy egy újat felvehess!</string>
+    <string name="home_delete">TÖRLÉS</string>
 </resources>

@@ -22,10 +22,11 @@ import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
 import com.lalikum.getdrunkforless.util.BeverageDividerItemDecoration;
+import com.lalikum.getdrunkforless.util.RecyclerItemTouchHelper;
 
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
     private static int beverageCountLimit = 30;
 
@@ -72,12 +73,16 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             // set up the RecyclerView
             beveragesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
             beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 
             RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
             beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
 
             beveragesRecyclerView.setAdapter(beveragesListAdapter);
+//            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
+
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
             new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
         }
     }
@@ -105,7 +110,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     // slide delete listener
-    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+/*    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
             return false;
@@ -123,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
         public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             // view the background view
         }
-    };
+    };*/
 
 
     public void toSettingsActivity() {
@@ -170,5 +175,10 @@ public class HomeActivity extends AppCompatActivity {
 
     public void hideAddBeverageHereTextView() {
         addBeverageHereTextView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        System.out.println("onSwiped method");
     }
 }

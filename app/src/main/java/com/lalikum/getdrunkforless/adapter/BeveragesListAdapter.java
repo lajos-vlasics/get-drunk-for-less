@@ -2,12 +2,14 @@ package com.lalikum.getdrunkforless.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.AddBeverageActivity;
@@ -115,6 +117,8 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         TextView alcoholValueTextView;
         ProgressBar valueBar;
         ImageView medalImageView;
+        public RelativeLayout backgroundRelativeLayout;
+        public ConstraintLayout foregroundConstraintLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -122,6 +126,8 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             alcoholValueTextView = itemView.findViewById(R.id.tvHomeAlcoholValue);
             valueBar = itemView.findViewById(R.id.vbHomeAlcoholValueBar);
             medalImageView = itemView.findViewById(R.id.ivHomeMedal);
+            backgroundRelativeLayout = itemView.findViewById(R.id.rlHomeBackground);
+            foregroundConstraintLayout = itemView.findViewById(R.id.clHomeForeground);
             itemView.setOnClickListener(this);
         }
 
