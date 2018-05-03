@@ -67,6 +67,10 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         }
 
         // set medal image
+        setMedalImage(holder, position);
+    }
+
+    private void setMedalImage(ViewHolder holder, int position) {
         switch (position) {
             case 0:
                 holder.medalImageView.setImageResource(R.drawable.iw_gold_head);
@@ -102,11 +106,18 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     public void removeItem(int position) {
         beverageList.remove(position);
         this.notifyItemRemoved(position);
+        this.notifyItemRangeChanged(0, beverageList.size() - 1);
+
     }
 
     public void addItem(Beverage beverage, int position) {
         beverageList.add(position, beverage);
         this.notifyItemInserted(position);
+        this.notifyItemRangeChanged(0, beverageList.size() - 1);
+    }
+
+    public boolean isLastPosition(int position) {
+        return beverageList.size() - 1 == position;
     }
 
     // parent activity will implement this method to respond to click events
@@ -116,12 +127,12 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public RelativeLayout backgroundRelativeLayout;
+        public ConstraintLayout foregroundConstraintLayout;
         TextView beverageNameTextView;
         TextView alcoholValueTextView;
         ProgressBar valueBar;
         ImageView medalImageView;
-        public RelativeLayout backgroundRelativeLayout;
-        public ConstraintLayout foregroundConstraintLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -142,10 +153,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             intent.putExtra("beverageId", beverage.getId());
             context.startActivity(intent);
         }
-    }
-
-    public boolean isLastPosition(int position) {
-        return beverageList.size() - 1 == position;
     }
 
 }
