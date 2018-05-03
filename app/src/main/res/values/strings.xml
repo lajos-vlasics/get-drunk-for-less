@@ -42,7 +42,9 @@
     <string name="home_image_medal_pony">pony with a medal</string>
     <string name="tutorial_image_pony">tutorial image with a pony</string>
     <string name="add_beverage_save">save</string>
-    <string name="add_beverage_toast_message">Please delete a beverage if you want to add a new one!</string>
+    <string name="home_cant_add_beverage_toast_message">Please delete a beverage if you want to add a new one!</string>
     <string name="home_delete">DELETE</string>
+    <string name="home_snack_delete_suffix">deleted!</string>
+    <string name="home_snackbar_undo">UNDO</string>
 
 </resources>

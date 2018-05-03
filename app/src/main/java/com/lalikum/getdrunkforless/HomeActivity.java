@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
     public void toAddBeverageActivity() {
         // prevent adding new beverages if already got 30
         if (beverageList.size() > beverageCountLimit) {
-            Toast.makeText(this, getString(R.string.add_beverage_toast_message), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.home_cant_add_beverage_toast_message), Toast.LENGTH_LONG).show();
             return;
         }
         Intent intent = new Intent(this, AddBeverageActivity.class);
@@ -162,8 +162,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         deleteBeverage(viewHolder.getAdapterPosition());
 
         Snackbar snackbar = Snackbar
-                .make(findViewById(R.id.clHome), beverage.getName() + " deleted!", Snackbar.LENGTH_LONG);
-        snackbar.setAction("UNDO", new View.OnClickListener() {
+                .make(findViewById(R.id.clHome), beverage.getName() + " " +  getString(R.string.home_snack_delete_suffix), Snackbar.LENGTH_LONG);
+        snackbar.setAction(getString(R.string.home_snackbar_undo), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // undo is selected, restore the deleted item
