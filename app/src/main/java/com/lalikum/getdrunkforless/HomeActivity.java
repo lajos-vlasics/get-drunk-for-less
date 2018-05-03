@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,7 +21,6 @@ import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
-import com.lalikum.getdrunkforless.util.BeverageDividerItemDecoration;
 import com.lalikum.getdrunkforless.util.RecyclerItemTouchHelper;
 
 import java.util.List;
@@ -77,13 +75,12 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
             beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
             beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 
-            RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
-            beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
+//            RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
+//            beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
 
             beveragesRecyclerView.setAdapter(beveragesListAdapter);
-//            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
 
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
             new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
         }
     }
@@ -127,7 +124,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
     public void deleteBeverage(int position) {
         // prevent delete if its the last empty row
-        if (position == beveragesListAdapter.getItemCount() - 1) {
+        if (beveragesListAdapter.isLastPosition(position)) {
             return;
         }
         Beverage beverage = beveragesListAdapter.getItem(position);
@@ -158,6 +155,9 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
+        if (beveragesListAdapter.isLastPosition(position)) {
+            return;
+        }
         Beverage beverage = beveragesListAdapter.getItem(position);
         deleteBeverage(viewHolder.getAdapterPosition());
 

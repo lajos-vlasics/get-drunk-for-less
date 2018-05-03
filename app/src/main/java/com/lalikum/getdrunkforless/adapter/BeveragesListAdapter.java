@@ -52,10 +52,8 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         if (beverage == null) {
             holder.itemView.setOnClickListener(null);
             holder.itemView.setBackground(null);
-            holder.beverageNameTextView.setVisibility(View.GONE);
-            holder.alcoholValueTextView.setVisibility(View.GONE);
-            holder.medalImageView.setVisibility(View.GONE);
-            holder.valueBar.setVisibility(View.GONE);
+            holder.backgroundRelativeLayout.setVisibility(View.GONE);
+            holder.foregroundConstraintLayout.setVisibility(View.GONE);
             return;
         }
         holder.beverageNameTextView.setText(beverage.getName());
@@ -144,6 +142,10 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             intent.putExtra("beverageId", beverage.getId());
             context.startActivity(intent);
         }
+    }
+
+    public boolean isLastPosition(int position) {
+        return beverageList.size() - 1 == position;
     }
 
 }

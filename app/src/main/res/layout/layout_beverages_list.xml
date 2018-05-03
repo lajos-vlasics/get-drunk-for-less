@@ -8,36 +8,23 @@
     <RelativeLayout
         android:id="@+id/rlHomeBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorGdRed">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/ivHomeDelete"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="25dp"
             android:src="@android:drawable/ic_menu_delete" />
-
-        <TextView
-            android:id="@+id/tvHomeDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@id/ivHomeDelete"
-            android:text="@string/home_delete"
-            android:textColor="#fff"
-            android:textSize="13dp" />
 
     </RelativeLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/clHomeForeground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorGdDarkestPurple">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvHomeBeverageName"
