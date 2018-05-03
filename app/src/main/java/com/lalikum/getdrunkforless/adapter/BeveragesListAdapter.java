@@ -47,8 +47,9 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (position == getItemCount() - 1) {
-            // make an empty holder in last place
+        Beverage beverage = beverageList.get(position);
+        // make an empty holder in last place
+        if (beverage == null) {
             holder.itemView.setOnClickListener(null);
             holder.itemView.setBackground(null);
             holder.beverageNameTextView.setVisibility(View.GONE);
@@ -57,7 +58,6 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             holder.valueBar.setVisibility(View.GONE);
             return;
         }
-        Beverage beverage = beverageList.get(position);
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now
         holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
@@ -103,7 +103,12 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 
     public void removeItem(int position) {
         beverageList.remove(position);
-        this.notifyDataSetChanged();
+        this.notifyItemRemoved(position);
+    }
+
+    public void addItem(Beverage beverage, int position) {
+        beverageList.add(position, beverage);
+        this.notifyItemInserted(position);
     }
 
     // parent activity will implement this method to respond to click events

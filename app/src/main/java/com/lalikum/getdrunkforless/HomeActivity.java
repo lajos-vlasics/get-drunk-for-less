@@ -1,8 +1,9 @@
 package com.lalikum.getdrunkforless;
 
 import android.content.Intent;
-import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -109,28 +110,6 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         }
     }
 
-    // slide delete listener
-/*    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-            // Row is swiped from recycler view
-            // remove it from adapter
-            // TODO show swipe animation
-            deleteBeverage(viewHolder.getAdapterPosition());
-        }
-
-        @Override
-        public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            // view the background view
-        }
-    };*/
-
-
     public void toSettingsActivity() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
@@ -153,7 +132,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         }
         Beverage beverage = beveragesListAdapter.getItem(position);
         beveragesListAdapter.removeItem(position);
-        beverage.delete();
+        beverageController.delete(beverage);
 
         // show add button text, if adapter contains no beverages, only the null row
         if (beverageList.size() == 1) {
@@ -179,6 +158,21 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
-        System.out.println("onSwiped method");
+        Beverage beverage = beveragesListAdapter.getItem(position);
+        deleteBeverage(viewHolder.getAdapterPosition());
+
+        Snackbar snackbar = Snackbar
+                .make(findViewById(R.id.clHome), beverage.getName() + " deleted!", Snackbar.LENGTH_LONG);
+        snackbar.setAction("UNDO", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // undo is selected, restore the deleted item
+                beverageController.save(beverage);
+                beveragesListAdapter.addItem(beverage, position);
+            }
+        });
+        snackbar.setActionTextColor(Color.YELLOW);
+        snackbar.show();
+
     }
 }

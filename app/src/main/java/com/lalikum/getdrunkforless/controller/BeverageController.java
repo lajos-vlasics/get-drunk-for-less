@@ -71,4 +71,8 @@ public class BeverageController {
     public List<Beverage> getAllSortedByAlcoholValue() {
         return Beverage.listAll(Beverage.class, "alcohol_value");
     }
+
+    public void delete(Beverage beverage) {
+        beverage.delete();
+    }
 }
