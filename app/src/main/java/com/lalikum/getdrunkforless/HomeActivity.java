@@ -162,14 +162,15 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         deleteBeverage(viewHolder.getAdapterPosition());
 
         Snackbar snackbar = Snackbar
-                .make(findViewById(R.id.clHome), beverage.getName() + " " +  getString(R.string.home_snack_delete_suffix), Snackbar.LENGTH_LONG);
+                .make(findViewById(R.id.clHome), beverage.getName() + " " + getString(R.string.home_snack_delete_suffix), Snackbar.LENGTH_LONG);
         snackbar.setAction(getString(R.string.home_snackbar_undo), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // undo is selected, restore the deleted item
-                // TODO you can undo multiple time, fix it
                 beverageController.save(beverage);
                 beveragesListAdapter.addItem(beverage, position);
+                // prevent to undo multiple times
+                snackbar.setAction(getString(R.string.home_snackbar_undo), null);
             }
         });
         snackbar.setActionTextColor(Color.YELLOW);
