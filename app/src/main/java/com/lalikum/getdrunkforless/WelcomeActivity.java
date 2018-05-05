@@ -26,6 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make proper horizontal view
+        // TODO divide it to two seperate activities
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Objects.requireNonNull(getSupportActionBar()).hide();

@@ -167,6 +167,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
             @Override
             public void onClick(View view) {
                 // undo is selected, restore the deleted item
+                // TODO you can undo multiple time, fix it
                 beverageController.save(beverage);
                 beveragesListAdapter.addItem(beverage, position);
             }
