@@ -46,4 +46,6 @@
     <string name="home_delete">TÖRLÉS</string>
     <string name="home_snack_delete_suffix">törölve!</string>
     <string name="home_snackbar_undo">VISSZAVONÁS</string>
+    <string name="settings_error_empty_name">Kérlek írd ide a neved!</string>
+    <string name="settings_error_empty_currency">Add meg az alapértelmezett pénznemet!</string>
 </resources>

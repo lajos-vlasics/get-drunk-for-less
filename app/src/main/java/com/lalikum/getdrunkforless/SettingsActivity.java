@@ -259,11 +259,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private boolean setUserNameInputError() {
-        return inputChecker.isEmptyInput("Please tell me your name!", userNameEditText);
+        return inputChecker.isEmptyInput(getString(R.string.settings_error_empty_name), userNameEditText);
     }
 
     private boolean setCurrencyInputError() {
-        return inputChecker.isEmptyInput("Set the default currency please!", currencyEditText);
+        return inputChecker.isEmptyInput(getString(R.string.settings_error_empty_currency), currencyEditText);
     }
 
 }

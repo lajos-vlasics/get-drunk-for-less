@@ -46,5 +46,7 @@
     <string name="home_delete">DELETE</string>
     <string name="home_snack_delete_suffix">deleted!</string>
     <string name="home_snackbar_undo">UNDO</string>
+    <string name="settings_error_empty_name">Please tell me your name!</string>
+    <string name="settings_error_empty_currency">Set the default currency please!</string>
 
 </resources>
