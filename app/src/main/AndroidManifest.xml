@@ -10,12 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/GetDrunkDark">
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".WelcomeFirstActivity"
             android:theme="@style/GetDrunkDark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".WelcomeNthActivity"
+            android:theme="@style/GetDrunkDark">
         </activity>
         <activity
             android:name=".AddBeverageActivity"

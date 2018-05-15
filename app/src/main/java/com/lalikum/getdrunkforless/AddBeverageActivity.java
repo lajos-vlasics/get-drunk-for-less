@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,9 +27,16 @@ import java.util.Objects;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
+    private static final String[] BEVERAGE_NAMES = new String[]{
+            "Kőbányai Világos", "Dreher Classic", "Dreher BAK", "Dreher Pale Ale", "Borsodi", "Soproni",
+            "Arany Ászok", "Balatoni Világos",
+            "Soproni Démon", "Soproni IPA", "Soproni 1895", "Soproni Radler", "Szalon sör",
+            "Heineken",
+    };
+
     private static int maxAlcoholByVolume = 100;
     private static MenuItem saveMenuItem;
-    private EditText beverageNameEditText;
+    private AutoCompleteTextView beverageNameAutoCompleteTextView;
     private EditText beverageSizeEditText;
     private EditText alcoholByVolumeEditText;
     private EditText priceEditText;
@@ -62,7 +71,6 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO landscape mode keyboard only one row
         // TODO check max name length on small screen
         // TODO autocomplete beverage names
         super.onCreate(savedInstanceState);
@@ -78,8 +86,12 @@ public class AddBeverageActivity extends AppCompatActivity {
 
         ofAlcoholTextView = findViewById(R.id.tvAddBeverageOfAlcohol);
         alcoholValueTextView = findViewById(R.id.tvAddBeverageAlcoholValue);
+        // set beverage name edit text autocomplete
+        beverageNameAutoCompleteTextView = findViewById(R.id.etAddBeverageName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, BEVERAGE_NAMES);
+        beverageNameAutoCompleteTextView.setAdapter(adapter);
 
-        beverageNameEditText = findViewById(R.id.etAddBeverageName);
         beverageSizeEditText = findViewById(R.id.etAddBeverageSize);
         alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
         priceEditText = findViewById(R.id.etAddBeveragePrice);
@@ -88,8 +100,10 @@ public class AddBeverageActivity extends AppCompatActivity {
         unit = settingsController.getUnit();
         currency = settingsController.getCurrency();
 
-        beverageSizeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_size), unit));
-        priceByVolumeTextInputLayout.setHint(String.format("%s (%s)", getString(R.string.add_beverage_price), currency));
+        beverageSizeTextInputLayout.setHint(String.format("%s (%s)",
+                getString(R.string.add_beverage_size), unit));
+        priceByVolumeTextInputLayout.setHint(String.format("%s (%s)",
+                getString(R.string.add_beverage_price), currency));
 
         // fill inputs if edit mode
         Intent intent = getIntent();
@@ -103,7 +117,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             priceByVolumeTextInputLayout.setHintAnimationEnabled(false);
 
             editBeverage = beverageController.getById(beverageId);
-            beverageNameEditText.setText(editBeverage.getName());
+            beverageNameAutoCompleteTextView.setText(editBeverage.getName());
             beverageSizeEditText.setText(getNoDecimalStringIfInteger(editBeverage.getSize()));
             alcoholByVolumeEditText.setText(String.valueOf(editBeverage.getAlcoholByVolume()));
             priceEditText.setText(getNoDecimalStringIfInteger(editBeverage.getPrice()));
@@ -187,9 +201,9 @@ public class AddBeverageActivity extends AppCompatActivity {
     private boolean isBeverageNameInputError(boolean setErrorText) {
         boolean isEmptyInput;
         if (setErrorText) {
-            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_name), beverageNameEditText);
+            isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_name), beverageNameAutoCompleteTextView);
         } else {
-            isEmptyInput = inputChecker.isEmptyInput(beverageNameEditText);
+            isEmptyInput = inputChecker.isEmptyInput(beverageNameAutoCompleteTextView);
         }
         return isEmptyInput;
     }
@@ -290,7 +304,7 @@ public class AddBeverageActivity extends AppCompatActivity {
         if (isAnyInputError()) {
             return false;
         }
-        beverageName = beverageNameEditText.getText().toString();
+        beverageName = beverageNameAutoCompleteTextView.getText().toString();
         beverageSize = Float.parseFloat(beverageSizeEditText.getText().toString());
         alcoholByVolume = Float.parseFloat(alcoholByVolumeEditText.getText().toString());
         price = Float.parseFloat(priceEditText.getText().toString());
@@ -311,7 +325,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     }
 
     private void setTextChangedListeners() {
-        beverageNameEditText.addTextChangedListener(new TextWatcher() {
+        beverageNameAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 isBeverageNameInputError(true);
@@ -378,7 +392,7 @@ public class AddBeverageActivity extends AppCompatActivity {
     }
 
     private void setFocusChangeListeners() {
-        beverageNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        beverageNameAutoCompleteTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {

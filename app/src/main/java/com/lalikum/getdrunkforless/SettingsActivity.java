@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -24,11 +26,22 @@ import com.lalikum.getdrunkforless.util.InputChecker;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private static final String[] CURRENCIES = new String[]{
+            "JPY", "CNY", "SDG", "RON", "MKD", "MXN", "CAD",
+            "ZAR", "AUD", "NOK", "ILS", "ISK", "SYP", "LYD", "UYU", "YER", "CSD",
+            "EEK", "THB", "IDR", "LBP", "AED", "BOB", "QAR", "BHD", "HNL", "HRK",
+            "COP", "ALL", "DKK", "MYR", "SEK", "RSD", "BGN", "DOP", "KRW", "LVL",
+            "VEF", "CZK", "TND", "KWD", "VND", "JOD", "NZD", "PAB", "CLP", "PEN",
+            "GBP", "DZD", "CHF", "RUB", "UAH", "ARS", "SAR", "EGP", "INR", "PYG",
+            "TWD", "TRY", "BAM", "OMR", "SGD", "MAD", "BYR", "NIO", "HKD", "LTL",
+            "SKK", "GTQ", "BRL", "EUR", "HUF", "IQD", "CRC", "PHP", "SVC", "PLN",
+            "USD"};
+
     private static MenuItem saveMenuItem;
     private TextInputLayout userNameTextInputLayout;
     private TextInputLayout currencyTextInputLayout;
     private EditText userNameEditText;
-    private EditText currencyEditText;
+    private AutoCompleteTextView currencyAutoCompleteTextView;
     private RadioButton metricRadioButton;
     private RadioButton imperialRadioButton;
     private RadioGroup unitRadioGroup;
@@ -59,7 +72,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        currencyEditText.addTextChangedListener(new TextWatcher() {
+        currencyAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
@@ -85,7 +98,13 @@ public class SettingsActivity extends AppCompatActivity {
         currencyTextInputLayout = findViewById(R.id.tilSettingsCurrency);
         // TODO check max length on small screen
         userNameEditText = findViewById(R.id.etSettingsUserName);
-        currencyEditText = findViewById(R.id.etSettingsCurrency);
+
+        // set autocomplete for currency edit text
+        currencyAutoCompleteTextView = findViewById(R.id.acetSettingsCurrency);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, CURRENCIES);
+        currencyAutoCompleteTextView.setAdapter(adapter);
+
         metricRadioButton = findViewById(R.id.rbSettingsMetric);
         imperialRadioButton = findViewById(R.id.ebSettingsImperial);
         unitRadioGroup = findViewById(R.id.rbgSettingsUnit);
@@ -123,7 +142,7 @@ public class SettingsActivity extends AppCompatActivity {
                     break;
             }
 
-            currencyEditText.setText(settings.getCurrency());
+            currencyAutoCompleteTextView.setText(settings.getCurrency());
 
             // enable floating label animations
             userNameTextInputLayout.setHintAnimationEnabled(true);
@@ -140,7 +159,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        currencyEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        currencyAutoCompleteTextView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
@@ -150,7 +169,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        currencyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        currencyAutoCompleteTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 saveSettings();
@@ -206,7 +225,7 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         }
         userName = userNameEditText.getText().toString();
-        currency = currencyEditText.getText().toString();
+        currency = currencyAutoCompleteTextView.getText().toString();
 
         settingsController.saveInstance(userName, measurementSystem, currency);
         toHomeActivity();
@@ -240,7 +259,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setSaveButtonStatus() {
-        boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyEditText);
+        boolean isInputError = inputChecker.isEmptyInput(userNameEditText, currencyAutoCompleteTextView);
         if (isInputError) {
             setSaveButtonInactive();
         } else {
@@ -259,11 +278,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private boolean setUserNameInputError() {
-        return inputChecker.isEmptyInput("Please tell me your name!", userNameEditText);
+        return inputChecker.isEmptyInput(getString(R.string.settings_error_empty_name), userNameEditText);
     }
 
     private boolean setCurrencyInputError() {
-        return inputChecker.isEmptyInput("Set the default currency please!", currencyEditText);
+        return inputChecker.isEmptyInput(getString(R.string.settings_error_empty_currency), currencyAutoCompleteTextView);
     }
 
 }
