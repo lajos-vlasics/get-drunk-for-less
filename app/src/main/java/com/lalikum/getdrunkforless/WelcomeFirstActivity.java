@@ -13,26 +13,28 @@ import com.lalikum.getdrunkforless.controller.SettingsController;
 
 import java.util.Objects;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeFirstActivity extends AppCompatActivity {
 
+    SettingsController settingsController = new SettingsController();
     private ImageView welcomeTitleImageView;
-    private ImageView unicornImageView;
     private Button getStartedButton;
     private Animation fromTopAnim;
     private Animation fromBottomAnim;
 
-    SettingsController settingsController = new SettingsController();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO make proper horizontal view
-        // TODO divide it to two seperate activities
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome_first);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        // TODO db error at first run, but app can run
+        // go to simple welcome screen without get started button if Nth launch
+        if (settingsController.isSettingsExists()) {
+            toWelcomeActivity();
+        }
+
         welcomeTitleImageView = findViewById(R.id.ivWelcomeTitle);
-        unicornImageView = findViewById(R.id.ivWelcomeUnicorn);
         getStartedButton = findViewById(R.id.btnWelcomeGetStarted);
 
         fromTopAnim = AnimationUtils.loadAnimation(this, R.anim.from_top);
@@ -40,34 +42,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
         welcomeTitleImageView.setAnimation(fromTopAnim);
         getStartedButton.setAnimation(fromBottomAnim);
-        unicornImageView.setAnimation(fromBottomAnim);
-
-        // simple welcome screen without get started button if nth launch
-        // TODO db error at first run, but app can run
-        if (settingsController.isSettingsExists()) {
-            getStartedButton.setVisibility(View.GONE);
-            unicornImageView.setVisibility(View.VISIBLE);
-
-            fromBottomAnim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    toHomeActivity();
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-        }
 
         // event listeners
         getStartedButton.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +57,8 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+    public void toWelcomeActivity() {
+        Intent intent = new Intent(this, WelcomeNthActivity.class);
         startActivity(intent);
     }
 

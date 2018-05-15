@@ -4,42 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeActivity">
-
-    <Button
-        android:id="@+id/btnWelcomeGetStarted"
-        android:layout_width="220dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@color/colorGdDarkGreen"
-        android:text="@string/get_started"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+    tools:context=".WelcomeNthActivity">
 
     <ImageView
         android:id="@+id/ivWelcomeTitle"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="60dp"
         android:contentDescription="@string/welcome_image_title"
-        app:layout_constraintBottom_toTopOf="@+id/btnWelcomeGetStarted"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/iw_welcome_title" />
 
     <ImageView
@@ -48,12 +26,14 @@
         android:layout_height="200dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:contentDescription="@string/welcome_image_womit_pony"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivWelcomeTitle"
         app:srcCompat="@drawable/iw_puke_fly" />
 
 </android.support.constraint.ConstraintLayout>
