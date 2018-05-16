@@ -21,7 +21,6 @@ public class WelcomeNthActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO make proper horizontal view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_nth);
         Objects.requireNonNull(getSupportActionBar()).hide();
