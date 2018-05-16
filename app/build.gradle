@@ -34,4 +34,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // Sugar ORM
     implementation 'com.github.satyan:sugar:1.5'
+    implementation 'com.google.android.gms:play-services-ads:15.0.1'
 }

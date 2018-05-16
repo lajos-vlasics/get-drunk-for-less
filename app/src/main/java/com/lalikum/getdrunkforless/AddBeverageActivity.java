@@ -18,6 +18,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
@@ -34,7 +37,7 @@ public class AddBeverageActivity extends AppCompatActivity {
             "Heineken",
     };
 
-    private static int maxAlcoholByVolume = 100;
+    private static final int MAX_ALCOHOL_BY_VOLUME = 100;
     private static MenuItem saveMenuItem;
     private AutoCompleteTextView beverageNameAutoCompleteTextView;
     private EditText beverageSizeEditText;
@@ -48,6 +51,8 @@ public class AddBeverageActivity extends AppCompatActivity {
 
     private TextView alcoholValueTextView;
     private TextView ofAlcoholTextView;
+
+    private AdView mAdView;
 
     private SettingsController settingsController = new SettingsController();
     private BeverageController beverageController = new BeverageController();
@@ -95,6 +100,42 @@ public class AddBeverageActivity extends AppCompatActivity {
         beverageSizeEditText = findViewById(R.id.etAddBeverageSize);
         alcoholByVolumeEditText = findViewById(R.id.etAddBeverageABV);
         priceEditText = findViewById(R.id.etAddBeveragePrice);
+
+        // set adView
+        mAdView = findViewById(R.id.adViewAddBeverage);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                mAdView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                mAdView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
 
         // Set unit and currency field from settings DB
         unit = settingsController.getUnit();
@@ -229,11 +270,11 @@ public class AddBeverageActivity extends AppCompatActivity {
         if (setErrorText) {
             isEmptyInput = inputChecker.isEmptyInput(getString(R.string.add_beverage_error_empty_abv), alcoholByVolumeEditText);
             isZeroInput = inputChecker.isZeroInput(getString(R.string.add_beverage_error_zero_abv), alcoholByVolumeEditText);
-            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_abv), maxAlcoholByVolume, alcoholByVolumeEditText);
+            isHigherInput = inputChecker.isHigherInput(getString(R.string.add_beverage_error_higher_abv), MAX_ALCOHOL_BY_VOLUME, alcoholByVolumeEditText);
         } else {
             isEmptyInput = inputChecker.isEmptyInput(alcoholByVolumeEditText);
             isZeroInput = inputChecker.isZeroInput(alcoholByVolumeEditText);
-            isHigherInput = inputChecker.isHigherInput(maxAlcoholByVolume, alcoholByVolumeEditText);
+            isHigherInput = inputChecker.isHigherInput(MAX_ALCOHOL_BY_VOLUME, alcoholByVolumeEditText);
         }
         return isEmptyInput || isZeroInput || isHigherInput;
     }
