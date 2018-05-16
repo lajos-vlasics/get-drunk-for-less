@@ -11,8 +11,8 @@
         android:id="@+id/ivWelcomeTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
         android:layout_margin="20dp"
+        android:layout_weight="6"
         android:contentDescription="@string/welcome_image_title"
         app:srcCompat="@drawable/iw_welcome_title" />
 
@@ -20,8 +20,8 @@
         android:id="@+id/ivWelcomeUnicorn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
         android:layout_margin="20dp"
+        android:layout_weight="4"
         android:contentDescription="@string/welcome_image_womit_pony"
         android:visibility="visible"
         app:srcCompat="@drawable/iw_puke_fly" />

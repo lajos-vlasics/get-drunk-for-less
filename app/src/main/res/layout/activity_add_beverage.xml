@@ -181,7 +181,6 @@
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewAddBeverage"
         android:layout_width="match_parent"
@@ -191,7 +190,6 @@
         app:adSize="SMART_BANNER"
         app:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintTop_toTopOf="parent">
-
     </com.google.android.gms.ads.AdView>
 
 </LinearLayout>

@@ -13,9 +13,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnTutorialPrevious"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.v4.view.ViewPager>
+        app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
 
     <LinearLayout
         android:id="@+id/llTutorialSlideDots"
@@ -38,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:background="@android:color/transparent"
         android:enabled="false"
@@ -52,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
         android:onClick="nextButtonEventListener"
         android:text="@string/tutorial_next"
