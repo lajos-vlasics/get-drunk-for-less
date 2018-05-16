@@ -30,6 +30,7 @@ import java.util.Objects;
 
 public class AddBeverageActivity extends AppCompatActivity {
 
+    // TODO finish the autocomplete list
     private static final String[] BEVERAGE_NAMES = new String[]{
             "Kőbányai Világos", "Dreher Classic", "Dreher BAK", "Dreher Pale Ale", "Borsodi", "Soproni",
             "Arany Ászok", "Balatoni Világos",
@@ -77,7 +78,6 @@ public class AddBeverageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO check max name length on small screen
-        // TODO autocomplete beverage names
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beverage);
 

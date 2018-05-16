@@ -58,7 +58,6 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
         beverageList = beverageController.getAllSortedByAlcoholValue();
 
-        // TODO search field in actionbar
         // TODO fix water img to bg somehow
 
         // init

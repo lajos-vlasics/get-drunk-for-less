@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/GetDrunkDark">
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.lalikum.getdrunkforless" />
         <activity
             android:name=".WelcomeFirstActivity"
             android:theme="@style/GetDrunkDark">

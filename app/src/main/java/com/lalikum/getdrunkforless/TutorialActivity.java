@@ -52,7 +52,7 @@ public class TutorialActivity extends AppCompatActivity {
             } else {
                 previousButton.setEnabled(true);
                 nextButton.setText(getString(R.string.tutorial_next));
-                nextButton.setTextColor(Color.WHITE); // TODO set to default text color not mock
+                nextButton.setTextColor(Color.WHITE);
                 nextButton.setOnClickListener(null);
                 nextButton.setOnClickListener(new View.OnClickListener() {
                     @Override
