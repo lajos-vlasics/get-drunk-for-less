@@ -14,9 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
@@ -27,7 +32,9 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
 
-    private static int beverageCountLimit = 30;
+    private final static int BEVERAGE_COUNT_LIMIT = 30;
+
+    private AdView mAdView;
 
     private TextView addBeverageHereTextView;
     private RecyclerView beveragesRecyclerView;
@@ -57,6 +64,42 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         // init
         setTitle(settingsController.getUserName() + " " + getString(R.string.home_title_suffix));
         hideAddBeverageHereTextView();
+
+        // set adView
+        mAdView = findViewById(R.id.adViewHome);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                mAdView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                mAdView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
 
         // listeners
         addBeverageImageButton.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +157,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
     public void toAddBeverageActivity() {
         // prevent adding new beverages if already got 30
-        if (beverageList.size() > beverageCountLimit) {
+        if (beverageList.size() > BEVERAGE_COUNT_LIMIT) {
             Toast.makeText(this, getString(R.string.home_cant_add_beverage_toast_message), Toast.LENGTH_LONG).show();
             return;
         }
