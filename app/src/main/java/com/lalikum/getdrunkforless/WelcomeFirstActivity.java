@@ -23,12 +23,10 @@ public class WelcomeFirstActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO make proper horizontal view
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_first);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        // TODO db error at first run, but app can run
         // go to simple welcome screen without get started button if Nth launch
         if (settingsController.isSettingsExists()) {
             toWelcomeActivity();
