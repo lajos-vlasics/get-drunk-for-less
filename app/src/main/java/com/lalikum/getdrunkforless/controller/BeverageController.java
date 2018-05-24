@@ -55,7 +55,6 @@ public class BeverageController {
     }
 
     public String getPriceWithUnit(Beverage beverage) {
-        // TODO remove commas from 1,000 things
         return decimalFormat.format(beverage.getPrice()) + " " + optionsController.getCurrency();
     }
 

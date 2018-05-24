@@ -1,15 +1,26 @@
 package com.lalikum.getdrunkforless.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.NotNull;
 
 public class Beverage extends SugarRecord {
 
+    @NotNull
     private String name;
+
+    @NotNull
     private float size;
+
+    @NotNull
     private float alcoholByVolume;
+
+    @NotNull
     private float price;
 
+    @NotNull
     private float alcoholQuantity;
+
+    @NotNull
     private float alcoholValue;
 
     public Beverage() {

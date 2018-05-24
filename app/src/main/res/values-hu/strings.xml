@@ -15,7 +15,7 @@
     <string name="tutorial_slide_text2">Mégis fullban nyomnád a partit? Ne aggódj…</string>
     <string name="tutorial_slide_text4">Így könnyebben megtalálhatod a boltban, vagy a kocsmában a legjobb ár/érték arányú piákat.</string>
     <string name="tutorial_slide_text3">Velem kiszámolhatod, hogy mennyibe kerül az egységnyi alkohol értéke egy italban.</string>
-    <string name="home_title_suffix">italai</string>
+    <string name="home_title_suffix">" italai"</string>
     <string name="home_add_beverage">Ital hozzáadása</string>
     <string name="home_settings">beállítások</string>
     <string name="home_of_alcohol_suffix">alkohol</string>
@@ -28,10 +28,10 @@
     <string name="add_beverage_title_add">Ital hozzáadása</string>
     <string name="add_beverage_error_empty_name">Kérlek írd ide az ital nevét!</string>
     <string name="add_beverage_error_empty_size">Kérlek írd ide az ital méretét!</string>
-    <string name="add_beverage_zero_size">Ez nem lehet nulla? Most be akarsz rúgni, vagy nem?</string>
+    <string name="add_beverage_zero_size">Ez nem lehet nulla! Most be akarsz rúgni, vagy nem?</string>
     <string name="add_beverage_error_empty_abv">Kérlek írd ide az alkohol tartalmat, százalékban!</string>
     <string name="add_beverage_error_zero_abv">Mit iszol? Vizet? Mi vagy te, állat?</string>
-    <string name="add_beverage_error_higher_abv">Az alkohol százalék nem lehet több 100%-nál!</string>
+    <string name="add_beverage_error_higher_abv">Az alkohol tartalom nem lehet több 100%-nál!</string>
     <string name="add_beverage_error_empty_price">Kérlek írd ide az ital árát!</string>
     <string name="add_beverage_error_zero_price">OK, ez tök ingyen van, ezzel nem is érdemes számolni.</string>
     <string name="add_beverage_image_pony_with_bag">egy póni zsákkal a hátán</string>

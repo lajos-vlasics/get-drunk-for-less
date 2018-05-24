@@ -24,6 +24,8 @@ import com.lalikum.getdrunkforless.model.MeasurementSystem;
 import com.lalikum.getdrunkforless.model.Settings;
 import com.lalikum.getdrunkforless.util.InputChecker;
 
+import java.util.Objects;
+
 public class SettingsActivity extends AppCompatActivity {
 
     private static final String[] CURRENCIES = new String[]{
@@ -119,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
         if (settingsController.isSettingsExists()) {
             Settings settings = settingsController.getInstance();
             // show things
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             tutorialButton.setVisibility(View.VISIBLE);
 

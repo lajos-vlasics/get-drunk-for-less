@@ -1,11 +1,16 @@
 package com.lalikum.getdrunkforless.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.NotNull;
 
 public class Settings extends SugarRecord {
 
     private String userName;
+
+    @NotNull
     private MeasurementSystem measurementSystem;
+
+    @NotNull
     private String currency;
 
     public Settings() {

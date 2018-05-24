@@ -61,7 +61,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         // TODO fix water img to bg somehow
 
         // init
-        setTitle(settingsController.getUserName() + " " + getString(R.string.home_title_suffix));
+        setTitle(settingsController.getUserName() + getString(R.string.home_title_suffix));
         hideAddBeverageHereTextView();
 
         // set adView

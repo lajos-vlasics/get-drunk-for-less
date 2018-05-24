@@ -2,6 +2,8 @@ package com.lalikum.getdrunkforless.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,20 +40,24 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
     }
 
     // inflates the row layout from xml when needed
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.layout_beverages_list, parent, false);
         return new ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Beverage beverage = beverageList.get(position);
         // make an empty holder in last place
         if (beverage == null) {
             holder.itemView.setOnClickListener(null);
-            holder.itemView.setBackground(null);
+            // check on IceCream version
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                holder.itemView.setBackground(null);
+            }
             holder.backgroundRelativeLayout.setVisibility(View.GONE);
             holder.foregroundConstraintLayout.setVisibility(View.GONE);
             return;

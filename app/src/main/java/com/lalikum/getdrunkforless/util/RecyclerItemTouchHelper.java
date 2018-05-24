@@ -7,9 +7,6 @@ import android.view.View;
 
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 
-/**
- * Created by ravi on 29/09/17.
- */
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private RecyclerItemTouchHelperListener listener;
