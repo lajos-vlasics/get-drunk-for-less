@@ -21,7 +21,6 @@ public class TutorialActivity extends AppCompatActivity {
     private ViewPager slideViewPager;
     private LinearLayout slideDotsLayout;
     private TextView[] slideDotsTextViewList;
-    private TutorialSliderAdapter tutorialSliderAdapter;
     private int currentPagePosition;
 
 
@@ -93,7 +92,7 @@ public class TutorialActivity extends AppCompatActivity {
                 getString(R.string.tutorial_slide_text4)
         };
 
-        tutorialSliderAdapter = new TutorialSliderAdapter(this, slideImageIds, slideTexts);
+        TutorialSliderAdapter tutorialSliderAdapter = new TutorialSliderAdapter(this, slideImageIds, slideTexts);
 
         slideViewPager.setAdapter(tutorialSliderAdapter);
 

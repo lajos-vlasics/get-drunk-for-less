@@ -10,13 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.R;
+import com.lalikum.getdrunkforless.util.DecodeBitmap;
 
 import java.util.Objects;
 
 public class TutorialSliderAdapter extends PagerAdapter {
 
     private Context context;
-    private LayoutInflater layoutInflater;
 
     private int[] slideImages;
     private String[] slideTexts;
@@ -33,21 +33,23 @@ public class TutorialSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+    public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
 
-    @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = Objects.requireNonNull(layoutInflater).inflate(R.layout.slide_layout_tutorial, container, false);
+    public Object instantiateItem(ViewGroup container, int position) {
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.slide_layout_tutorial, container, false);
 
         ImageView tutorialImageView = view.findViewById(R.id.ivTutorialSlideLayoutImage);
+        tutorialImageView.setImageBitmap(DecodeBitmap.decodeResource(context.getResources(), slideImages[position]));
+
+
         TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);
 
-        // TODO running out of memory beacuse of big pics
-        tutorialImageView.setImageResource(slideImages[position]);
+        // TODO running out of memory because of big pics
+//        tutorialImageView.setImageResource(slideImages[position]);
         tutorialTextView.setText(slideTexts[position]);
 
         container.addView(view);
@@ -56,7 +58,7 @@ public class TutorialSliderAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
 }
