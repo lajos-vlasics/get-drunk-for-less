@@ -103,7 +103,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // set autocomplete for currency edit text
         currencyAutoCompleteTextView = findViewById(R.id.acetSettingsCurrency);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, CURRENCIES);
         currencyAutoCompleteTextView.setAdapter(adapter);
 

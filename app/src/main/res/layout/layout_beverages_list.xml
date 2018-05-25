@@ -35,6 +35,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:text="Johny Walker OOO"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/ivHomeMedal"
@@ -47,6 +49,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:text="654 654  gt"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/ivHomeMedal"
             app:layout_constraintTop_toBottomOf="@+id/tvHomeBeverageName" />

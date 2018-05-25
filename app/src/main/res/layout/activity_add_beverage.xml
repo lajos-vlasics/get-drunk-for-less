@@ -188,7 +188,7 @@
         android:layout_weight="0"
         android:visibility="gone"
         app:adSize="SMART_BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:adUnitId="ca-app-pub-6276489657027475/1133742253"
         app:layout_constraintTop_toTopOf="parent">
     </com.google.android.gms.ads.AdView>
 

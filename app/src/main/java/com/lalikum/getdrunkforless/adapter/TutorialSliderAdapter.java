@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.lalikum.getdrunkforless.R;
 
+import java.util.Objects;
+
 public class TutorialSliderAdapter extends PagerAdapter {
 
     private Context context;
@@ -32,14 +34,14 @@ public class TutorialSliderAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view == (View) object;
+        return view == object;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.slide_layout_tutorial, container, false);
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = Objects.requireNonNull(layoutInflater).inflate(R.layout.slide_layout_tutorial, container, false);
 
         ImageView tutorialImageView = view.findViewById(R.id.ivTutorialSlideLayoutImage);
         TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);

@@ -14,13 +14,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;

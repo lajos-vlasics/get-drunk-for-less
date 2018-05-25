@@ -54,7 +54,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         // make an empty holder in last place
         if (beverage == null) {
             holder.itemView.setOnClickListener(null);
-            // check on IceCream version
+            // TODO check on IceCream version
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 holder.itemView.setBackground(null);
             }
@@ -64,7 +64,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         }
         holder.beverageNameTextView.setText(beverage.getName());
         // TODO add a new text if the item was added now
-        holder.alcoholValueTextView.setText(beverageController.getAlcoholValueWithUnit(beverage) + " " + context.getString(R.string.home_of_alcohol_suffix));
+        holder.alcoholValueTextView.setText(String.format("%s %s", beverageController.getAlcoholValueWithUnit(beverage), context.getString(R.string.home_of_alcohol_suffix)));
         // set valueBar
         if (position == 0) {
             holder.valueBar.setProgress(100);
