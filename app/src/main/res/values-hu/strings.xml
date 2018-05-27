@@ -12,7 +12,7 @@
     <string name="tutorial_next">Következő</string>
     <string name="tutorial_continue">Tovább</string>
     <string name="tutorial_slide_text1">Nincs elég lovettád?</string>
-    <string name="tutorial_slide_text2">Mégis fullban nyomnád a partit? Ne aggódj…</string>
+    <string name="tutorial_slide_text2">Mégis fullban nyomnád a partit?\nNe aggódj…</string>
     <string name="tutorial_slide_text4">Így könnyebben megtalálhatod a boltban, vagy a kocsmában a legjobb ár/érték arányú piákat.</string>
     <string name="tutorial_slide_text3">Velem kiszámolhatod, hogy mennyibe kerül az egységnyi alkohol értéke egy italban.</string>
     <string name="home_title_suffix">" italai"</string>

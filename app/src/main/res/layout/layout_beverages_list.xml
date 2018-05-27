@@ -43,12 +43,15 @@
             android:id="@+id/tvHomeBeverageName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:maxLines="1"
             android:textSize="24sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="8dp" />
+            app:layout_constraintStart_toEndOf="@+id/ivHomeMedal"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvHomeAlcoholValue"
