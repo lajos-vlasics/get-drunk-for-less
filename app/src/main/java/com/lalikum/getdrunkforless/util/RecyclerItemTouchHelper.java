@@ -1,15 +1,23 @@
 package com.lalikum.getdrunkforless.util;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
+import com.lalikum.getdrunkforless.R;
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private RecyclerItemTouchHelperListener listener;
+
+    private int originalMedalImageResource;
 
     public RecyclerItemTouchHelper(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener) {
         super(dragDirs, swipeDirs);
@@ -25,6 +33,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (viewHolder != null) {
             final View foregroundView = ((BeveragesListAdapter.ViewHolder) viewHolder).foregroundConstraintLayout;
+
+            ImageView medalImageView = ((BeveragesListAdapter.ViewHolder) viewHolder).medalImageView;
+
+            originalMedalImageResource = (int) medalImageView.getTag();
+            medalImageView.setImageResource(R.drawable.iw_dead_head);
 
             getDefaultUIUtil().onSelected(foregroundView);
         }
@@ -42,6 +55,11 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         final View foregroundView = ((BeveragesListAdapter.ViewHolder) viewHolder).foregroundConstraintLayout;
+
+        ImageView medalImageView = ((BeveragesListAdapter.ViewHolder) viewHolder).medalImageView;
+
+        medalImageView.setImageResource(originalMedalImageResource);
+
         getDefaultUIUtil().clearView(foregroundView);
     }
 

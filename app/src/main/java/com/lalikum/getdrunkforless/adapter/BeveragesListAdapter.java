@@ -72,7 +72,7 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
             holder.valueBar.setProgress((int) (beverageList.get(0).getAlcoholValue() / beverageList.get(position).getAlcoholValue() * 100));
         }
 
-        // set medal image
+        // set medal image and tag (to save resource id too)
         setMedalImage(holder, position);
     }
 
@@ -80,15 +80,19 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
         switch (position) {
             case 0:
                 holder.medalImageView.setImageResource(R.drawable.iw_gold_head);
+                holder.medalImageView.setTag(R.drawable.iw_gold_head);
                 break;
             case 1:
                 holder.medalImageView.setImageResource(R.drawable.iw_silver_head);
+                holder.medalImageView.setTag(R.drawable.iw_silver_head);
                 break;
             case 2:
                 holder.medalImageView.setImageResource(R.drawable.iw_bronze_head);
+                holder.medalImageView.setTag(R.drawable.iw_bronze_head);
                 break;
             default:
                 holder.medalImageView.setImageResource(R.drawable.iw_sad_head);
+                holder.medalImageView.setTag(R.drawable.iw_sad_head);
                 break;
         }
     }
@@ -133,12 +137,12 @@ public class BeveragesListAdapter extends RecyclerView.Adapter<BeveragesListAdap
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public RelativeLayout backgroundRelativeLayout;
+        RelativeLayout backgroundRelativeLayout;
         public ConstraintLayout foregroundConstraintLayout;
         TextView beverageNameTextView;
         TextView alcoholValueTextView;
         ProgressBar valueBar;
-        ImageView medalImageView;
+        public ImageView medalImageView;
 
         ViewHolder(View itemView) {
             super(itemView);

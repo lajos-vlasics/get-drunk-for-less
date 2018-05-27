@@ -48,8 +48,6 @@ public class TutorialSliderAdapter extends PagerAdapter {
 
         TextView tutorialTextView = view.findViewById(R.id.tvTutorialSlideLayoutText);
 
-        // TODO running out of memory because of big pics
-//        tutorialImageView.setImageResource(slideImages[position]);
         tutorialTextView.setText(slideTexts[position]);
 
         container.addView(view);

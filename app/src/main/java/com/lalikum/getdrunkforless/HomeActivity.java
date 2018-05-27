@@ -115,13 +115,14 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
             beveragesRecyclerView.setItemAnimator(new DefaultItemAnimator());
             beveragesListAdapter = new BeveragesListAdapter(this, beverageList);
 
-//            RecyclerView.ItemDecoration dividerItemDecoration = new BeverageDividerItemDecoration(ContextCompat.getDrawable(this, R.drawable.divider));
-//            beveragesRecyclerView.addItemDecoration(dividerItemDecoration);
-
             beveragesRecyclerView.setAdapter(beveragesListAdapter);
 
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
-            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(beveragesRecyclerView);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackLeft = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackRight = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
+
+
+            new ItemTouchHelper(itemTouchHelperCallbackLeft).attachToRecyclerView(beveragesRecyclerView);
+            new ItemTouchHelper(itemTouchHelperCallbackRight).attachToRecyclerView(beveragesRecyclerView);
         }
     }
 
@@ -217,4 +218,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
         snackbar.show();
 
     }
+
+    // TODO alcohol bar blue on android 7.0
+    // TODO big text size is a shit
 }
