@@ -1,25 +1,21 @@
 package com.lalikum.getdrunkforless.util;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.lalikum.getdrunkforless.R;
 import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 
 
-public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
+public class HomeBeverageTouchHelper extends ItemTouchHelper.SimpleCallback {
     private RecyclerItemTouchHelperListener listener;
 
     private int originalMedalImageResource;
 
-    public RecyclerItemTouchHelper(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener) {
+    public HomeBeverageTouchHelper(int dragDirs, int swipeDirs, RecyclerItemTouchHelperListener listener) {
         super(dragDirs, swipeDirs);
         this.listener = listener;
     }

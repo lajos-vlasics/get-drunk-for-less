@@ -24,11 +24,11 @@ import com.lalikum.getdrunkforless.adapter.BeveragesListAdapter;
 import com.lalikum.getdrunkforless.controller.BeverageController;
 import com.lalikum.getdrunkforless.controller.SettingsController;
 import com.lalikum.getdrunkforless.model.Beverage;
-import com.lalikum.getdrunkforless.util.RecyclerItemTouchHelper;
+import com.lalikum.getdrunkforless.util.HomeBeverageTouchHelper;
 
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+public class HomeActivity extends AppCompatActivity implements HomeBeverageTouchHelper.RecyclerItemTouchHelperListener {
 
     private final static int BEVERAGE_COUNT_LIMIT = 30;
 
@@ -117,8 +117,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerItemTouch
 
             beveragesRecyclerView.setAdapter(beveragesListAdapter);
 
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackLeft = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
-            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackRight = new RecyclerItemTouchHelper(0, ItemTouchHelper.RIGHT, this);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackLeft = new HomeBeverageTouchHelper(0, ItemTouchHelper.LEFT, this);
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallbackRight = new HomeBeverageTouchHelper(0, ItemTouchHelper.RIGHT, this);
 
 
             new ItemTouchHelper(itemTouchHelperCallbackLeft).attachToRecyclerView(beveragesRecyclerView);
