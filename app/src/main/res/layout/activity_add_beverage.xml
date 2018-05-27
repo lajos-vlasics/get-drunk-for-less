@@ -55,7 +55,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_beverage_name"
-                    android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:maxLength="16"
                     android:singleLine="true" />
@@ -125,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/add_beverage_price"
-                    android:imeOptions="actionUnspecified|actionDone"
+                    android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:maxLength="7"
                     android:singleLine="true" />
@@ -189,7 +188,6 @@
         android:visibility="gone"
         app:adSize="SMART_BANNER"
         app:adUnitId="ca-app-pub-6276489657027475/1133742253"
-        app:layout_constraintTop_toTopOf="parent">
-    </com.google.android.gms.ads.AdView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>

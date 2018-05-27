@@ -85,8 +85,6 @@
         android:visibility="gone"
         app:adSize="SMART_BANNER"
         app:adUnitId="ca-app-pub-6276489657027475/9451215979"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.google.android.gms.ads.AdView>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>
